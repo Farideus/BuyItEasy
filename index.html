@@ -5,6 +5,86 @@
   <title>Super-Shop — 10 продуктов</title>
   <style>
     body {
+      <!-- Вставь этот блок прямо внутри <body> ВЕРХНЕЙ части страницы, сразу после <body> -->
+<nav class="main-menu">
+  <div class="logo">Super-Shop</div>
+  <ul class="menu-list">
+    <li><a href="#">Главная</a></li>
+    <li><a href="#">Категории</a>
+      <ul class="submenu">
+        <li><a href="#">Фрукты</a></li>
+        <li><a href="#">Овощи</a></li>
+        <li><a href="#">Молочные продукты</a></li>
+        <li><a href="#">Мясо и рыба</a></li>
+      </ul>
+    </li>
+    <li><a href="#">О магазине</a></li>
+    <li><a href="#">Контакты</a></li>
+    <li><a href="#">Корзина 🛒</a></li>
+  </ul>
+</nav>
+
+<style>
+  .main-menu {
+    background: #006400; /* тёмно-зелёный */
+    color: gold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    font-family: Arial, sans-serif;
+  }
+  .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: gold;
+  }
+  .menu-list {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-list li {
+    position: relative;
+  }
+  .menu-list li a {
+    color: gold;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 5px;
+  }
+  .menu-list li:hover > a {
+    text-decoration: underline;
+  }
+  /* Подменю */
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: #228b22; /* более светлый зелёный */
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 4px;
+    min-width: 140px;
+    z-index: 1000;
+  }
+  .submenu li a {
+    display: block;
+    padding: 8px 15px;
+    color: gold;
+  }
+  .submenu li a:hover {
+    background: goldenrod;
+    color: #004d00;
+  }
+  .menu-list li:hover > .submenu {
+    display: block;
+  }
+</style>
+
       font-family: Arial, sans-serif;
       background: #f0fff0;
       color: #333;
