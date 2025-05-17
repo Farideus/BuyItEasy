@@ -1,720 +1,163 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Super-Shop</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-  <h1>Super-Shop</h1>
-  <button id="cart-button" onclick="toggleCart()">🛒 Корзина (0)</button>
-</header>
-
-<div id="cart" class="hidden">
-  <h2>Ваша корзина</h2>
-  <ul id="cart-items"></ul>
-  <p><strong>Итого:</strong> <span id="cart-total">₽0</span></p>
-</div>
-
-<!-- Разметка товаров -->
 <section class="products">
+
   <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="Яблоки" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="Яблоки">
     <h3>Яблоки</h3>
     <p>Свежие красные яблоки</p>
-    <span class="price">120</span>
+    <span class="price">₽120</span>
     <button onclick="addToCart('Яблоки', 120)">Добавить в корзину</button>
   </div>
-  <!-- Добавьте остальные товары с аналогичными кнопками -->
-</section>
-
-  <section class="products">
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яблоки" />
-    <h3>Яблоки</h3>
-    <p>Свежие красные яблоки</p>
-    <span>₽120</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Бананы" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Бананы">
     <h3>Бананы</h3>
     <p>Спелые бананы</p>
-    <span>₽95</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽95</span>
+    <button onclick="addToCart('Бананы', 95)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Картофель" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Patates.jpg" alt="Картофель">
     <h3>Картофель</h3>
     <p>Молодой картофель</p>
-    <span>₽45</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽45</span>
+    <button onclick="addToCart('Картофель', 45)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Морковь" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Carrot.png" alt="Морковь">
     <h3>Морковь</h3>
-    <p>Сладкая морковь</p>
-    <span>₽30</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Сочная морковь</p>
+    <span class="price">₽30</span>
+    <button onclick="addToCart('Морковь', 30)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Лук" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Onion_on_White.JPG" alt="Лук">
     <h3>Лук</h3>
     <p>Репчатый лук</p>
-    <span>₽25</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽25</span>
+    <button onclick="addToCart('Лук', 25)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Чеснок" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Whole_garlic_bulbs.jpg" alt="Чеснок">
     <h3>Чеснок</h3>
     <p>Свежий чеснок</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽80</span>
+    <button onclick="addToCart('Чеснок', 80)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Помидоры" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg" alt="Помидоры">
     <h3>Помидоры</h3>
     <p>Томаты черри</p>
-    <span>₽150</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽150</span>
+    <button onclick="addToCart('Помидоры', 150)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Огурцы" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Cucumis_sativus-fruits.jpg" alt="Огурцы">
     <h3>Огурцы</h3>
     <p>Салатные огурцы</p>
-    <span>₽110</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽110</span>
+    <button onclick="addToCart('Огурцы', 110)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Капуста" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Cabbage_and_cross_section_on_white.jpg" alt="Капуста">
     <h3>Капуста</h3>
     <p>Белокочанная капуста</p>
-    <span>₽40</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽40</span>
+    <button onclick="addToCart('Капуста', 40)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Свекла" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Beetrootj.jpg" alt="Свекла">
     <h3>Свекла</h3>
-    <p>Сочная свекла</p>
-    <span>₽35</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Свежая свекла</p>
+    <span class="price">₽35</span>
+    <button onclick="addToCart('Свекла', 35)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Хлеб" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Bread_with_poppy_seeds.jpg" alt="Хлеб">
     <h3>Хлеб</h3>
     <p>Пшеничный хлеб</p>
-    <span>₽50</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽50</span>
+    <button onclick="addToCart('Хлеб', 50)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Молоко" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Milk_glass.jpg" alt="Молоко">
     <h3>Молоко</h3>
     <p>Молоко 3.2%</p>
-    <span>₽60</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽60</span>
+    <button onclick="addToCart('Молоко', 60)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сыр" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Cheddar_cheese.jpg" alt="Сыр">
     <h3>Сыр</h3>
     <p>Твердый сыр</p>
-    <span>₽290</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽290</span>
+    <button onclick="addToCart('Сыр', 290)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яйца" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Eggs_in_carton.jpg" alt="Яйца">
     <h3>Яйца</h3>
-    <p>Яйца куриные, 10 шт</p>
-    <span>₽85</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Яйца куриные (10 шт)</p>
+    <span class="price">₽85</span>
+    <button onclick="addToCart('Яйца', 85)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Курица" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Chicken_breast.png" alt="Курица">
     <h3>Курица</h3>
     <p>Куриное филе</p>
-    <span>₽350</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <span class="price">₽350</span>
+    <button onclick="addToCart('Курица', 350)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Говядина" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Roast_beef_slices.jpg" alt="Говядина">
     <h3>Говядина</h3>
-    <p>Филе говяжье</p>
-    <span>₽670</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Филе говядины</p>
+    <span class="price">₽670</span>
+    <button onclick="addToCart('Говядина', 670)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Рис" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Basmati_rice.jpg" alt="Рис">
     <h3>Рис</h3>
-    <p>Рис круглый, 1 кг</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Рис длиннозерный</p>
+    <span class="price">₽80</span>
+    <button onclick="addToCart('Рис', 80)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Гречка" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Buckwheat-kasha.jpg" alt="Гречка">
     <h3>Гречка</h3>
-    <p>Гречневая крупа, 1 кг</p>
-    <span>₽90</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Гречневая крупа</p>
+    <span class="price">₽90</span>
+    <button onclick="addToCart('Гречка', 90)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Масло" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Sunflower_oil.jpg" alt="Масло">
     <h3>Масло подсолнечное</h3>
-    <p>Масло 1л</p>
-    <span>₽140</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>1 литр</p>
+    <span class="price">₽140</span>
+    <button onclick="addToCart('Масло', 140)">Добавить в корзину</button>
   </div>
 
   <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сахар" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Sugar_bowl_and_sugar.jpg" alt="Сахар">
     <h3>Сахар</h3>
-    <p>Сахар-песок, 1 кг</p>
-    <span>₽55</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-</section>
-
-  <section class="products">
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яблоки" />
-    <h3>Яблоки</h3>
-    <p>Свежие красные яблоки</p>
-    <span>₽120</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Бананы" />
-    <h3>Бананы</h3>
-    <p>Спелые бананы</p>
-    <span>₽95</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Картофель" />
-    <h3>Картофель</h3>
-    <p>Молодой картофель</p>
-    <span>₽45</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Морковь" />
-    <h3>Морковь</h3>
-    <p>Сладкая морковь</p>
-    <span>₽30</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Лук" />
-    <h3>Лук</h3>
-    <p>Репчатый лук</p>
-    <span>₽25</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Чеснок" />
-    <h3>Чеснок</h3>
-    <p>Свежий чеснок</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Помидоры" />
-    <h3>Помидоры</h3>
-    <p>Томаты черри</p>
-    <span>₽150</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Огурцы" />
-    <h3>Огурцы</h3>
-    <p>Салатные огурцы</p>
-    <span>₽110</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Капуста" />
-    <h3>Капуста</h3>
-    <p>Белокочанная капуста</p>
-    <span>₽40</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Свекла" />
-    <h3>Свекла</h3>
-    <p>Сочная свекла</p>
-    <span>₽35</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Хлеб" />
-    <h3>Хлеб</h3>
-    <p>Пшеничный хлеб</p>
-    <span>₽50</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Молоко" />
-    <h3>Молоко</h3>
-    <p>Молоко 3.2%</p>
-    <span>₽60</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сыр" />
-    <h3>Сыр</h3>
-    <p>Твердый сыр</p>
-    <span>₽290</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яйца" />
-    <h3>Яйца</h3>
-    <p>Яйца куриные, 10 шт</p>
-    <span>₽85</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Курица" />
-    <h3>Курица</h3>
-    <p>Куриное филе</p>
-    <span>₽350</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Говядина" />
-    <h3>Говядина</h3>
-    <p>Филе говяжье</p>
-    <span>₽670</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Рис" />
-    <h3>Рис</h3>
-    <p>Рис круглый, 1 кг</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Гречка" />
-    <h3>Гречка</h3>
-    <p>Гречневая крупа, 1 кг</p>
-    <span>₽90</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Масло" />
-    <h3>Масло подсолнечное</h3>
-    <p>Масло 1л</p>
-    <span>₽140</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сахар" />
-    <h3>Сахар</h3>
-    <p>Сахар-песок, 1 кг</p>
-    <span>₽55</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-</section>
-
-  <header>
-    <div class="logo">Super-Shop</div>
-    <nav>
-      <ul>
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Каталог</a></li>
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Контакты</a></li>
-        <li><a href="#">Корзина (<span id="cart-count">0</span>)</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="products">
-      <div class="product">
-        <img src="https://via.placeholder.com/150" alt="Товар 1" />
-        <h3>Товар 1</h3>
-        <p>Описание товара 1</p>
-        <span>₽1000</span>
-        <button onclick="addToCart()">Добавить в корзину</button>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/150" alt="Товар 2" />
-        <h3>Товар 2</h3>
-        <p>Описание товара 2</p>
-        <span>₽1500</span>
-        <button onclick="addToCart()">Добавить в корзину</button>
-      </div>
-      <!-- Добавь больше товаров по шаблону -->
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Super-Shop. Все права защищены.</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
-<section class="products">
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яблоки" />
-    <h3>Яблоки</h3>
-    <p>Свежие красные яблоки</p>
-    <span>₽120</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Бананы" />
-    <h3>Бананы</h3>
-    <p>Спелые бананы</p>
-    <span>₽95</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Картофель" />
-    <h3>Картофель</h3>
-    <p>Молодой картофель</p>
-    <span>₽45</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Морковь" />
-    <h3>Морковь</h3>
-    <p>Сладкая морковь</p>
-    <span>₽30</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Лук" />
-    <h3>Лук</h3>
-    <p>Репчатый лук</p>
-    <span>₽25</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Чеснок" />
-    <h3>Чеснок</h3>
-    <p>Свежий чеснок</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Помидоры" />
-    <h3>Помидоры</h3>
-    <p>Томаты черри</p>
-    <span>₽150</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Огурцы" />
-    <h3>Огурцы</h3>
-    <p>Салатные огурцы</p>
-    <span>₽110</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Капуста" />
-    <h3>Капуста</h3>
-    <p>Белокочанная капуста</p>
-    <span>₽40</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Свекла" />
-    <h3>Свекла</h3>
-    <p>Сочная свекла</p>
-    <span>₽35</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Хлеб" />
-    <h3>Хлеб</h3>
-    <p>Пшеничный хлеб</p>
-    <span>₽50</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Молоко" />
-    <h3>Молоко</h3>
-    <p>Молоко 3.2%</p>
-    <span>₽60</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сыр" />
-    <h3>Сыр</h3>
-    <p>Твердый сыр</p>
-    <span>₽290</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Яйца" />
-    <h3>Яйца</h3>
-    <p>Яйца куриные, 10 шт</p>
-    <span>₽85</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Курица" />
-    <h3>Курица</h3>
-    <p>Куриное филе</p>
-    <span>₽350</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Говядина" />
-    <h3>Говядина</h3>
-    <p>Филе говяжье</p>
-    <span>₽670</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Рис" />
-    <h3>Рис</h3>
-    <p>Рис круглый, 1 кг</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Гречка" />
-    <h3>Гречка</h3>
-    <p>Гречневая крупа, 1 кг</p>
-    <span>₽90</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Масло" />
-    <h3>Масло подсолнечное</h3>
-    <p>Масло 1л</p>
-    <span>₽140</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://via.placeholder.com/150" alt="Сахар" />
-    <h3>Сахар</h3>
-    <p>Сахар-песок, 1 кг</p>
-    <span>₽55</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-</section>
-<section class="products">
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="Яблоки" />
-    <h3>Яблоки</h3>
-    <p>Свежие красные яблоки</p>
-    <span>₽120</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Бананы" />
-    <h3>Бананы</h3>
-    <p>Спелые бананы</p>
-    <span>₽95</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Patates.jpg" alt="Картофель" />
-    <h3>Картофель</h3>
-    <p>Молодой картофель</p>
-    <span>₽45</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Carrot.png" alt="Морковь" />
-    <h3>Морковь</h3>
-    <p>Сладкая морковь</p>
-    <span>₽30</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Onion_on_White.JPG" alt="Лук" />
-    <h3>Лук</h3>
-    <p>Репчатый лук</p>
-    <span>₽25</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Whole_garlic_bulbs.jpg" alt="Чеснок" />
-    <h3>Чеснок</h3>
-    <p>Свежий чеснок</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg" alt="Помидоры" />
-    <h3>Помидоры</h3>
-    <p>Томаты черри</p>
-    <span>₽150</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Cucumis_sativus-fruits.jpg" alt="Огурцы" />
-    <h3>Огурцы</h3>
-    <p>Салатные огурцы</p>
-    <span>₽110</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Cabbage_and_cross_section_on_white.jpg" alt="Капуста" />
-    <h3>Капуста</h3>
-    <p>Белокочанная капуста</p>
-    <span>₽40</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Beetrootj.jpg" alt="Свекла" />
-    <h3>Свекла</h3>
-    <p>Сочная свекла</p>
-    <span>₽35</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Bread_with_poppy_seeds.jpg" alt="Хлеб" />
-    <h3>Хлеб</h3>
-    <p>Пшеничный хлеб</p>
-    <span>₽50</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Milk_glass.jpg" alt="Молоко" />
-    <h3>Молоко</h3>
-    <p>Молоко 3.2%</p>
-    <span>₽60</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Cheddar_cheese.jpg" alt="Сыр" />
-    <h3>Сыр</h3>
-    <p>Твердый сыр</p>
-    <span>₽290</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Eggs_in_carton.jpg" alt="Яйца" />
-    <h3>Яйца</h3>
-    <p>Яйца куриные, 10 шт</p>
-    <span>₽85</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Chicken_breast.png" alt="Курица" />
-    <h3>Курица</h3>
-    <p>Куриное филе</p>
-    <span>₽350</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Roast_beef_slices.jpg" alt="Говядина" />
-    <h3>Говядина</h3>
-    <p>Филе говяжье</p>
-    <span>₽670</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Basmati_rice.jpg" alt="Рис" />
-    <h3>Рис</h3>
-    <p>Рис круглый, 1 кг</p>
-    <span>₽80</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Buckwheat-kasha.jpg" alt="Гречка" />
-    <h3>Гречка</h3>
-    <p>Гречневая крупа, 1 кг</p>
-    <span>₽90</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Sunflower_oil.jpg" alt="Масло" />
-    <h3>Масло подсолнечное</h3>
-    <p>Масло 1л</p>
-    <span>₽140</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
-  </div>
-
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Sugar_bowl_and_sugar.jpg" alt="Сахар" />
-    <h3>Сахар</h3>
-    <p>Сахар-песок, 1 кг</p>
-    <span>₽55</span>
-    <button onclick="addToCart()">Добавить в корзину</button>
+    <p>Сахар-песок 1 кг</p>
+    <span class="price">₽55</span>
+    <button onclick="addToCart('Сахар', 55)">Добавить в корзину</button>
   </div>
 
 </section>
