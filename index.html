@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Super-Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Super-Shop</div>
+    <nav>
+      <ul>
+        <li><a href="#">Главная</a></li>
+        <li><a href="#">Каталог</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Корзина (<span id="cart-count">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Товар 1" />
+        <h3>Товар 1</h3>
+        <p>Описание товара 1</p>
+        <span>₽1000</span>
+        <button onclick="addToCart()">Добавить в корзину</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/150" alt="Товар 2" />
+        <h3>Товар 2</h3>
+        <p>Описание товара 2</p>
+        <span>₽1500</span>
+        <button onclick="addToCart()">Добавить в корзину</button>
+      </div>
+      <!-- Добавь больше товаров по шаблону -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Super-Shop. Все права защищены.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
