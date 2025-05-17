@@ -2,207 +2,117 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Super-Shop</title>
+  <title>Super-Shop — 10 продуктов</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f7fff7;
+      background: #f0fff0;
       color: #333;
-      margin: 0;
       padding: 20px;
     }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #006400;
-      color: gold;
-      padding: 15px 20px;
-      border-radius: 8px;
-    }
-
-    #cart-button {
-      background-color: gold;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
+    h1 {
+      text-align: center;
       color: #006400;
-      font-weight: bold;
     }
-
-    #cart {
-      margin-top: 20px;
-      padding: 15px;
-      background: #e0ffe0;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-
-    #cart.hidden {
-      display: none;
-    }
-
     .products {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
     }
-
     .product {
-      background: white;
       border: 1px solid #ccc;
       border-radius: 10px;
-      padding: 10px;
       width: 200px;
-      box-shadow: 2px 2px 8px rgba(0, 100, 0, 0.1);
+      background: white;
+      box-shadow: 2px 2px 5px rgba(0, 100, 0, 0.1);
+      padding: 10px;
+      text-align: center;
     }
-
     .product img {
       width: 100%;
       height: 150px;
       object-fit: cover;
       border-radius: 6px;
     }
-
     .product h3 {
-      margin: 10px 0 5px;
       color: #006400;
+      margin: 10px 0 5px;
     }
-
-    .product p {
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .product .price {
-      display: block;
-      margin-top: 5px;
+    .price {
       color: goldenrod;
       font-weight: bold;
-    }
-
-    .product button {
-      margin-top: 8px;
-      padding: 6px 10px;
-      background-color: #006400;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    #cart-items li {
-      margin-bottom: 5px;
-    }
-
-    .remove-button {
-      color: red;
-      margin-left: 10px;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Super-Shop</h1>
-    <button id="cart-button" onclick="toggleCart()">🛒 Корзина (0)</button>
-  </header>
+  <h1>Товары в Super-Shop</h1>
 
-  <div id="cart" class="hidden">
-    <h2>Ваша корзина</h2>
-    <ul id="cart-items"></ul>
-    <p><strong>Итого:</strong> <span id="cart-total">₽0</span></p>
-  </div>
+  <div class="products">
 
-  <section class="products">
-
-    <!-- Примеры товаров (1–5) -->
     <div class="product">
       <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" alt="Яблоки">
       <h3>Яблоки</h3>
-      <p>Свежие красные яблоки</p>
-      <span class="price">₽120</span>
-      <button onclick="addToCart('Яблоки', 120)">Добавить в корзину</button>
+      <p class="price">₽120</p>
     </div>
 
     <div class="product">
       <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Бананы">
       <h3>Бананы</h3>
-      <p>Спелые бананы</p>
-      <span class="price">₽95</span>
-      <button onclick="addToCart('Бананы', 95)">Добавить в корзину</button>
+      <p class="price">₽95</p>
     </div>
 
     <div class="product">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Patates.jpg" alt="Картофель">
       <h3>Картофель</h3>
-      <p>Молодой картофель</p>
-      <span class="price">₽45</span>
-      <button onclick="addToCart('Картофель', 45)">Добавить в корзину</button>
+      <p class="price">₽45</p>
     </div>
 
     <div class="product">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Carrot.png" alt="Морковь">
       <h3>Морковь</h3>
-      <p>Сочная морковь</p>
-      <span class="price">₽30</span>
-      <button onclick="addToCart('Морковь', 30)">Добавить в корзину</button>
+      <p class="price">₽30</p>
     </div>
 
     <div class="product">
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Onion_on_White.JPG" alt="Лук">
       <h3>Лук</h3>
-      <p>Репчатый лук</p>
-      <span class="price">₽25</span>
-      <button onclick="addToCart('Лук', 25)">Добавить в корзину</button>
+      <p class="price">₽25</p>
     </div>
 
-    <!-- Здесь вставьте остальные 15 товаров (см. предыдущий ответ), точно по этой структуре -->
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Tomato_je.jpg" alt="Помидоры">
+      <h3>Помидоры</h3>
+      <p class="price">₽80</p>
+    </div>
 
-  </section>
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Cucumis_sativus_02.jpg" alt="Огурцы">
+      <h3>Огурцы</h3>
+      <p class="price">₽60</p>
+    </div>
 
-  <script>
-    let cart = [];
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Milk_glass.jpg" alt="Молоко">
+      <h3>Молоко</h3>
+      <p class="price">₽65</p>
+    </div>
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      updateCart();
-    }
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Eggs_1.jpg" alt="Яйца">
+      <h3>Яйца</h3>
+      <p class="price">₽90</p>
+    </div>
 
-    function updateCart() {
-      const cartList = document.getElementById("cart-items");
-      const total = document.getElementById("cart-total");
-      const cartButton = document.getElementById("cart-button");
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Chicken_breast.jpg" alt="Курица">
+      <h3>Курица</h3>
+      <p class="price">₽240</p>
+    </div>
 
-      cartList.innerHTML = '';
-      let sum = 0;
-
-      cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `${item.name} — ₽${item.price} 
-          <span class="remove-button" onclick="removeFromCart(${index})">[Удалить]</span>`;
-        cartList.appendChild(li);
-        sum += item.price;
-      });
-
-      total.textContent = `₽${sum}`;
-      cartButton.textContent = `🛒 Корзина (${cart.length})`;
-    }
-
-    function toggleCart() {
-      document.getElementById("cart").classList.toggle("hidden");
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
-    }
-  </script>
+  </div>
 
 </body>
 </html>
