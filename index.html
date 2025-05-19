@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Магазин продуктов</title>
+  <title>Магазин продуктов с корзиной</title>
   <style>
     html {
-      scroll-behavior: smooth; /* плавный скролл по якорям */
+      scroll-behavior: smooth;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,11 +21,15 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     nav {
       display: flex;
       justify-content: center;
       gap: 28px;
+      flex-grow: 1;
     }
     nav a {
       color: #ecf0f1;
@@ -41,6 +45,35 @@
       background-color: #3498db;
       color: white;
       border-color: #2980b9;
+    }
+    /* Кнопка корзины в шапке */
+    #cart-btn {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+    #cart-btn:hover {
+      background-color: #b33226;
+    }
+    #cart-count {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      background: yellowgreen;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 50%;
+      padding: 2px 7px;
+      box-shadow: 0 0 3px rgba(0,0,0,0.3);
     }
     main {
       max-width: 1100px;
@@ -117,16 +150,16 @@
       transition: background-color 0.3s ease;
       box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
-    .buttons button:first-child {
+    .buttons button.buy {
       background-color: #2980b9;
     }
-    .buttons button:first-child:hover {
+    .buttons button.buy:hover {
       background-color: #1f6391;
     }
-    .buttons button:last-child {
+    .buttons button.cart {
       background-color: #e74c3c;
     }
-    .buttons button:last-child:hover {
+    .buttons button.cart:hover {
       background-color: #b33226;
     }
     form {
@@ -142,7 +175,7 @@
       font-weight: 600;
       color: #2c3e50;
     }
-    form input, form textarea {
+    form input, form textarea, form select {
       width: 100%;
       padding: 10px;
       margin-bottom: 16px;
@@ -152,7 +185,7 @@
       font-family: inherit;
       resize: vertical;
     }
-    form button {
+    form button.submit-btn {
       background-color: #27ae60;
       color: white;
       border: none;
@@ -163,10 +196,9 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    form button:hover {
+    form button.submit-btn:hover {
       background-color: #1e8449;
     }
-    /* Секции с фоном */
     #contacts {
       background-color: #d1f2eb;
       padding: 30px 20px;
@@ -182,6 +214,83 @@
       padding: 30px 20px;
       border-radius: 10px;
     }
+    /* Окно корзины */
+    #cart-window {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 320px;
+      max-height: 500px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      padding: 20px;
+      z-index: 1500;
+      display: none;
+      flex-direction: column;
+    }
+    #cart-window h3 {
+      margin-top: 0;
+      color: #27ae60;
+      font-size: 24px;
+      border-bottom: 2px solid #27ae60;
+      padding-bottom: 8px;
+    }
+    #cart-items {
+      flex-grow: 1;
+      margin-bottom: 15px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item span {
+      font-weight: 600;
+      color: #34495e;
+    }
+    .cart-item .qty {
+      margin: 0 10px;
+      font-weight: 400;
+      color: #666;
+    }
+    .remove-btn {
+      background-color: transparent;
+      border: none;
+      color: #e74c3c;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .remove-btn:hover {
+      color: #b33226;
+    }
+    #cart-total {
+      font-weight: 700;
+      font-size: 18px;
+      color: #27ae60;
+      text-align: right;
+      margin-bottom: 12px;
+    }
+    #close-cart {
+      align-self: flex-end;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      font-weight: 700;
+      color: #888;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+    #close-cart:hover {
+      color: #444;
+    }
   </style>
 </head>
 <body>
@@ -189,10 +298,13 @@
     <nav>
       <a href="#home">Главная</a>
       <a href="#buy">Купить</a>
-      <a href="#cart">Добавить в корзину</a>
+      <a href="#cart-section">Добавить в корзину</a>
       <a href="#delivery">Доставка</a>
       <a href="#contacts">Контакты</a>
     </nav>
+    <button id="cart-btn">
+      Корзина <span id="cart-count" style="display:none;">0</span>
+    </button>
   </header>
 
   <main>
@@ -200,53 +312,53 @@
       <h2>Добро пожаловать в наш магазин продуктов!</h2>
       <p>Здесь вы найдёте свежие и вкусные фрукты по лучшим ценам.</p>
       <div class="products">
-        <div class="product">
+        <div class="product" data-name="Яблоки" data-price="120">
           <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" width="200" height="200" />
           <h3>Яблоки</h3>
           <p>₽120 / кг</p>
           <div class="buttons">
-            <button>Купить</button>
-            <button>В корзину</button>
+            <button class="buy">Купить</button>
+            <button class="cart">В корзину</button>
           </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-name="Клубника" data-price="250">
           <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" width="200" height="200" />
           <h3>Клубника</h3>
           <p>₽250 / кг</p>
           <div class="buttons">
-            <button>Купить</button>
-            <button>В корзину</button>
+            <button class="buy">Купить</button>
+            <button class="cart">В корзину</button>
           </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-name="Апельсины" data-price="140">
           <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" width="200" height="200" />
           <h3>Апельсины</h3>
           <p>₽140 / кг</p>
           <div class="buttons">
-            <button>Купить</button>
-            <button>В корзину</button>
+            <button class="buy">Купить</button>
+            <button class="cart">В корзину</button>
           </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-name="Бананы" data-price="70">
           <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" width="200" height="200" />
           <h3>Бананы</h3>
           <p>₽70 / кг</p>
           <div class="buttons">
-            <button>Купить</button>
-            <button>В корзину</button>
+            <button class="buy">Купить</button>
+            <button class="cart">В корзину</button>
           </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-name="Груши" data-price="130">
           <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" width="200" height="200" />
           <h3>Груши</h3>
           <p>₽130 / кг</p>
           <div class="buttons">
-            <button>Купить</button>
-            <button>В корзину</button>
+            <button class="buy">Купить</button>
+            <button class="cart">В корзину</button>
           </div>
         </div>
       </div>
@@ -257,23 +369,23 @@
       <p>Выберите понравившийся продукт и нажмите "Купить" или "В корзину". Для заказа свяжитесь с нами.</p>
     </section>
 
-    <section id="cart">
+    <section id="cart-section">
       <h2>Добавить в корзину</h2>
       <form>
-        <label for="product">Продукт:</label>
-        <select id="product" name="product" required>
+        <label for="product-select">Продукт:</label>
+        <select id="product-select" name="product" required>
           <option value="">-- Выберите продукт --</option>
-          <option value="apples">Яблоки</option>
-          <option value="strawberries">Клубника</option>
-          <option value="oranges">Апельсины</option>
-          <option value="bananas">Бананы</option>
-          <option value="pears">Груши</option>
+          <option value="Яблоки" data-price="120">Яблоки</option>
+          <option value="Клубника" data-price="250">Клубника</option>
+          <option value="Апельсины" data-price="140">Апельсины</option>
+          <option value="Бананы" data-price="70">Бананы</option>
+          <option value="Груши" data-price="130">Груши</option>
         </select>
 
-        <label for="quantity">Количество (кг):</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="100" required />
+        <label for="quantity-input">Количество (кг):</label>
+        <input type="number" id="quantity-input" name="quantity" min="1" max="100" required />
 
-        <button type="submit">Добавить</button>
+        <button type="submit" class="submit-btn">Добавить</button>
       </form>
     </section>
 
@@ -295,20 +407,148 @@
         <li>Email: info@productshop.ru</li>
         <li>Адрес: ул. Фруктовая, д. 10, офис 5</li>
       </ul>
-      <form>
-        <label for="name">Ваше имя:</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="email">Ваш email:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">Сообщение:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit">Отправить</button>
-      </form>
     </section>
   </main>
 
+  <!-- Окно корзины -->
+  <div id="cart-window" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <button id="close-cart" aria-label="Закрыть корзину">&times;</button>
+    <h3 id="cart-title">Ваша корзина</h3>
+    <div id="cart-items">
+      <p>Корзина пуста</p>
+    </div>
+    <div id="cart-total">Итого: 0 ₽</div>
+    <button id="checkout-btn" disabled style="background:#27ae60; color:white; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:not-allowed;">Купить</button>
+  </div>
+
+  <script>
+    const cartBtn = document.getElementById('cart-btn');
+    const cartWindow = document.getElementById('cart-window');
+    const closeCartBtn = document.getElementById('close-cart');
+    const cartCountSpan = document.getElementById('cart-count');
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartTotalDiv = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    // Корзина — объект {название: {price, qty}}
+    let cart = {};
+
+    function updateCartUI() {
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        cartItemsDiv.innerHTML = '<p>Корзина пуста</p>';
+        cartCountSpan.style.display = 'none';
+        cartCountSpan.textContent = '0';
+        cartTotalDiv.textContent = 'Итого: 0 ₽';
+        checkoutBtn.disabled = true;
+        checkoutBtn.style.cursor = 'not-allowed';
+        return;
+      }
+
+      let totalCount = 0;
+      let totalSum = 0;
+      cartItemsDiv.innerHTML = '';
+      keys.forEach(name => {
+        const item = cart[name];
+        totalCount += item.qty;
+        totalSum += item.price * item.qty;
+
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+          <span>${name}</span>
+          <span class="qty">x${item.qty}</span>
+          <span>${item.price * item.qty} ₽</span>
+          <button class="remove-btn" aria-label="Удалить ${name} из корзины">&times;</button>
+        `;
+        const removeBtn = div.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+          removeFromCart(name);
+        });
+
+        cartItemsDiv.appendChild(div);
+      });
+
+      cartCountSpan.style.display = 'inline-block';
+      cartCountSpan.textContent = totalCount;
+      cartTotalDiv.textContent = `Итого: ${totalSum} ₽`;
+      checkoutBtn.disabled = false;
+      checkoutBtn.style.cursor = 'pointer';
+    }
+
+    function addToCart(name, price, qty = 1) {
+      if (cart[name]) {
+        cart[name].qty += qty;
+      } else {
+        cart[name] = { price, qty };
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(name) {
+      delete cart[name];
+      updateCartUI();
+    }
+
+    cartBtn.addEventListener('click', () => {
+      if (cartWindow.style.display === 'flex') {
+        cartWindow.style.display = 'none';
+      } else {
+        cartWindow.style.display = 'flex';
+      }
+    });
+
+    closeCartBtn.addEventListener('click', () => {
+      cartWindow.style.display = 'none';
+    });
+
+    // Добавление товара из карточек
+    document.querySelectorAll('.buttons .cart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const product = e.target.closest('.product');
+        const name = product.dataset.name;
+        const price = parseInt(product.dataset.price, 10);
+        addToCart(name, price);
+      });
+    });
+
+    // Добавление товара из формы "Добавить в корзину"
+    const form = document.querySelector('#cart-section form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const select = form.querySelector('#product-select');
+      const qtyInput = form.querySelector('#quantity-input');
+      const selectedOption = select.options[select.selectedIndex];
+      const name = select.value;
+      if (!name) {
+        alert('Пожалуйста, выберите продукт');
+        return;
+      }
+      const price = parseInt(selectedOption.dataset.price, 10);
+      const qty = parseInt(qtyInput.value, 10);
+      if (qty <= 0 || isNaN(qty)) {
+        alert('Введите корректное количество');
+        return;
+      }
+      addToCart(name, price, qty);
+      form.reset();
+      alert(`Добавлено ${qty} кг ${name} в корзину`);
+    });
+
+    // Кнопка купить из корзины — пока просто очищает корзину
+    checkoutBtn.addEventListener('click', () => {
+      if (Object.keys(cart).length === 0) {
+        alert('Корзина пуста!');
+        return;
+      }
+      alert('Спасибо за покупку! (Это демонстрация)');
+      cart = {};
+      updateCartUI();
+      cartWindow.style.display = 'none';
+    });
+
+    // Инициализация
+    updateCartUI();
+  </script>
 </body>
 </html>
