@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <title>Магазин продуктов</title>
   <style>
+    html {
+      scroll-behavior: smooth; /* плавный скролл по якорям */
+    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f4f8;
@@ -15,6 +18,9 @@
       background-color: #2e8b57;
       padding: 16px 30px;
       box-shadow: 0 3px 8px rgba(46, 139, 87, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     nav {
       display: flex;
@@ -31,7 +37,7 @@
       transition: background-color 0.3s ease, color 0.3s ease;
       border: 2px solid transparent;
     }
-    nav a:hover {
+    nav a:hover, nav a.active {
       background-color: #3498db;
       color: white;
       border-color: #2980b9;
@@ -40,6 +46,16 @@
       max-width: 1100px;
       margin: 40px auto;
       padding: 0 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      font-size: 28px;
+      color: #27ae60;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #27ae60;
+      padding-bottom: 6px;
     }
     .products {
       display: flex;
@@ -113,80 +129,186 @@
     .buttons button:last-child:hover {
       background-color: #b33226;
     }
-    @media (max-width: 600px) {
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-      .product {
-        width: 90%;
-      }
+    form {
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(44, 62, 80, 0.12);
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 2px solid #27ae60;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      resize: vertical;
+    }
+    form button {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #1e8449;
+    }
+    /* Секции с фоном */
+    #contacts {
+      background-color: #d1f2eb;
+      padding: 30px 20px;
+      border-radius: 10px;
+    }
+    #delivery {
+      background-color: #d6eaf8;
+      padding: 30px 20px;
+      border-radius: 10px;
+    }
+    #buy {
+      background-color: #f9e79f;
+      padding: 30px 20px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="#">Главная</a>
-      <a href="#">Купить</a>
-      <a href="#">Добавить в корзину</a>
-      <a href="#">Доставка</a>
-      <a href="#">Контакты</a>
+      <a href="#home">Главная</a>
+      <a href="#buy">Купить</a>
+      <a href="#cart">Добавить в корзину</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#contacts">Контакты</a>
     </nav>
   </header>
 
   <main>
-    <div class="products">
-      <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" width="200" height="200" />
-        <h3>Яблоки</h3>
-        <p>₽120 / кг</p>
-        <div class="buttons">
-          <button>Купить</button>
-          <button>В корзину</button>
+    <section id="home">
+      <h2>Добро пожаловать в наш магазин продуктов!</h2>
+      <p>Здесь вы найдёте свежие и вкусные фрукты по лучшим ценам.</p>
+      <div class="products">
+        <div class="product">
+          <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" width="200" height="200" />
+          <h3>Яблоки</h3>
+          <p>₽120 / кг</p>
+          <div class="buttons">
+            <button>Купить</button>
+            <button>В корзину</button>
+          </div>
         </div>
-      </div>
 
-      <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" width="200" height="200" />
-        <h3>Клубника</h3>
-        <p>₽250 / кг</p>
-        <div class="buttons">
-          <button>Купить</button>
-          <button>В корзину</button>
+        <div class="product">
+          <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" width="200" height="200" />
+          <h3>Клубника</h3>
+          <p>₽250 / кг</p>
+          <div class="buttons">
+            <button>Купить</button>
+            <button>В корзину</button>
+          </div>
         </div>
-      </div>
 
-      <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" width="200" height="200" />
-        <h3>Апельсины</h3>
-        <p>₽140 / кг</p>
-        <div class="buttons">
-          <button>Купить</button>
-          <button>В корзину</button>
+        <div class="product">
+          <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" width="200" height="200" />
+          <h3>Апельсины</h3>
+          <p>₽140 / кг</p>
+          <div class="buttons">
+            <button>Купить</button>
+            <button>В корзину</button>
+          </div>
         </div>
-      </div>
 
-      <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" width="200" height="200" />
-        <h3>Бананы</h3>
-        <p>₽70 / кг</p>
-        <div class="buttons">
-          <button>Купить</button>
-          <button>В корзину</button>
+        <div class="product">
+          <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" width="200" height="200" />
+          <h3>Бананы</h3>
+          <p>₽70 / кг</p>
+          <div class="buttons">
+            <button>Купить</button>
+            <button>В корзину</button>
+          </div>
         </div>
-      </div>
 
-      <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" width="200" height="200" />
-        <h3>Груши</h3>
-        <p>₽130 / кг</p>
-        <div class="buttons">
-          <button>Купить</button>
-          <button>В корзину</button>
+        <div class="product">
+          <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" width="200" height="200" />
+          <h3>Груши</h3>
+          <p>₽130 / кг</p>
+          <div class="buttons">
+            <button>Купить</button>
+            <button>В корзину</button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="buy">
+      <h2>Купить продукты</h2>
+      <p>Выберите понравившийся продукт и нажмите "Купить" или "В корзину". Для заказа свяжитесь с нами.</p>
+    </section>
+
+    <section id="cart">
+      <h2>Добавить в корзину</h2>
+      <form>
+        <label for="product">Продукт:</label>
+        <select id="product" name="product" required>
+          <option value="">-- Выберите продукт --</option>
+          <option value="apples">Яблоки</option>
+          <option value="strawberries">Клубника</option>
+          <option value="oranges">Апельсины</option>
+          <option value="bananas">Бананы</option>
+          <option value="pears">Груши</option>
+        </select>
+
+        <label for="quantity">Количество (кг):</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="100" required />
+
+        <button type="submit">Добавить</button>
+      </form>
+    </section>
+
+    <section id="delivery">
+      <h2>Доставка</h2>
+      <p>Мы осуществляем доставку по всему городу бесплатно при заказе от 1000 рублей.</p>
+      <ul>
+        <li>Срок доставки: 1-3 рабочих дня</li>
+        <li>Возможность самовывоза из нашего магазина</li>
+        <li>Оплата наличными, картой или онлайн</li>
+      </ul>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p>Свяжитесь с нами для вопросов и заказов:</p>
+      <ul>
+        <li>Телефон: +7 (495) 123-45-67</li>
+        <li>Email: info@productshop.ru</li>
+        <li>Адрес: ул. Фруктовая, д. 10, офис 5</li>
+      </ul>
+      <form>
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Ваш email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Сообщение:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
   </main>
+
 </body>
 </html>
