@@ -4,132 +4,127 @@
   <meta charset="UTF-8" />
   <title>Магазин продуктов</title>
   <style>
-    /* Стили для меню */
     body {
-      <div class="products">
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" width="200" height="200" />
-    <h3>Яблоки</h3>
-    <p>₽120 / кг</p>
-  </div>
-
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" width="200" height="200" />
-    <h3>Клубника</h3>
-    <p>₽250 / кг</p>
-  </div>
-
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" width="200" height="200" />
-    <h3>Апельсины</h3>
-    <p>₽140 / кг</p>
-  </div>
-
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" width="200" height="200" />
-    <h3>Бананы</h3>
-    <p>₽70 / кг</p>
-  </div>
-
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" width="200" height="200" />
-    <h3>Груши</h3>
-    <p>₽130 / кг</p>
-  </div>
-</div>
-
-      font-family: Arial, sans-serif;
-      background: #f9f7f1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
       margin: 0;
       padding: 0;
-      color: #3a3a3a;
+      color: #2c3e50;
     }
     header {
-      background-color: #8fb339; /* приятный зелёный */
-      padding: 15px 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background-color: #2e8b57;
+      padding: 16px 30px;
+      box-shadow: 0 3px 8px rgba(46, 139, 87, 0.4);
     }
     nav {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 28px;
     }
     nav a {
-      color: white;
+      color: #ecf0f1;
       text-decoration: none;
       font-weight: 600;
-      font-size: 16px;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
+      font-size: 17px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border: 2px solid transparent;
     }
     nav a:hover {
-      background-color: #72912f;
+      background-color: #3498db;
+      color: white;
+      border-color: #2980b9;
     }
-
-    /* Стили для продуктов */
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
     .products {
-      max-width: 1000px;
-      margin: 30px auto;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 25px;
-      padding: 0 20px;
+      gap: 30px;
     }
     .product {
       background: white;
-      width: 220px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      padding: 15px;
+      width: 230px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(44, 62, 80, 0.12);
+      padding: 20px;
       text-align: center;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 2px solid transparent;
     }
     .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(44, 62, 80, 0.2);
+      border-color: #e74c3c;
     }
     .product img {
       width: 200px;
       height: 200px;
       object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 12px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      transition: box-shadow 0.3s ease;
+    }
+    .product img:hover {
+      box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
     }
     .product h3 {
-      margin: 10px 0 6px;
-      font-size: 20px;
-      color: #4b662d;
+      margin: 12px 0 8px;
+      font-size: 22px;
+      color: #27ae60;
     }
     .product p {
       font-size: 18px;
-      color: #66794a;
-      margin-bottom: 12px;
+      color: #34495e;
       font-weight: 600;
+      margin-bottom: 18px;
     }
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
     }
     .buttons button {
-      background-color: #8fb339;
+      cursor: pointer;
+      padding: 9px 16px;
+      font-weight: 700;
+      border-radius: 7px;
       border: none;
       color: white;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
+      font-size: 15px;
       transition: background-color 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
-    .buttons button:hover {
-      background-color: #72912f;
+    .buttons button:first-child {
+      background-color: #2980b9;
+    }
+    .buttons button:first-child:hover {
+      background-color: #1f6391;
+    }
+    .buttons button:last-child {
+      background-color: #e74c3c;
+    }
+    .buttons button:last-child:hover {
+      background-color: #b33226;
+    }
+    @media (max-width: 600px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
     <nav>
       <a href="#">Главная</a>
@@ -142,9 +137,8 @@
 
   <main>
     <div class="products">
-      
       <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" />
+        <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" width="200" height="200" />
         <h3>Яблоки</h3>
         <p>₽120 / кг</p>
         <div class="buttons">
@@ -154,7 +148,7 @@
       </div>
 
       <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" />
+        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" width="200" height="200" />
         <h3>Клубника</h3>
         <p>₽250 / кг</p>
         <div class="buttons">
@@ -164,7 +158,7 @@
       </div>
 
       <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" />
+        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" width="200" height="200" />
         <h3>Апельсины</h3>
         <p>₽140 / кг</p>
         <div class="buttons">
@@ -174,7 +168,7 @@
       </div>
 
       <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" />
+        <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" width="200" height="200" />
         <h3>Бананы</h3>
         <p>₽70 / кг</p>
         <div class="buttons">
@@ -184,7 +178,7 @@
       </div>
 
       <div class="product">
-        <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" />
+        <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" width="200" height="200" />
         <h3>Груши</h3>
         <p>₽130 / кг</p>
         <div class="buttons">
@@ -192,9 +186,7 @@
           <button>В корзину</button>
         </div>
       </div>
-
     </div>
   </main>
-
 </body>
 </html>
