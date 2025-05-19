@@ -1,61 +1,168 @@
-<div class="products">
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" />
-    <h3>Яблоки</h3>
-    <p>₽120 / кг</p>
-  </div>
-  
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/tomato-1238259_1280.jpg" alt="Помидоры" />
-    <h3>Помидоры</h3>
-    <p>₽90 / кг</p>
-  </div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Магазин продуктов</title>
+  <style>
+    /* Стили для меню */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f7f1;
+      margin: 0;
+      padding: 0;
+      color: #3a3a3a;
+    }
+    header {
+      background-color: #8fb339; /* приятный зелёный */
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #72912f;
+    }
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" />
-    <h3>Бананы</h3>
-    <p>₽70 / кг</p>
-  </div>
+    /* Стили для продуктов */
+    .products {
+      max-width: 1000px;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0 20px;
+    }
+    .product {
+      background: white;
+      width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .product img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .product h3 {
+      margin: 10px 0 6px;
+      font-size: 20px;
+      color: #4b662d;
+    }
+    .product p {
+      font-size: 18px;
+      color: #66794a;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .buttons button {
+      background-color: #8fb339;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .buttons button:hover {
+      background-color: #72912f;
+    }
+  </style>
+</head>
+<body>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/carrot-1993298_1280.jpg" alt="Морковь" />
-    <h3>Морковь</h3>
-    <p>₽50 / кг</p>
-  </div>
+  <header>
+    <nav>
+      <a href="#">Главная</a>
+      <a href="#">Купить</a>
+      <a href="#">Добавить в корзину</a>
+      <a href="#">Доставка</a>
+      <a href="#">Контакты</a>
+    </nav>
+  </header>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2016/03/27/20/50/broccoli-1284519_1280.jpg" alt="Брокколи" />
-    <h3>Брокколи</h3>
-    <p>₽150 / кг</p>
-  </div>
+  <main>
+    <div class="products">
+      
+      <div class="product">
+        <img src="https://cdn.pixabay.com/photo/2014/02/01/17/28/apple-256261_1280.jpg" alt="Яблоки" />
+        <h3>Яблоки</h3>
+        <p>₽120 / кг</p>
+        <div class="buttons">
+          <button>Купить</button>
+          <button>В корзину</button>
+        </div>
+      </div>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2017/08/07/20/56/onion-2600685_1280.jpg" alt="Лук" />
-    <h3>Лук</h3>
-    <p>₽40 / кг</p>
-  </div>
+      <div class="product">
+        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" />
+        <h3>Клубника</h3>
+        <p>₽250 / кг</p>
+        <div class="buttons">
+          <button>Купить</button>
+          <button>В корзину</button>
+        </div>
+      </div>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2018/09/24/13/23/grapes-3697220_1280.jpg" alt="Виноград" />
-    <h3>Виноград</h3>
-    <p>₽200 / кг</p>
-  </div>
+      <div class="product">
+        <img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/oranges-1995056_1280.jpg" alt="Апельсины" />
+        <h3>Апельсины</h3>
+        <p>₽140 / кг</p>
+        <div class="buttons">
+          <button>Купить</button>
+          <button>В корзину</button>
+        </div>
+      </div>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2016/11/21/16/56/strawberries-1846362_1280.jpg" alt="Клубника" />
-    <h3>Клубника</h3>
-    <p>₽250 / кг</p>
-  </div>
+      <div class="product">
+        <img src="https://cdn.pixabay.com/photo/2018/08/17/18/41/banana-3612363_1280.jpg" alt="Бананы" />
+        <h3>Бананы</h3>
+        <p>₽70 / кг</p>
+        <div class="buttons">
+          <button>Купить</button>
+          <button>В корзину</button>
+        </div>
+      </div>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2016/03/05/22/20/pepper-1238687_1280.jpg" alt="Перец" />
-    <h3>Перец</h3>
-    <p>₽110 / кг</p>
-  </div>
+      <div class="product">
+        <img src="https://cdn.pixabay.com/photo/2017/09/23/12/46/pears-2772833_1280.jpg" alt="Груши" />
+        <h3>Груши</h3>
+        <p>₽130 / кг</p>
+        <div class="buttons">
+          <button>Купить</button>
+          <button>В корзину</button>
+        </div>
+      </div>
 
-  <div class="product">
-    <img src="https://cdn.pixabay.com/photo/2015/07/17/22/43/potato-849996_1280.jpg" alt="Картофель" />
-    <h3>Картофель</h3>
-    <p>₽60 / кг</p>
-  </div>
-</div>
+    </div>
+  </main>
+
+</body>
+</html>
