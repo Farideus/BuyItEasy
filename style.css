@@ -138,17 +138,28 @@ nav a:hover {
     width: 90%;
   }
 }
-Куда вставлять?
-Добавь этот CSS-код в тег <style> внутри <head> твоего HTML-файла. Например:
 
-html
-Копировать
-Редактировать
 <head>
   <meta charset="UTF-8" />
   <title>Магазин продуктов</title>
   <style>
-    /* вставь сюда CSS из примера выше */
+   .products-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  background-color: #f7f9f7;
+  width: 220px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
   </style>
 </head>
 .products-container {
