@@ -2,18 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Магазин одежды</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #d9ffcc; /* салатный фон */
+      background-color: #d9ffcc;
       color: #333;
     }
 
     header {
-      background-color: #007bff; /* синее меню */
+      background-color: #007bff;
       color: white;
       padding: 20px;
       position: sticky;
@@ -23,6 +23,7 @@
 
     nav ul {
       display: flex;
+      flex-wrap: wrap;
       gap: 20px;
       list-style: none;
       margin: 0;
@@ -82,68 +83,164 @@
       color: #d9006c;
     }
 
+    .buy-button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .buy-button:hover {
+      background-color: #1e7e34;
+    }
+
+    .cart-box {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: #fff;
+      border: 3px solid #ffa500;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1001;
+    }
+
+    .cart-box h3 {
+      margin-top: 0;
+    }
+
     footer {
       background-color: #ffeeaa;
       text-align: center;
       padding: 20px;
       font-weight: bold;
     }
+
+    section {
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+      }
+      .product {
+        width: 90%;
+      }
+      .cart-box {
+        right: auto;
+        left: 10px;
+        top: auto;
+        bottom: 20px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#contacts">Контакты</a></li>
-        <li><a href="#delivery">Доставка</a></li>
-        <li><a href="#buy">Купить</a></li>
-        <li><a href="#cart">Добавить в корзину</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <ul>
+      <li><a href="#contacts">Контакты</a></li>
+      <li><a href="#delivery">Доставка</a></li>
+      <li><a href="#buy">Купить</a></li>
+      <li><a href="#cart">Добавить в корзину</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main class="products" id="buy">
-    <div class="product">
-      <img src="https://i.imgur.com/Jv8IWKQ.png" alt="Футболка" />
-      <h2>Футболка</h2>
-      <p class="price">₽1200</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/fYVW3xU.png" alt="Джинсы" />
-      <h2>Джинсы</h2>
-      <p class="price">₽2400</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/kE3f8Kq.png" alt="Пальто" />
-      <h2>Пальто</h2>
-      <p class="price">₽5200</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/r5k9SgY.png" alt="Кроссовки" />
-      <h2>Кроссовки</h2>
-      <p class="price">₽3900</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/DGkR0lD.png" alt="Рубашка" />
-      <h2>Рубашка</h2>
-      <p class="price">₽1700</p>
-    </div>
-  </main>
+<main class="products" id="buy">
+  <div class="product" data-name="Футболка" data-price="1200">
+    <img src="https://i.imgur.com/Jv8IWKQ.png" alt="Футболка" />
+    <h2>Футболка</h2>
+    <p class="price">₽1200</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Джинсы" data-price="2400">
+    <img src="https://i.imgur.com/fYVW3xU.png" alt="Джинсы" />
+    <h2>Джинсы</h2>
+    <p class="price">₽2400</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Пальто" data-price="5200">
+    <img src="https://i.imgur.com/kE3f8Kq.png" alt="Пальто" />
+    <h2>Пальто</h2>
+    <p class="price">₽5200</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Кроссовки" data-price="3900">
+    <img src="https://i.imgur.com/r5k9SgY.png" alt="Кроссовки" />
+    <h2>Кроссовки</h2>
+    <p class="price">₽3900</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Рубашка" data-price="1700">
+    <img src="https://i.imgur.com/DGkR0lD.png" alt="Рубашка" />
+    <h2>Рубашка</h2>
+    <p class="price">₽1700</p>
+    <button class="buy-button">Купить</button>
+  </div>
+</main>
 
-  <section id="delivery">
-    <h2 style="text-align:center;">Доставка</h2>
-    <p style="text-align:center;">Бесплатная доставка при заказе от 3000₽ по всей России.</p>
-  </section>
+<section id="delivery">
+  <h2>Доставка</h2>
+  <p>Бесплатная доставка при заказе от 3000₽ по всей России.</p>
+</section>
 
-  <section id="contacts">
-    <h2 style="text-align:center;">Контакты</h2>
-    <p style="text-align:center;">Email: info@clothes-shop.ru | Тел: +7 900 123 45 67</p>
-  </section>
+<section id="contacts">
+  <h2>Контакты</h2>
+  <p>Email: info@clothes-shop.ru | Тел: +7 900 123 45 67</p>
+</section>
 
-  <footer id="cart">
-    Все права защищены © 2025 Магазин Одежды
-  </footer>
+<footer id="cart">
+  Все права защищены © 2025 Магазин Одежды
+</footer>
+
+<!-- Корзина -->
+<div class="cart-box" id="cartBox">
+  <h3>Корзина</h3>
+  <ul id="cartItems"></ul>
+  <p><strong>Итого: <span id="totalPrice">₽0</span></strong></p>
+</div>
+
+<!-- JS для добавления в корзину -->
+<script>
+  const cart = [];
+  const buttons = document.querySelectorAll('.buy-button');
+  const cartItems = document.getElementById('cartItems');
+  const totalPrice = document.getElementById('totalPrice');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const product = button.closest('.product');
+      const name = product.getAttribute('data-name');
+      const price = parseInt(product.getAttribute('data-price'));
+
+      cart.push({ name, price });
+      renderCart();
+    });
+  });
+
+  function renderCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price;
+      const li = document.createElement('li');
+      li.textContent = `${item.name} — ₽${item.price}`;
+      cartItems.appendChild(li);
+    });
+    totalPrice.textContent = `₽${total}`;
+  }
+</script>
 
 </body>
 </html>
