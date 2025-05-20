@@ -55,6 +55,24 @@
     h1 {
       color: #3c64ff;
     }
+    button {
+      background-color: #3c64ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2a48cc;
+    }
+    .result {
+      margin-top: 5px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -68,52 +86,12 @@
       <li data-target="video">Видео</li>
       <li data-target="contacts">Контакты</li>
       <li data-target="vocabularies">Словари</li>
+      <li data-target="present-perfect">Present Perfect</li>
     </ul>
   </nav>
 </header>
 
 <main>
-  <section id="present-perfect" class="hidden-section">
-  <h1>Present Perfect (Настоящее совершённое время)</h1>
-    <script>
-function checkAnswer(inputId, correctAnswer) {
-  const userInput = document.getElementById(inputId).value.trim().toLowerCase();
-  const correct = correctAnswer.toLowerCase();
-  const resultId = 'r' + inputId.replace('q', '');
-
-  const resultEl = document.getElementById(resultId);
-
-  if (userInput === correct) {
-    resultEl.textContent = "✅ Верно!";
-    resultEl.style.color = "green";
-  } else {
-    resultEl.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
-    resultEl.style.color = "red";
-  }
-}
-</script>
-
-
-  <p><strong>Когда используется:</strong></p>
-  <ul>
-    <li>Прошлое действие с результатом сейчас: <em>I have lost my keys.</em></li>
-    <li>Описываем опыт: <em>She has been to London.</em></li>
-    <li>Длительные действия: <em>We have lived here for 5 years.</em></li>
-  </ul>
-
-  <p><strong>Формула:</strong></p>
-  <ul>
-    <li><strong>have/has</strong> + V3 (третья форма глагола)</li>
-    <li><strong>I/You/We/They</strong> → <em>have</em>: <em>We have seen it.</em></li>
-    <li><strong>He/She/It</strong> → <em>has</em>: <em>She has finished.</em></li>
-  </ul>
-
-  <p><strong>Вопрос:</strong> <em>Have you eaten?</em></p>
-  <p><strong>Отрицание:</strong> <em>He hasn’t called.</em></p>
-
-  <p><strong>Сигнальные слова:</strong> ever, never, just, already, yet, since, for</p>
-</section>
-
   <section id="exercises" class="active">
      <h1>Упражнения: Present Simple</h1>
 
@@ -121,235 +99,123 @@ function checkAnswer(inputId, correctAnswer) {
     <li>
       He ___ to school every day.
       <br>
-      <label><input type="radio" name="q1"> go</label><br>
-      <label><input type="radio" name="q1"> goes</label><br>
-      <label><input type="radio" name="q1"> going</label>
+      <label><input type="radio" name="q1" value="go"> go</label><br>
+      <label><input type="radio" name="q1" value="goes"> goes</label><br>
+      <label><input type="radio" name="q1" value="going"> going</label>
+      <div id="result-q1" class="result"></div>
     </li><br>
 
     <li>
       I usually ___ coffee in the morning.
       <br>
-      <label><input type="radio" name="q2"> drinks</label><br>
-      <label><input type="radio" name="q2"> drink</label><br>
-      <label><input type="radio" name="q2"> drinking</label>
+      <label><input type="radio" name="q2" value="drinks"> drinks</label><br>
+      <label><input type="radio" name="q2" value="drink"> drink</label><br>
+      <label><input type="radio" name="q2" value="drinking"> drinking</label>
+      <div id="result-q2" class="result"></div>
     </li><br>
 
     <li>
       They ___ in a small house.
       <br>
-      <label><input type="radio" name="q3"> lives</label><br>
-      <label><input type="radio" name="q3"> live</label><br>
-      <label><input type="radio" name="q3"> living</label>
+      <label><input type="radio" name="q3" value="lives"> lives</label><br>
+      <label><input type="radio" name="q3" value="live"> live</label><br>
+      <label><input type="radio" name="q3" value="living"> living</label>
+      <div id="result-q3" class="result"></div>
     </li><br>
 
     <li>
       My father ___ the news every evening.
       <br>
-      <label><input type="radio" name="q4"> watch</label><br>
-      <label><input type="radio" name="q4"> watches</label><br>
-      <label><input type="radio" name="q4"> watching</label>
+      <label><input type="radio" name="q4" value="watch"> watch</label><br>
+      <label><input type="radio" name="q4" value="watches"> watches</label><br>
+      <label><input type="radio" name="q4" value="watching"> watching</label>
+      <div id="result-q4" class="result"></div>
     </li><br>
 
     <li>
       ___ your sister like pizza?
       <br>
-      <label><input type="radio" name="q5"> Do</label><br>
-      <label><input type="radio" name="q5"> Does</label><br>
-      <label><input type="radio" name="q5"> Is</label>
+      <label><input type="radio" name="q5" value="Do"> Do</label><br>
+      <label><input type="radio" name="q5" value="Does"> Does</label><br>
+      <label><input type="radio" name="q5" value="Is"> Is</label>
+      <div id="result-q5" class="result"></div>
     </li><br>
 
-    <li>
-      He ___ English well.
-      <br>
-      <label><input type="radio" name="q6"> speaks</label><br>
-      <label><input type="radio" name="q6"> speak</label><br>
-      <label><input type="radio" name="q6"> speaking</label>
-    </li><br>
+    <!-- Добавь остальные вопросы аналогично, если нужно -->
 
-    <li>
-      I ___ my homework after dinner.
-      <br>
-      <label><input type="radio" name="q7"> does</label><br>
-      <label><input type="radio" name="q7"> do</label><br>
-      <label><input type="radio" name="q7"> doing</label>
-    </li><br>
-
-    <li>
-      The train ___ at 8:00 am.
-      <br>
-      <label><input type="radio" name="q8"> leave</label><br>
-      <label><input type="radio" name="q8"> leaves</label><br>
-      <label><input type="radio" name="q8"> left</label>
-    </li><br>
-
-    <li>
-      My friends ___ to music.
-      <br>
-      <label><input type="radio" name="q9"> listens</label><br>
-      <label><input type="radio" name="q9"> listen</label><br>
-      <label><input type="radio" name="q9"> listening</label>
-    </li><br>
-
-    <li>
-      We ___ football on weekends.
-      <br>
-      <label><input type="radio" name="q10"> play</label><br>
-      <label><input type="radio" name="q10"> plays</label><br>
-      <label><input type="radio" name="q10"> playing</label>
-    </li><br>
-
-    <li>
-      It ___ a lot in winter.
-      <br>
-      <label><input type="radio" name="q11"> snow</label><br>
-      <label><input type="radio" name="q11"> snows</label><br>
-      <label><input type="radio" name="q11"> snowing</label>
-    </li><br>
-
-    <li>
-      She ___ her car on Sundays.
-      <br>
-      <label><input type="radio" name="q12"> wash</label><br>
-      <label><input type="radio" name="q12"> washes</label><br>
-      <label><input type="radio" name="q12"> washing</label>
-    </li><br>
-
-    <li>
-      Do you ___ orange juice?
-      <br>
-      <label><input type="radio" name="q13"> like</label><br>
-      <label><input type="radio" name="q13"> likes</label><br>
-      <label><input type="radio" name="q13"> liking</label>
-    </li><br>
-
-    <li>
-      Where ___ she work?
-      <br>
-      <label><input type="radio" name="q14"> do</label><br>
-      <label><input type="radio" name="q14"> does</label><br>
-      <label><input type="radio" name="q14"> is</label>
-    </li><br>
-
-    <li>
-      He ___ breakfast at 7 AM.
-      <br>
-      <label><input type="radio" name="q15"> have</label><br>
-      <label><input type="radio" name="q15"> has</label><br>
-      <label><input type="radio" name="q15"> having</label>
-    </li><br>
-
-    <li>
-      I ___ to music in the evening.
-      <br>
-      <label><input type="radio" name="q16"> listen</label><br>
-      <label><input type="radio" name="q16"> listens</label><br>
-      <label><input type="radio" name="q16"> listening</label>
-    </li><br>
-
-    <li>
-      She always ___ tea after lunch.
-      <br>
-      <label><input type="radio" name="q17"> drink</label><br>
-      <label><input type="radio" name="q17"> drinks</label><br>
-      <label><input type="radio" name="q17"> drinking</label>
-    </li><br>
-
-    <li>
-      They ___ English every day.
-      <br>
-      <label><input type="radio" name="q18"> study</label><br>
-      <label><input type="radio" name="q18"> studies</label><br>
-      <label><input type="radio" name="q18"> studying</label>
-    </li><br>
-
-    <li>
-      Does your brother ___ tennis?
-      <br>
-      <label><input type="radio" name="q19"> plays</label><br>
-      <label><input type="radio" name="q19"> play</label><br>
-      <label><input type="radio" name="q19"> playing</label>
-    </li><br>
-
-    <li>
-      The sun ___ in the east.
-      <br>
-      <label><input type="radio" name="q20"> rise</label><br>
-      <label><input type="radio" name="q20"> rises</label><br>
-      <label><input type="radio" name="q20"> rising</label>
-    </li>
   </ol>
 
-  <button onclick="alert('Ответы отправлены!')">Проверить</button>
-    <p>Здесь вы найдете интерактивные упражнения по лексике, чтению, аудированию и письму.</p>
+  <button onclick="checkAllAnswers()">Проверить</button>
   </section>
 
   <section id="grammar">
-    <h1>Грамматика.Present Simple.</h1>
+    <h1>Грамматика: Present Simple</h1>
     <p>Объяснения английской грамматики с примерами и таблицами.</p>
     
-  <p><strong>Когда используется:</strong></p>
-  <ul>
-    <li>Для регулярных действий: <em>I go to school every day.</em></li>
-    <li>Для общеизвестных фактов: <em>The sun rises in the east.</em></li>
-    <li>Для расписаний: <em>The train leaves at 6 p.m.</em></li>
-  </ul>
+    <p><strong>Когда используется:</strong></p>
+    <ul>
+      <li>Для регулярных действий: <em>I go to school every day.</em></li>
+      <li>Для общеизвестных фактов: <em>The sun rises in the east.</em></li>
+      <li>Для расписаний: <em>The train leaves at 6 p.m.</em></li>
+    </ul>
 
-  <p><strong>Как образуется:</strong></p>
-  <ul>
-    <li><strong>I/You/We/They</strong> + глагол (без окончания): <em>They play football.</em></li>
-    <li><strong>He/She/It</strong> + глагол + <strong>-s</strong>: <em>She plays football.</em></li>
-  </ul>
+    <p><strong>Как образуется:</strong></p>
+    <ul>
+      <li><strong>I/You/We/They</strong> + глагол (без окончания): <em>They play football.</em></li>
+      <li><strong>He/She/It</strong> + глагол + <strong>-s</strong>: <em>She plays football.</em></li>
+    </ul>
 
-  <p><strong>Вопросительная форма:</strong></p>
-  <ul>
-    <li><strong>Do</strong> + I/you/we/they + глагол? <em>Do you like coffee?</em></li>
-    <li><strong>Does</strong> + he/she/it + глагол? <em>Does he play tennis?</em></li>
-  </ul>
+    <p><strong>Вопросительная форма:</strong></p>
+    <ul>
+      <li><strong>Do</strong> + I/you/we/they + глагол? <em>Do you like coffee?</em></li>
+      <li><strong>Does</strong> + he/she/it + глагол? <em>Does he play tennis?</em></li>
+    </ul>
 
-  <p><strong>Отрицательная форма:</strong></p>
-  <ul>
-    <li>I/you/we/they + <strong>do not (don’t)</strong> + глагол</li>
-    <li>he/she/it + <strong>does not (doesn’t)</strong> + глагол</li>
-  </ul>
+    <p><strong>Отрицательная форма:</strong></p>
+    <ul>
+      <li>I/you/we/they + <strong>do not (don’t)</strong> + глагол</li>
+      <li>he/she/it + <strong>does not (doesn’t)</strong> + глагол</li>
+    </ul>
 
-  <p><strong>Примеры:</strong></p>
-  <ul>
-    <li>I work in an office.</li>
-    <li>She doesn’t like fish.</li>
-    <li>Do they speak English?</li>
-  </ul>
+    <p><strong>Примеры:</strong></p>
+    <ul>
+      <li>I work in an office.</li>
+      <li>She doesn’t like fish.</li>
+      <li>Do they speak English?</li>
+    </ul>
   </section>
-  <section id="present-perfect" class="hidden-section">
-  <h1>Present Perfect (Настоящее совершённое время)</h1>
 
-  <p><strong>Когда используется:</strong></p>
-  <ul>
-    <li>Для действий, результат которых важен сейчас: <em>I have lost my keys.</em></li>
-    <li>Для опыта: <em>She has been to London.</em></li>
-    <li>Для действий, начавшихся в прошлом и продолжающихся: <em>We have lived here for 5 years.</em></li>
-  </ul>
+  <section id="present-perfect">
+    <h1>Present Perfect (Настоящее совершённое время)</h1>
 
-  <p><strong>Как образуется:</strong></p>
-  <ul>
-    <li><strong>I/You/We/They</strong> + <code>have</code> + V<sub>3</sub></li>
-    <li><strong>He/She/It</strong> + <code>has</code> + V<sub>3</sub></li>
-    <li>Пример: <em>She has cleaned the room.</em></li>
-  </ul>
+    <p><strong>Когда используется:</strong></p>
+    <ul>
+      <li>Для действий, результат которых важен сейчас: <em>I have lost my keys.</em></li>
+      <li>Для опыта: <em>She has been to London.</em></li>
+      <li>Для действий, начавшихся в прошлом и продолжающихся: <em>We have lived here for 5 years.</em></li>
+    </ul>
 
-  <p><strong>Вопросительная форма:</strong></p>
-  <ul>
-    <li><strong>Have</strong> you eaten?</li>
-    <li><strong>Has</strong> he called?</li>
-  </ul>
+    <p><strong>Как образуется:</strong></p>
+    <ul>
+      <li><strong>I/You/We/They</strong> + <code>have</code> + V<sub>3</sub></li>
+      <li><strong>He/She/It</strong> + <code>has</code> + V<sub>3</sub></li>
+      <li>Пример: <em>She has cleaned the room.</em></li>
+    </ul>
 
-  <p><strong>Отрицательная форма:</strong></p>
-  <ul>
-    <li>She <code>hasn't</code> finished her work.</li>
-    <li>They <code>haven’t</code> arrived yet.</li>
-  </ul>
+    <p><strong>Вопросительная форма:</strong></p>
+    <ul>
+      <li><strong>Have</strong> you eaten?</li>
+      <li><strong>Has</strong> he called?</li>
+    </ul>
 
-  <p><strong>Сигнальные слова:</strong> ever, never, just, already, yet, for, since</p>
-</section>
+    <p><strong>Отрицательная форма:</strong></p>
+    <ul>
+      <li>She <code>hasn't</code> finished her work.</li>
+      <li>They <code>haven’t</code> arrived yet.</li>
+    </ul>
+
+    <p><strong>Сигнальные слова:</strong> ever, never, just, already, yet, for, since</p>
+  </section>
 
   <section id="audio">
     <h1>Аудио</h1>
@@ -368,59 +234,71 @@ function checkAnswer(inputId, correctAnswer) {
     <p>Адрес: Москва, ул. Языковая, д. 10</p>
   </section>
 
-  <section id="dictionary">
+  <section id="vocabularies">
     <h1>Словари</h1>
     <p>Базовый, академический, фразовый словарь и глаголы.</p>
   </section>
 </main>
 
 <script>
+  // Переключение секций меню
   const menuItems = document.querySelectorAll('#menu li');
   const sections = document.querySelectorAll('main section');
 
   menuItems.forEach(item => {
     item.addEventListener('click', () => {
-      // Убираем активность у всех
       menuItems.forEach(i => i.classList.remove('active'));
       sections.forEach(s => s.classList.remove('active'));
 
-      // Добавляем активность текущему
       item.classList.add('active');
       const id = item.dataset.target;
-      document.getElementById(id).classList.add('active');
+      const targetSection = document.getElementById(id);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
     });
   });
-</script>
-<script>
-function checkAnswer(inputId, correctAnswer) {
-  const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
-  const result = document.getElementById('result' + inputId.replace('answer', ''));
-  
-  if (userAnswer === correctAnswer.toLowerCase()) {
-    result.textContent = "✅ Верно!";
-    result.style.color = "green";
-  } else {
-    result.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
-    result.style.color = "red";
-  }
-}
-</script>
-<script>
-function checkAnswer(inputId, correctAnswer) {
-  const userInput = document.getElementById(inputId).value.trim().toLowerCase();
-  const correct = correctAnswer.toLowerCase();
-  const resultId = 'r' + inputId.replace('q', '');
 
-  const resultEl = document.getElementById(resultId);
+  // Проверка ответов Present Simple
+  const correctAnswers = {
+    q1: "goes",
+    q2: "drink",
+    q3: "live",
+    q4: "watches",
+    q5: "Does",
+    // Добавь остальные правильные ответы сюда, если добавишь вопросы
+  };
 
-  if (userInput === correct) {
-    resultEl.textContent = "✅ Верно!";
-    resultEl.style.color = "green";
-  } else {
-    resultEl.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
-    resultEl.style.color = "red";
+  function checkAllAnswers() {
+    let allAnswered = true;
+    for (const [q, correct] of Object.entries(correctAnswers)) {
+      const options = document.getElementsByName(q);
+      let selected = null;
+      for (const option of options) {
+        if (option.checked) {
+          selected = option.value;
+          break;
+        }
+      }
+      const resultEl = document.getElementById('result-' + q);
+      if (!selected) {
+        resultEl.textContent = "⚠️ Пожалуйста, выберите ответ.";
+        resultEl.style.color = "orange";
+        allAnswered = false;
+      } else if (selected === correct) {
+        resultEl.textContent = "✅ Верно!";
+        resultEl.style.color = "green";
+      } else {
+        resultEl.textContent = `❌ Неверно. Правильный ответ: ${correct}`;
+        resultEl.style.color = "red";
+      }
+    }
+    if (allAnswered) {
+      alert("Все ответы проверены!");
+    } else {
+      alert("Пожалуйста, ответьте на все вопросы перед проверкой.");
+    }
   }
-}
 </script>
 
 </body>
