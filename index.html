@@ -2,128 +2,214 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Магазин одежды - Каталог</title>
+  <title>Магазин сотовых телефонов</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #9fdf9f; /* салатный фон */
-      margin: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #a6f0a6; /* салатный фон */
+      color: #1a1a1a;
+    }
+    header {
+      background-color: #0057b8; /* синий фон меню */
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li:hover, nav ul li.active {
+      background-color: #f68b1e; /* ярко-оранжевый */
+      color: white;
+    }
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0057b8;
+      margin-bottom: 30px;
     }
     .products {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
-      max-width: 900px;
-      margin: auto;
+      gap: 20px;
+      justify-content: center;
     }
     .product-card {
       background: #fff9e6;
-      border: 2px solid #f68b1e;
-      border-radius: 10px;
-      padding: 15px;
-      width: 160px;
+      border: 3px solid #f68b1e;
+      border-radius: 12px;
+      width: 220px;
+      box-shadow: 0 4px 8px rgba(246, 139, 30, 0.3);
       text-align: center;
-      box-shadow: 0 4px 6px rgba(246,139,30,0.3);
+      padding: 15px;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(246, 139, 30, 0.6);
     }
     .product-card img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      border-radius: 10px;
     }
     .product-name {
-      font-weight: bold;
-      color: #2a58a0;
-      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 1.1em;
+      color: #0057b8;
+      margin-bottom: 8px;
     }
     .product-price {
       color: #f68b1e;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 12px;
+    }
+    button.buy-btn {
+      background-color: #0057b8;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: 600;
-      margin-bottom: 8px;
+      transition: background-color 0.3s ease;
+    }
+    button.buy-btn:hover {
+      background-color: #f68b1e;
+      color: #1a1a1a;
     }
   </style>
 </head>
 <body>
 
-  <h1 style="text-align:center; color:#2a58a0;">Каталог одежды</h1>
-  <div class="products">
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Футболка" />
-      <div class="product-name">Футболка</div>
-      <div class="product-price">₽1200</div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1585386959984-a4155222f6c6?auto=format&fit=crop&w=300&q=80" alt="Джинсы" />
-      <div class="product-name">Джинсы</div>
-      <div class="product-price">₽2400</div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1602810316684-0c3d3f4f5f8f?auto=format&fit=crop&w=300&q=80" alt="Пальто" />
-      <div class="product-name">Пальто</div>
-      <div class="product-price">₽5200</div>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1600180758890-6f3b8f1f7c8d?auto=format&fit=crop&w=300&q=80" alt="Кроссовки" />
-      <div class="product-name">Кроссовки</div>
-      <div class="product-price">₽3900</div>
-    </div>
-    <!-- Дополнительные 10 товаров -->
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1533227268428-f9ed0708f0e7?auto=format&fit=crop&w=300&q=80" alt="Платье" />
-  <div class="product-name">Платье</div>
-  <div class="product-price">₽3500</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=300&q=80" alt="Куртка" />
-  <div class="product-name">Куртка</div>
-  <div class="product-price">₽4600</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=300&q=80" alt="Шорты" />
-  <div class="product-name">Шорты</div>
-  <div class="product-price">₽1100</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1530845640401-1df25f6a0ad7?auto=format&fit=crop&w=300&q=80" alt="Толстовка" />
-  <div class="product-name">Толстовка</div>
-  <div class="product-price">₽2200</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1520975605103-157f110e3638?auto=format&fit=crop&w=300&q=80" alt="Жилет" />
-  <div class="product-name">Жилет</div>
-  <div class="product-price">₽1800</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=300&q=80" alt="Кофта" />
-  <div class="product-name">Кофта</div>
-  <div class="product-price">₽1400</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1503342217505-0ef79f8ee76a?auto=format&fit=crop&w=300&q=80" alt="Юбка" />
-  <div class="product-name">Юбка</div>
-  <div class="product-price">₽2000</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1530845640347-1219d215ff2b?auto=format&fit=crop&w=300&q=80" alt="Кепка" />
-  <div class="product-name">Кепка</div>
-  <div class="product-price">₽700</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Ремень" />
-  <div class="product-name">Ремень</div>
-  <div class="product-price">₽900</div>
-</div>
-<div class="product-card">
-  <img src="https://images.unsplash.com/photo-1512436991641-123456789abc?auto=format&fit=crop&w=300&q=80" alt="Перчатки" />
-  <div class="product-name">Перчатки</div>
-  <div class="product-price">₽600</div>
-</div>
+<header>
+  <div class="logo" style="font-weight: 700; font-size: 1.4em;">PhoneStore</div>
+  <nav>
+    <ul id="menu">
+      <li class="active" data-target="catalog">Каталог</li>
+      <li data-target="buy">Купить</li>
+      <li data-target="delivery">Доставка</li>
+      <li data-target="cart">Корзина</li>
+      <li data-target="contacts">Контакты</li>
+    </ul>
+  </nav>
+</header>
 
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1520975918318-3f3c3c3f3f3f?auto=format&fit=crop&w=300&q=80" alt="Рубашка" />
-      <div class="product-name">Рубашка</div>
-      <div class="product-price">₽1700</div>
+<main>
+  <section id="catalog" class="active-section">
+    <h1>Каталог сотовых телефонов</h1>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80" alt="iPhone 13" />
+        <div class="product-name">iPhone 13</div>
+        <div class="product-price">₽75,000</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1510557880182-3a0d6a96a87e?auto=format&fit=crop&w=200&q=80" alt="Samsung Galaxy S21" />
+        <div class="product-name">Samsung Galaxy S21</div>
+        <div class="product-price">₽60,000</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=200&q=80" alt="Google Pixel 6" />
+        <div class="product-name">Google Pixel 6</div>
+        <div class="product-price">₽50,000</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1512499617640-c2f99908586b?auto=format&fit=crop&w=200&q=80" alt="OnePlus 9" />
+        <div class="product-name">OnePlus 9</div>
+        <div class="product-price">₽45,000</div>
+        <button class="buy-btn">Купить</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Xiaomi Mi 11" />
+        <div class="product-name">Xiaomi Mi 11</div>
+        <div class="product-price">₽40,000</div>
+        <button class="buy-btn">Купить</button>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section id="buy" class="hidden-section">
+    <h1>Как купить</h1>
+    <p>Выберите товар из каталога и нажмите кнопку «Купить».</p>
+  </section>
+
+  <section id="delivery" class="hidden-section">
+    <h1>Доставка</h1>
+    <p>Доставка по всей России в течение 3-5 рабочих дней.</p>
+  </section>
+
+  <section id="cart" class="hidden-section">
+    <h1>Ваша корзина</h1>
+    <p>Пока корзина пуста.</p>
+  </section>
+
+  <section id="contacts" class="hidden-section">
+    <h1>Контакты</h1>
+    <p>Телефон: +7 (999) 123-45-67</p>
+    <p>Email: support@phonestore.ru</p>
+    <p>Адрес: г. Москва, ул. Пушкина, д. 10</p>
+  </section>
+</main>
+
+<script>
+  const menuItems = document.querySelectorAll('#menu li');
+  const sections = document.querySelectorAll('main section');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const targetId = item.getAttribute('data-target');
+
+      sections.forEach(section => {
+        if(section.id === targetId){
+          section.classList.add('active-section');
+          section.classList.remove('hidden-section');
+        } else {
+          section.classList.remove('active-section');
+          section.classList.add('hidden-section');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .hidden-section {
+    display: none;
+  }
+  .active-section {
+    display: block;
+  }
+</style>
 
 </body>
 </html>
