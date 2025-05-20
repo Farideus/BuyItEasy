@@ -2,196 +2,126 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Магазин одежды</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Магазин Одежды</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f4f4f4;
+      background-color: #f8f8f8;
     }
     header {
       background-color: #333;
       color: white;
-      padding: 15px 0;
-      text-align: center;
+      padding: 15px 20px;
     }
-    nav {
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      background-color: #555;
-      padding: 10px 0;
+      gap: 20px;
+    }
+    nav li {
+      display: inline;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
-    .container {
-      padding: 20px;
+    nav a:hover {
+      text-decoration: underline;
     }
     .products {
       display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
       justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
     }
     .product {
-      background-color: white;
+      background: white;
+      border: 1px solid #ddd;
       border-radius: 8px;
+      margin: 15px;
       padding: 15px;
-      width: 200px;
+      width: 220px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-    .product h3 {
-      margin: 10px 0 5px;
-    }
-    .product p {
-      margin: 5px 0;
-    }
-    .btn {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 8px 12px;
+      max-width: 100%;
       border-radius: 4px;
-      cursor: pointer;
-      margin: 5px;
     }
-    .btn:hover {
-      background-color: #218838;
-    }
-    section {
-      display: none;
-      padding: 20px;
-      background: #fff;
-      margin-top: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    .price {
+      color: #e91e63;
+      font-weight: bold;
+      margin-top: 10px;
     }
     footer {
       text-align: center;
-      background-color: #333;
-      color: white;
-      padding: 15px 0;
-      margin-top: 40px;
+      padding: 20px;
+      background: #eee;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Интернет-магазин одежды</h1>
-</header>
+  <header>
+    <h1>Магазин одежды</h1>
+    <nav>
+      <ul>
+        <li><a href="#products">Каталог</a></li>
+        <li><a href="#buy">Купить</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#cart">Корзина</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav>
-  <a onclick="showSection('delivery')">Доставка</a>
-  <a onclick="showSection('contacts')">Контакты</a>
-  <a onclick="showSection('cart')">Корзина</a>
-</nav>
+  <main id="products" class="products">
+    <div class="product">
+      <img src="images/coat.jpg" alt="Пальто">
+      <h2>Пальто</h2>
+      <p class="price">₽7,990</p>
+    </div>
+    <div class="product">
+      <img src="images/tshirt.jpg" alt="Футболка">
+      <h2>Футболка</h2>
+      <p class="price">₽1,290</p>
+    </div>
+    <div class="product">
+      <img src="images/dress.jpg" alt="Платье">
+      <h2>Платье</h2>
+      <p class="price">₽3,490</p>
+    </div>
+  </main>
 
-<div class="container">
-  <div class="products">
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250?text=Куртка" alt="Куртка">
-      <h3>Куртка</h3>
-      <p>Цена: 5 500 ₽</p>
-      <button class="btn" onclick="addToCart('Куртка', 5500)">Добавить в корзину</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250?text=Пиджак" alt="Пиджак">
-      <h3>Пиджак</h3>
-      <p>Цена: 6 200 ₽</p>
-      <button class="btn" onclick="addToCart('Пиджак', 6200)">Добавить в корзину</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250?text=Кроссовки" alt="Кроссовки">
-      <h3>Кроссовки</h3>
-      <p>Цена: 4 000 ₽</p>
-      <button class="btn" onclick="addToCart('Кроссовки', 4000)">Добавить в корзину</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250?text=Пальто" alt="Пальто">
-      <h3>Пальто</h3>
-      <p>Цена: 7 800 ₽</p>
-      <button class="btn" onclick="addToCart('Пальто', 7800)">Добавить в корзину</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250?text=Джинсы" alt="Джинсы">
-      <h3>Джинсы</h3>
-      <p>Цена: 3 200 ₽</p>
-      <button class="btn" onclick="addToCart('Джинсы', 3200)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <section id="delivery">
-    <h2>Условия доставки</h2>
-    <p>Доставка осуществляется по всей России. Срок — от 3 до 7 рабочих дней. Бесплатная доставка при заказе от 5000 ₽.</p>
+  <section id="buy" style="padding: 20px;">
+    <h2>Как купить</h2>
+    <p>Выберите товар и нажмите кнопку "Купить". Оплатить можно онлайн или при получении.</p>
   </section>
 
-  <section id="contacts">
-    <h2>Контакты</h2>
-    <p>Email: support@clothing-shop.ru</p>
-    <p>Телефон: +7 (495) 123-45-67</p>
-    <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+  <section id="delivery" style="padding: 20px;">
+    <h2>Доставка</h2>
+    <p>Доставка по всей России в течение 2–5 дней. Бесплатно при заказе от ₽5,000.</p>
   </section>
 
-  <section id="cart">
+  <section id="cart" style="padding: 20px;">
     <h2>Корзина</h2>
-    <div id="cart-items"></div>
-    <p><strong>Итого: </strong><span id="total">0</span> ₽</p>
-    <button class="btn" onclick="buyNow()">Купить</button>
+    <p>Пока в вашей корзине нет товаров.</p>
   </section>
-</div>
 
-<footer>
-  &copy; 2025 Интернет-магазин одежды. Все права защищены.
-</footer>
+  <section id="contacts" style="padding: 20px;">
+    <h2>Контакты</h2>
+    <p>Email: shop@example.com<br>Телефон: +7 (900) 123-45-67</p>
+  </section>
 
-<script>
-  const cart = [];
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-  }
-
-  function addToCart(name, price) {
-    cart.push({ name, price });
-    alert(name + ' добавлен(а) в корзину.');
-    updateCart();
-  }
-
-  function updateCart() {
-    const cartDiv = document.getElementById('cart-items');
-    const totalEl = document.getElementById('total');
-    cartDiv.innerHTML = '';
-    let total = 0;
-    cart.forEach(item => {
-      const p = document.createElement('p');
-      p.textContent = ${item.name} – ${item.price} ₽;
-      cartDiv.appendChild(p);
-      total += item.price;
-    });
-    totalEl.textContent = total;
-  }
-
-  function buyNow() {
-    if (cart.length === 0) {
-      alert("Ваша корзина пуста.");
-      return;
-    }
-    alert("Спасибо за покупку! Мы скоро свяжемся с вами.");
-    cart.length = 0;
-    updateCart();
-  }
-</script>
+  <footer>
+    &copy; 2025 Магазин одежды. Все права защищены.
+  </footer>
 
 </body>
 </html>
