@@ -151,11 +151,7 @@
         <div class="product-name">Xiaomi Mi 11</div>
         <div class="product-price">₽40,000</div>
         <button class="buy-btn">Купить</button>
-        buyButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const productCard = button.closest('.product-card');
-    const productName = productCard.querySelector('.product-name').innerText;
-    alert(`Товар "${productName}" добавлен в корзину!`);
+       
   });
 });
       </div>
@@ -207,6 +203,52 @@
       });
     });
   });
+  // Создаем объект корзины
+const cart = [];
+
+// Функция обновления корзины на странице
+function updateCart() {
+  const cartSection = document.getElementById('cart');
+  if (cart.length === 0) {
+    cartSection.innerHTML = '<h1>Ваша корзина</h1><p>Пока корзина пуста.</p>';
+    return;
+  }
+
+  let html = '<h1>Ваша корзина</h1><ul>';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    html += `<li>${item.name} — ₽${item.price} 
+    <button onclick="removeFromCart(${index})">Удалить</button></li>`;
+    total += item.price;
+  });
+
+  html += `</ul><p><strong>Итого: ₽${total}</strong></p>`;
+  cartSection.innerHTML = html;
+}
+
+// Добавляем товар в корзину
+const buyButtons = document.querySelectorAll('.buy-btn');
+buyButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const productCard = button.closest('.product-card');
+    const productName = productCard.querySelector('.product-name').innerText;
+    const productPriceText = productCard.querySelector('.product-price').innerText;
+    // Убираем символ ₽ и пробелы, конвертируем в число
+    const productPrice = Number(productPriceText.replace(/[₽\s,]/g, ''));
+
+    cart.push({name: productName, price: productPrice});
+    alert(`Добавлено в корзину: ${productName}`);
+    updateCart();
+  });
+});
+
+// Функция удаления товара из корзины
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
 </script>
 
 <style>
