@@ -169,6 +169,117 @@ section {
 </header>
 
 <main class="products" id="buy">
+  <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Магазин одежды</title>
+  <style>
+    /* Здесь вставьте CSS-стили, как обсуждалось ранее */
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="#contacts">Контакты</a></li>
+      <li><a href="#delivery">Доставка</a></li>
+      <li><a href="#buy">Купить</a></li>
+      <li><a href="#cart">Добавить в корзину</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="products" id="buy">
+  <div class="product" data-name="Футболка" data-price="1200">
+    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80" alt="Футболка" />
+    <h2>Футболка</h2>
+    <p class="price">₽1200</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Джинсы" data-price="2400">
+    <img src="https://images.unsplash.com/photo-1585386959984-a4155222f6c6?auto=format&fit=crop&w=500&q=80" alt="Джинсы" />
+    <h2>Джинсы</h2>
+    <p class="price">₽2400</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Пальто" data-price="5200">
+    <img src="https://images.unsplash.com/photo-1602810316684-0c3d3f4f5f8f?auto=format&fit=crop&w=500&q=80" alt="Пальто" />
+    <h2>Пальто</h2>
+    <p class="price">₽5200</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Кроссовки" data-price="3900">
+    <img src="https://images.unsplash.com/photo-1600180758890-6f3b8f1f7c8d?auto=format&fit=crop&w=500&q=80" alt="Кроссовки" />
+    <h2>Кроссовки</h2>
+    <p class="price">₽3900</p>
+    <button class="buy-button">Купить</button>
+  </div>
+  <div class="product" data-name="Рубашка" data-price="1700">
+    <img src="https://images.unsplash.com/photo-1520975918318-3f3c3c3f3f3f?auto=format&fit=crop&w=500&q=80" alt="Рубашка" />
+    <h2>Рубашка</h2>
+    <p class="price">₽1700</p>
+    <button class="buy-button">Купить</button>
+  </div>
+</main>
+
+<section id="delivery">
+  <h2>Доставка</h2>
+  <p>Бесплатная доставка при заказе от 3000₽ по всей России.</p>
+</section>
+
+<section id="contacts">
+  <h2>Контакты</h2>
+  <p>Email: info@clothes-shop.ru | Тел: +7 900 123 45 67</p>
+</section>
+
+<footer id="cart">
+  Все права защищены © 2025 Магазин Одежды
+</footer>
+
+<!-- Корзина -->
+<div class="cart-box" id="cartBox">
+  <h3>Корзина</h3>
+  <ul id="cartItems"></ul>
+  <p><strong>Итого: <span id="totalPrice">₽0</span></strong></p>
+</div>
+
+<!-- JS для добавления в корзину -->
+<script>
+  const cart = [];
+  const buttons = document.querySelectorAll('.buy-button');
+  const cartItems = document.getElementById('cartItems');
+  const totalPrice = document.getElementById('totalPrice');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const product = button.closest('.product');
+      const name = product.getAttribute('data-name');
+      const price = parseInt(product.getAttribute('data-price'));
+
+      cart.push({ name, price });
+      renderCart();
+    });
+  });
+
+  function renderCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price;
+      const li = document.createElement('li');
+      li.textContent = `${item.name} — ₽${item.price}`;
+      cartItems.appendChild(li);
+    });
+    totalPrice.textContent = `₽${total}`;
+  }
+</script>
+
+</body>
+</html>
+
   <div class="product" data-name="Футболка" data-price="1200">
     <img src="https://i.imgur.com/Jv8IWKQ.png" alt="Футболка" />
     <h2>Футболка</h2>
