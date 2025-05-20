@@ -210,6 +210,27 @@
     display: block;
   }
 </style>
+const menuItems = document.querySelectorAll('#menu li');
+const sections = document.querySelectorAll('main section');
+
+menuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    menuItems.forEach(i => i.classList.remove('active')); // Убираем выделение у всех
+    item.classList.add('active'); // Добавляем выделение к текущему пункту
+
+    const targetId = item.getAttribute('data-target'); // Получаем id секции
+
+    sections.forEach(section => {
+      if(section.id === targetId){
+        section.classList.add('active-section'); // Показываем нужную секцию
+        section.classList.remove('hidden-section');
+      } else {
+        section.classList.remove('active-section'); // Скрываем остальные
+        section.classList.add('hidden-section');
+      }
+    });
+  });
+});
 
 </body>
 </html>
