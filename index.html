@@ -2,255 +2,126 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Магазин сотовых телефонов</title>
+  <title>Английский легко!</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #a6f0a6; /* салатный фон */
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #d7ffcc; /* салатовый фон */
       color: #1a1a1a;
     }
     header {
-      background-color: #0057b8; /* синий фон меню */
+      background-color: #3c64ff; /* синяя шапка */
       padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       color: white;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
     nav ul {
-      list-style: none;
       display: flex;
       gap: 25px;
-      margin: 0;
+      list-style: none;
       padding: 0;
+      margin: 0;
     }
     nav ul li {
       cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
-    nav ul li:hover, nav ul li.active {
-      background-color: #f68b1e; /* ярко-оранжевый */
-      color: white;
+    nav ul li:hover,
+    nav ul li.active {
+      background-color: #ffa726; /* оранжевое выделение */
+      color: #fff;
     }
     main {
+      padding: 30px 20px;
       max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
+      margin: auto;
     }
-    h1 {
-      text-align: center;
-      color: #0057b8;
-      margin-bottom: 30px;
-    }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .product-card {
-      background: #fff9e6;
-      border: 3px solid #f68b1e;
-      border-radius: 12px;
-      width: 220px;
-      box-shadow: 0 4px 8px rgba(246, 139, 30, 0.3);
-      text-align: center;
-      padding: 15px;
-      transition: transform 0.3s ease;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(246, 139, 30, 0.6);
-    }
-    .product-card img {
-      width: 180px;
-      height: 180px;
-      object-fit: contain;
-      margin-bottom: 12px;
-      border-radius: 10px;
-    }
-    .product-name {
-      font-weight: 700;
-      font-size: 1.1em;
-      color: #0057b8;
-      margin-bottom: 8px;
-    }
-    .product-price {
-      color: #f68b1e;
-      font-weight: 700;
-      font-size: 1.2em;
-      margin-bottom: 12px;
-    }
-    button.buy-btn {
-      background-color: #0057b8;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-    button.buy-btn:hover {
-      background-color: #f68b1e;
-      color: #1a1a1a;
-    }
-    .hidden-section {
+    section {
       display: none;
     }
-    .active-section {
+    section.active {
       display: block;
+      background-color: #ffffff;
+      padding: 25px;
+      border: 3px solid #ffa726;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #3c64ff;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo" style="font-weight: 700; font-size: 1.4em;">PhoneStore</div>
   <nav>
     <ul id="menu">
-      <li class="active" data-target="catalog">Каталог</li>
-      <li data-target="buy">Купить</li>
-      <li data-target="delivery">Доставка</li>
-      <li data-target="cart">Корзина</li>
+      <li data-target="exercises" class="active">Упражнения</li>
+      <li data-target="grammar">Грамматика</li>
+      <li data-target="audio">Аудио</li>
+      <li data-target="video">Видео</li>
       <li data-target="contacts">Контакты</li>
+      <li data-target="dictionary">Словари</li>
     </ul>
   </nav>
 </header>
 
 <main>
-  <section id="catalog" class="active-section">
-    <h1>Каталог сотовых телефонов</h1>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80" alt="iPhone 13" />
-        <div class="product-name">iPhone 13</div>
-        <div class="product-price">₽75,000</div>
-        <button class="buy-btn">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1510557880182-3a0d6a96a87e?auto=format&fit=crop&w=200&q=80" alt="Samsung Galaxy S21" />
-        <div class="product-name">Samsung Galaxy S21</div>
-        <div class="product-price">₽60,000</div>
-        <button class="buy-btn">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=200&q=80" alt="Google Pixel 6" />
-        <div class="product-name">Google Pixel 6</div>
-        <div class="product-price">₽50,000</div>
-        <button class="buy-btn">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1512499617640-c2f99908586b?auto=format&fit=crop&w=200&q=80" alt="OnePlus 9" />
-        <div class="product-name">OnePlus 9</div>
-        <div class="product-price">₽45,000</div>
-        <button class="buy-btn">Купить</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Xiaomi Mi 11" />
-        <div class="product-name">Xiaomi Mi 11</div>
-        <div class="product-price">₽40,000</div>
-        <button class="buy-btn">Купить</button>
-      </div>
-    </div>
+  <section id="exercises" class="active">
+    <h1>Упражнения</h1>
+    <p>Здесь вы найдете интерактивные упражнения по лексике, чтению, аудированию и письму.</p>
   </section>
 
-  <section id="buy" class="hidden-section">
-    <h1>Как купить</h1>
-    <p>Выберите товар из каталога и нажмите кнопку «Купить».</p>
+  <section id="grammar">
+    <h1>Грамматика</h1>
+    <p>Объяснения английской грамматики с примерами и таблицами.</p>
   </section>
 
-  <section id="delivery" class="hidden-section">
-    <h1>Доставка</h1>
-    <p>Доставка по всей России в течение 3-5 рабочих дней.</p>
+  <section id="audio">
+    <h1>Аудио</h1>
+    <p>Слушайте диалоги, рассказы, новости и тренируйте восприятие на слух.</p>
   </section>
 
-  <section id="cart" class="hidden-section">
-    <h1>Ваша корзина</h1>
-    <p>Пока корзина пуста.</p>
+  <section id="video">
+    <h1>Видео</h1>
+    <p>Уроки на YouTube, короткие видео, субтитры и расшифровка.</p>
   </section>
 
-  <section id="contacts" class="hidden-section">
+  <section id="contacts">
     <h1>Контакты</h1>
-    <p>Телефон: +7 (999) 123-45-67</p>
-    <p>Email: support@phonestore.ru</p>
-    <p>Адрес: г. Москва, ул. Пушкина, д. 10</p>
+    <p>Email: english@edu.ru</p>
+    <p>Телефон: +7 (900) 123-45-67</p>
+    <p>Адрес: Москва, ул. Языковая, д. 10</p>
+  </section>
+
+  <section id="dictionary">
+    <h1>Словари</h1>
+    <p>Базовый, академический, фразовый словарь и глаголы.</p>
   </section>
 </main>
 
 <script>
-  // Меню переключение активных вкладок
   const menuItems = document.querySelectorAll('#menu li');
   const sections = document.querySelectorAll('main section');
 
   menuItems.forEach(item => {
     item.addEventListener('click', () => {
+      // Убираем активность у всех
       menuItems.forEach(i => i.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      // Добавляем активность текущему
       item.classList.add('active');
-
-      const targetId = item.getAttribute('data-target');
-
-      sections.forEach(section => {
-        if(section.id === targetId){
-          section.classList.add('active-section');
-          section.classList.remove('hidden-section');
-        } else {
-          section.classList.remove('active-section');
-          section.classList.add('hidden-section');
-        }
-      });
+      const id = item.dataset.target;
+      document.getElementById(id).classList.add('active');
     });
   });
-
-  // Корзина
-  const cart = [];
-
-  function updateCart() {
-    const cartSection = document.getElementById('cart');
-    if (cart.length === 0) {
-      cartSection.innerHTML = '<h1>Ваша корзина</h1><p>Пока корзина пуста.</p>';
-      return;
-    }
-
-    let html = '<h1>Ваша корзина</h1><ul>';
-    let total = 0;
-
-    cart.forEach((item, index) => {
-      html += `<li>${item.name} — ₽${item.price} <button onclick="removeFromCart(${index})">Удалить</button></li>`;
-      total += item.price;
-    });
-
-    html += `</ul><p><strong>Итого: ₽${total}</strong></p>`;
-    cartSection.innerHTML = html;
-  }
-
-  const buyButtons = document.querySelectorAll('.buy-btn');
-
-  buyButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const productCard = button.closest('.product-card');
-      const productName = productCard.querySelector('.product-name').innerText;
-      const productPriceText = productCard.querySelector('.product-price').innerText;
-      const productPrice = Number(productPriceText.replace(/[₽\s,]/g, ''));
-
-      cart.push({name: productName, price: productPrice});
-      alert(`Добавлено в корзину: ${productName}`);
-      updateCart();
-      // Переключаемся на вкладку корзина автоматически
-      document.querySelector('#menu li[data-target="cart"]').click();
-    });
-  });
-
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
 </script>
 
 </body>
