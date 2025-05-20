@@ -2,182 +2,148 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Магазин Одежды</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Магазин одежды</title>
   <style>
-    <script>
-  const menuLinks = document.querySelectorAll('.menu-link');
-
-  window.addEventListener('scroll', () => {
-    const fromTop = window.scrollY + 80;
-
-    menuLinks.forEach(link => {
-      const section = document.querySelector(link.getAttribute('href'));
-      if (
-        section.offsetTop <= fromTop &&
-        section.offsetTop + section.offsetHeight > fromTop
-      ) {
-        menuLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  });
-</script>
-
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f8f8f8;
+      font-family: Arial, sans-serif;
+      background-color: #d9ffcc; /* салатный фон */
+      color: #333;
     }
+
     header {
-      background-color: #333;
+      background-color: #007bff; /* синее меню */
       color: white;
-      padding: 15px 20px;
+      padding: 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
+
     nav ul {
+      display: flex;
+      gap: 20px;
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      gap: 20px;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 6px 10px;
-      border-radius: 4px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      background-color: #0056b3;
+      transition: background 0.3s;
     }
-    nav a:hover,
-    nav a.active {
-      background-color: #555;
+
+    nav a:hover {
+      background-color: #003d80;
     }
+
     .products {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      padding: 20px;
+      justify-content: center;
+      padding: 30px;
     }
+
     .product {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin: 15px;
-      padding: 15px;
+      background-color: #fff8e1;
+      border: 3px solid #ffa500;
+      border-radius: 12px;
       width: 220px;
+      margin: 20px;
+      padding: 15px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
     }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
     .product img {
-      max-width: 100%;
-      border-radius: 4px;
+      width: 100%;
+      border-radius: 8px;
     }
+
+    .product h2 {
+      color: #e65100;
+      margin: 10px 0;
+    }
+
     .price {
-      color: #e91e63;
+      font-size: 18px;
       font-weight: bold;
-      margin-top: 10px;
+      color: #d9006c;
     }
-    section {
-      padding: 40px 20px;
-      background-color: #fff;
-      margin-bottom: 10px;
-    }
+
     footer {
+      background-color: #ffeeaa;
       text-align: center;
       padding: 20px;
-      background: #eee;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Магазин одежды</h1>
-   <nav>
-  <ul>
-    <li><a href="#products" class="menu-link">Каталог</a></li>
-    <li><a href="#buy" class="menu-link">Купить</a></li>
-    <li><a href="#delivery" class="menu-link">Доставка</a></li>
-    <li><a href="#cart" class="menu-link">Корзина</a></li>
-    <li><a href="#contacts" class="menu-link">Контакты</a></li>
-  </ul>
-</nav>
+    <nav>
+      <ul>
+        <li><a href="#contacts">Контакты</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#buy">Купить</a></li>
+        <li><a href="#cart">Добавить в корзину</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="products" class="products">
+  <main class="products" id="buy">
     <div class="product">
-      <img src="images/coat.jpg" alt="Пальто">
-      <h2>Пальто</h2>
-      <p class="price">₽7,990</p>
-    </div>
-    <div class="product">
-      <img src="images/tshirt.jpg" alt="Футболка">
+      <img src="https://i.imgur.com/Jv8IWKQ.png" alt="Футболка" />
       <h2>Футболка</h2>
-      <p class="price">₽1,290</p>
+      <p class="price">₽1200</p>
     </div>
     <div class="product">
-      <img src="images/dress.jpg" alt="Платье">
-      <h2>Платье</h2>
-      <p class="price">₽3,490</p>
+      <img src="https://i.imgur.com/fYVW3xU.png" alt="Джинсы" />
+      <h2>Джинсы</h2>
+      <p class="price">₽2400</p>
     </div>
     <div class="product">
-      <img src="images/sneakers.jpg" alt="Кроссовки">
+      <img src="https://i.imgur.com/kE3f8Kq.png" alt="Пальто" />
+      <h2>Пальто</h2>
+      <p class="price">₽5200</p>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/r5k9SgY.png" alt="Кроссовки" />
       <h2>Кроссовки</h2>
-      <p class="price">₽4,500</p>
+      <p class="price">₽3900</p>
     </div>
     <div class="product">
-      <img src="images/shirt.jpg" alt="Рубашка">
+      <img src="https://i.imgur.com/DGkR0lD.png" alt="Рубашка" />
       <h2>Рубашка</h2>
-      <p class="price">₽2,200</p>
+      <p class="price">₽1700</p>
     </div>
   </main>
 
-  <section id="buy">
-    <h2>Как купить</h2>
-    <p>Выберите товар и нажмите кнопку "Купить". Оплатить можно онлайн или при получении.</p>
-  </section>
-
   <section id="delivery">
-    <h2>Доставка</h2>
-    <p>Доставка по всей России в течение 2–5 дней. Бесплатно при заказе от ₽5,000.</p>
-  </section>
-
-  <section id="cart">
-    <h2>Корзина</h2>
-    <p>Пока в вашей корзине нет товаров.</p>
+    <h2 style="text-align:center;">Доставка</h2>
+    <p style="text-align:center;">Бесплатная доставка при заказе от 3000₽ по всей России.</p>
   </section>
 
   <section id="contacts">
-    <h2>Контакты</h2>
-    <p>Email: shop@example.com<br>Телефон: +7 (900) 123-45-67</p>
+    <h2 style="text-align:center;">Контакты</h2>
+    <p style="text-align:center;">Email: info@clothes-shop.ru | Тел: +7 900 123 45 67</p>
   </section>
 
-  <footer>
-    &copy; 2025 Магазин одежды. Все права защищены.
+  <footer id="cart">
+    Все права защищены © 2025 Магазин Одежды
   </footer>
-
-  <script>
-    // Подсветка активного меню при прокрутке
-    const menuLinks = document.querySelectorAll(".menu-link");
-
-    window.addEventListener("scroll", () => {
-      let fromTop = window.scrollY + 80;
-
-      menuLinks.forEach(link => {
-        const section = document.querySelector(link.getAttribute("href"));
-        if (
-          section.offsetTop <= fromTop &&
-          section.offsetTop + section.offsetHeight > fromTop
-        ) {
-          menuLinks.forEach(link => link.classList.remove("active"));
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
