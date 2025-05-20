@@ -151,6 +151,13 @@
         <div class="product-name">Xiaomi Mi 11</div>
         <div class="product-price">₽40,000</div>
         <button class="buy-btn">Купить</button>
+        buyButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const productCard = button.closest('.product-card');
+    const productName = productCard.querySelector('.product-name').innerText;
+    alert(`Товар "${productName}" добавлен в корзину!`);
+  });
+});
       </div>
     </div>
   </section>
