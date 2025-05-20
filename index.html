@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Магазин Одежды</title>
   <style>
+    <script>
+  const menuLinks = document.querySelectorAll('.menu-link');
+
+  window.addEventListener('scroll', () => {
+    const fromTop = window.scrollY + 80;
+
+    menuLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute('href'));
+      if (
+        section.offsetTop <= fromTop &&
+        section.offsetTop + section.offsetHeight > fromTop
+      ) {
+        menuLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
