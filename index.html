@@ -75,6 +75,24 @@
 <main>
   <section id="present-perfect" class="hidden-section">
   <h1>Present Perfect (Настоящее совершённое время)</h1>
+    <script>
+function checkAnswer(inputId, correctAnswer) {
+  const userInput = document.getElementById(inputId).value.trim().toLowerCase();
+  const correct = correctAnswer.toLowerCase();
+  const resultId = 'r' + inputId.replace('q', '');
+
+  const resultEl = document.getElementById(resultId);
+
+  if (userInput === correct) {
+    resultEl.textContent = "✅ Верно!";
+    resultEl.style.color = "green";
+  } else {
+    resultEl.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
+    resultEl.style.color = "red";
+  }
+}
+</script>
+
 
   <p><strong>Когда используется:</strong></p>
   <ul>
@@ -384,6 +402,23 @@ function checkAnswer(inputId, correctAnswer) {
   } else {
     result.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
     result.style.color = "red";
+  }
+}
+</script>
+<script>
+function checkAnswer(inputId, correctAnswer) {
+  const userInput = document.getElementById(inputId).value.trim().toLowerCase();
+  const correct = correctAnswer.toLowerCase();
+  const resultId = 'r' + inputId.replace('q', '');
+
+  const resultEl = document.getElementById(resultId);
+
+  if (userInput === correct) {
+    resultEl.textContent = "✅ Верно!";
+    resultEl.style.color = "green";
+  } else {
+    resultEl.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
+    resultEl.style.color = "red";
   }
 }
 </script>
