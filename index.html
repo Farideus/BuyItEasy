@@ -73,6 +73,29 @@
 </header>
 
 <main>
+  <section id="present-perfect" class="hidden-section">
+  <h1>Present Perfect (Настоящее совершённое время)</h1>
+
+  <p><strong>Когда используется:</strong></p>
+  <ul>
+    <li>Прошлое действие с результатом сейчас: <em>I have lost my keys.</em></li>
+    <li>Описываем опыт: <em>She has been to London.</em></li>
+    <li>Длительные действия: <em>We have lived here for 5 years.</em></li>
+  </ul>
+
+  <p><strong>Формула:</strong></p>
+  <ul>
+    <li><strong>have/has</strong> + V3 (третья форма глагола)</li>
+    <li><strong>I/You/We/They</strong> → <em>have</em>: <em>We have seen it.</em></li>
+    <li><strong>He/She/It</strong> → <em>has</em>: <em>She has finished.</em></li>
+  </ul>
+
+  <p><strong>Вопрос:</strong> <em>Have you eaten?</em></p>
+  <p><strong>Отрицание:</strong> <em>He hasn’t called.</em></p>
+
+  <p><strong>Сигнальные слова:</strong> ever, never, just, already, yet, since, for</p>
+</section>
+
   <section id="exercises" class="active">
      <h1>Упражнения: Present Simple</h1>
 
@@ -349,6 +372,20 @@
       document.getElementById(id).classList.add('active');
     });
   });
+</script>
+<script>
+function checkAnswer(inputId, correctAnswer) {
+  const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+  const result = document.getElementById('result' + inputId.replace('answer', ''));
+  
+  if (userAnswer === correctAnswer.toLowerCase()) {
+    result.textContent = "✅ Верно!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "❌ Неверно. Правильный ответ: " + correctAnswer;
+    result.style.color = "red";
+  }
+}
 </script>
 
 </body>
