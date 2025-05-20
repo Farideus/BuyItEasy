@@ -123,15 +123,12 @@
 
   menuItems.forEach(item => {
     item.addEventListener('click', () => {
-      // Убираем класс active у всех пунктов меню
       menuItems.forEach(i => i.classList.remove('active'));
-      // Добавляем активный класс к текущему
       item.classList.add('active');
 
       // Получаем id секции из data-target
       const targetId = item.getAttribute('data-target');
 
-      // Показываем нужный раздел и скрываем остальные
       sections.forEach(section => {
         if (section.id === targetId) {
           section.classList.add('active');
