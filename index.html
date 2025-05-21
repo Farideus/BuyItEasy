@@ -79,6 +79,25 @@
     <strong>Слова-маркеры:</strong> already, yet, just, ever, never, since, for.
   </p>
 </div>
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const grammarBlocks = document.querySelectorAll('.grammar-block');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Удалить active у всех кнопок
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      // Добавить active к текущей кнопке
+      button.classList.add('active');
+
+      // Скрыть все блоки
+      grammarBlocks.forEach(block => block.classList.remove('active'));
+      // Показать нужный блок
+      const target = button.getAttribute('data-target');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
 
     </section>
 
