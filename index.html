@@ -122,11 +122,55 @@
 </header>
 
 <nav>
-  <a href="#">Главная</a>
-  <a href="#">Купить</a>
-  <a href="#">Добавить в корзину</a>
-  <a href="#">Доставка</a>
-  <a href="#">Контакты</a>
+ <nav>
+  <a href="#home">Главная</a>
+  <a href="#products">Купить</a>
+  <a href="#cart">Добавить в корзину</a>
+  <a href="#delivery">Доставка</a>
+  <a href="#contacts">Контакты</a>
+</nav>
+
+<section id="home">
+  <h1>Добро пожаловать в наш магазин фруктов и овощей!</h1>
+</section>
+
+<section id="products">
+  <h2>Наши товары</h2>
+  <!-- Здесь твой список продуктов -->
+</section>
+
+<section id="cart" style="display:none;">
+  <h2>Корзина</h2>
+  <div id="cart-items"></div>
+  <h3>Оформление заказа</h3>
+  <form id="order-form">
+    <label>Имя:<br><input type="text" name="name" required></label><br>
+    <label>Телефон:<br><input type="tel" name="phone" required></label><br>
+    <label>Адрес доставки:<br><textarea name="address" required></textarea></label><br>
+    <label>Оплата:
+      <select name="payment" required>
+        <option value="">Выберите способ</option>
+        <option value="cash">Наличные</option>
+        <option value="card">Карта</option>
+      </select>
+    </label><br><br>
+    <button type="submit">Подтвердить заказ</button>
+  </form>
+  <button id="close-cart">Закрыть корзину</button>
+</section>
+
+<section id="delivery" style="display:none;">
+  <h2>Доставка</h2>
+  <p>Мы доставляем по всей стране в течение 1-3 рабочих дней.<br>
+  Стоимость доставки зависит от региона и объёма заказа.</p>
+  <button id="close-delivery">Закрыть</button>
+</section>
+
+<section id="contacts">
+  <h2>Контакты</h2>
+  <p>Телефон: +7 999 123-45-67<br>Email: hello@example.com</p>
+</section>
+
 </nav>
 
 <div class="container" id="product-list">
@@ -225,7 +269,136 @@
     document.getElementById('phone').value = '';
     document.getElementById('address').value = '';
   }
+<script>
+  // Массив с товарами (пример, должен совпадать с твоими продуктами)
+  const products = [
+    { id: 1, name: "Яблоки", price: 120, img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" },
+    { id: 2, name: "Бананы", price: 90, img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" },
+    { id: 3, name: "Апельсины", price: 110, img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" },
+    { id: 4, name: "Клубника", price: 250, img: "https://upload.wikimedia.org/wikipedia/commons/2/29/PerfectStrawberry.jpg" }
+    // ... добавь все продукты
+  ];
+
+  const cart = [];
+
+  // Показываем список продуктов (добавь сюда вывод товаров с кнопкой "В корзину")
+  function showProducts() {
+    const container = document.querySelector('#products');
+    products.forEach(p => {
+      const div = document.createElement('div');
+      div.style.border = "1px solid #ddd";
+      div.style.margin = "10px";
+      div.style.padding = "10px";
+      div.style.display = "inline-block";
+      div.style.width = "150px";
+      div.style.textAlign = "center";
+
+      div.innerHTML = `
+        <img src="${p.img}" alt="${p.name}" style="width:100px;height:100px;object-fit:cover;"><br>
+        <b>${p.name}</b><br>
+        Цена: ${p.price} руб.<br>
+        <button data-id="${p.id}">В корзину</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // Добавление товара в корзину
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    const found = cart.find(item => item.id === id);
+    if (found) {
+      found.qty++;
+    } else {
+      cart.push({...product, qty: 1});
+    }
+    alert(`${product.name} добавлен в корзину`);
+  }
+
+  // Отобразить корзину
+  function renderCart() {
+    const cartDiv = document.getElementById('cart-items');
+    cartDiv.innerHTML = '';
+    if (cart.length === 0) {
+      cartDiv.innerHTML = '<p>Корзина пуста</p>';
+      return;
+    }
+    cart.forEach(item => {
+      const p = document.createElement('p');
+      p.textContent = `${item.name} - ${item.price} руб. x ${item.qty} = ${item.price * item.qty} руб.`;
+      cartDiv.appendChild(p);
+    });
+  }
+
+  // Показ/скрытие корзины
+  const cartSection = document.getElementById('cart');
+  const deliverySection = document.getElementById('delivery');
+
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#cart') {
+        e.preventDefault();
+        cartSection.style.display = 'block';
+        deliverySection.style.display = 'none';
+        renderCart();
+        cartSection.scrollIntoView({behavior: 'smooth'});
+      } else if (href === '#delivery') {
+        e.preventDefault();
+        deliverySection.style.display = 'block';
+        cartSection.style.display = 'none';
+        deliverySection.scrollIntoView({behavior: 'smooth'});
+      } else {
+        cartSection.style.display = 'none';
+        deliverySection.style.display = 'none';
+      }
+    });
+  });
+
+  // Закрытие корзины и доставки
+  document.getElementById('close-cart').addEventListener('click', () => {
+    cartSection.style.display = 'none';
+  });
+  document.getElementById('close-delivery').addEventListener('click', () => {
+    deliverySection.style.display = 'none';
+  });
+
+  // Обработчик кнопок "В корзину"
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON' && e.target.dataset.id) {
+      addToCart(Number(e.target.dataset.id));
+    }
+  });
+
+  // Обработка формы заказа
+  document.getElementById('order-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (cart.length === 0) {
+      alert('Корзина пуста!');
+      return;
+    }
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const address = formData.get('address');
+    const payment = formData.get('payment');
+    if (!name || !phone || !address || !payment) {
+      alert('Пожалуйста, заполните все поля');
+      return;
+    }
+    alert(`Спасибо за заказ, ${name}!\nОплата: ${payment === 'cash' ? 'Наличными' : 'Картой'}.\nМы свяжемся с вами по телефону: ${phone}`);
+    cart.length = 0; // Очистка корзины
+    renderCart();
+    e.target.reset();
+    cartSection.style.display = 'none';
+  });
+
+  // Инициализация
+  showProducts();
 </script>
+
 
 </body>
 </html>
