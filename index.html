@@ -1,369 +1,88 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Learn It Easy</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #d7ffcc; /* салатовый фон */
-      color: #1a1a1a;
-    }
-    header {
-      background-color: #3c64ff; /* синяя шапка */
-      padding: 15px 20px;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav ul {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav ul li {
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-    nav ul li:hover,
-    nav ul li.active {
-      background-color: #ffa726; /* оранжевое выделение */
-      color: #fff;
-    }
-    main {
-      padding: 30px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    section {
-      display: none;
-    }
-    section.active {
-      display: block;
-      background-color: #ffffff;
-      padding: 25px;
-      border: 3px solid #ffa726;
-      border-radius: 10px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #3c64ff;
-    }
-    button {
-      background-color: #3c64ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 20px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #2a48cc;
-    }
-    .result {
-      margin-top: 5px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
+/* Основной стиль */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
 
-<header>
-  <nav>
-    <ul id="menu">
-      <li data-target="exercises" class="active">Упражнения</li>
-      <li data-target="grammar">Грамматика</li>
-      <li data-target="audio">Аудио</li>
-      <li data-target="video">Видео</li>
-      <li data-target="contacts">Контакты</li>
-      <li data-target="vocabularies">Словари</li>
-      <li data-target="present-perfect">Present Perfect</li>
-    </ul>
-  </nav>
-</header>
+/* Обрамление/шапка */
+header {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-<main>
-  <section id="exercises" class="active">
-     <h1>Упражнения: Present Simple</h1>
+/* Меню */
+.navbar {
+  position: relative;
+  text-align: center;
+}
 
-  <ol>
-    <li>
-      He ___ to school every day.
-      <br>
-      <label><input type="radio" name="q1" value="go"> go</label><br>
-      <label><input type="radio" name="q1" value="goes"> goes</label><br>
-      <label><input type="radio" name="q1" value="going"> going</label>
-      <div id="result-q1" class="result"></div>
-    </li><br>
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-    <li>
-      I usually ___ coffee in the morning.
-      <br>
-      <label><input type="radio" name="q2" value="drinks"> drinks</label><br>
-      <label><input type="radio" name="q2" value="drink"> drink</label><br>
-      <label><input type="radio" name="q2" value="drinking"> drinking</label>
-      <div id="result-q2" class="result"></div>
-    </li><br>
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-    <li>
-      They ___ in a small house.
-      <br>
-      <label><input type="radio" name="q3" value="lives"> lives</label><br>
-      <label><input type="radio" name="q3" value="live"> live</label><br>
-      <label><input type="radio" name="q3" value="living"> living</label>
-      <div id="result-q3" class="result"></div>
-    </li><br>
+.menu li {
+  margin: 0 15px;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    <li>
-      My father ___ the news every evening.
-      <br>
-      <label><input type="radio" name="q4" value="watch"> watch</label><br>
-      <label><input type="radio" name="q4" value="watches"> watches</label><br>
-      <label><input type="radio" name="q4" value="watching"> watching</label>
-      <div id="result-q4" class="result"></div>
-    </li><br>
+.menu li:hover {
+  background-color: #00c6ff;
+  color: white;
+}
 
-    <li>
-      ___ your sister like pizza?
-      <br>
-      <label><input type="radio" name="q5" value="Do"> Do</label><br>
-      <label><input type="radio" name="q5" value="Does"> Does</label><br>
-      <label><input type="radio" name="q5" value="Is"> Is</label>
-      <div id="result-q5" class="result"></div>
-    </li><br>
+/* Секции */
+main {
+  padding: 20px;
+}
 
-    <section id="present-perfect-exercises" style="display:none;">
-      <h1>Упражнения: Present Perfect</h1>
-  <ol>
-    <li>
-      She ___ already ___ her homework.
-      <br>
-      <label><input type="radio" name="pp1" value="has done"> has done</label><br>
-      <label><input type="radio" name="pp1" value="have done"> have done</label><br>
-      <label><input type="radio" name="pp1" value="has did"> has did</label>
-      <div id="result-pp1" class="result"></div>
-    </li><br>
+section {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-    <li>
-      They ___ never ___ to Paris.
-      <br>
-      <label><input type="radio" name="pp2" value="have been"> have been</label><br>
-      <label><input type="radio" name="pp2" value="has been"> has been</label><br>
-      <label><input type="radio" name="pp2" value="have gone"> have gone</label>
-      <div id="result-pp2" class="result"></div>
-    </li><br>
-
-    <li>
-      I ___ just ___ lunch.
-      <br>
-      <label><input type="radio" name="pp3" value="have had"> have had</label><br>
-      <label><input type="radio" name="pp3" value="has had"> has had</label><br>
-      <label><input type="radio" name="pp3" value="have have"> have have</label>
-      <div id="result-pp3" class="result"></div>
-    </li><br>
-  </ol>
-  <button onclick="checkPPAnswers()">Проверить Present Perfect</button>
-</section>
-
-  </ol>
-
-  <button onclick="checkAllAnswers()">Проверить</button>
-  </section>
-
-  <section id="grammar">
-    <h1>Грамматика: Present Simple</h1>
-    <p>Объяснения английской грамматики с примерами и таблицами.</p>
-    
-    <p><strong>Когда используется:</strong></p>
-    <ul>
-      <li>Для регулярных действий: <em>I go to school every day.</em></li>
-      <li>Для общеизвестных фактов: <em>The sun rises in the east.</em></li>
-      <li>Для расписаний: <em>The train leaves at 6 p.m.</em></li>
-    </ul>
-
-    <p><strong>Как образуется:</strong></p>
-    <ul>
-      <li><strong>I/You/We/They</strong> + глагол (без окончания): <em>They play football.</em></li>
-      <li><strong>He/She/It</strong> + глагол + <strong>-s</strong>: <em>She plays football.</em></li>
-    </ul>
-
-    <p><strong>Вопросительная форма:</strong></p>
-    <ul>
-      <li><strong>Do</strong> + I/you/we/they + глагол? <em>Do you like coffee?</em></li>
-      <li><strong>Does</strong> + he/she/it + глагол? <em>Does he play tennis?</em></li>
-    </ul>
-
-    <p><strong>Отрицательная форма:</strong></p>
-    <ul>
-      <li>I/you/we/they + <strong>do not (don’t)</strong> + глагол</li>
-      <li>he/she/it + <strong>does not (doesn’t)</strong> + глагол</li>
-    </ul>
-
-    <p><strong>Примеры:</strong></p>
-    <ul>
-      <li>I work in an office.</li>
-      <li>She doesn’t like fish.</li>
-      <li>Do they speak English?</li>
-    </ul>
-  </section>
-
-  <section id="present-perfect">
-    <h1>Present Perfect (Настоящее совершённое время)</h1>
-
-    <p><strong>Когда используется:</strong></p>
-    <ul>
-      <li>Для действий, результат которых важен сейчас: <em>I have lost my keys.</em></li>
-      <li>Для опыта: <em>She has been to London.</em></li>
-      <li>Для действий, начавшихся в прошлом и продолжающихся: <em>We have lived here for 5 years.</em></li>
-    </ul>
-
-    <p><strong>Как образуется:</strong></p>
-    <ul>
-      <li><strong>I/You/We/They</strong> + <code>have</code> + V<sub>3</sub></li>
-      <li><strong>He/She/It</strong> + <code>has</code> + V<sub>3</sub></li>
-      <li>Пример: <em>She has cleaned the room.</em></li>
-    </ul>
-
-    <p><strong>Вопросительная форма:</strong></p>
-    <ul>
-      <li><strong>Have</strong> you eaten?</li>
-      <li><strong>Has</strong> he called?</li>
-    </ul>
-
-    <p><strong>Отрицательная форма:</strong></p>
-    <ul>
-      <li>She <code>hasn't</code> finished her work.</li>
-      <li>They <code>haven’t</code> arrived yet.</li>
-    </ul>
-
-    <p><strong>Сигнальные слова:</strong> ever, never, just, already, yet, for, since</p>
-  </section>
-  <section id="vocabulary-exercises" style="display:none;">
-  <h1>Упражнения: Словарь (Vocabulary)</h1>
-  <ol>
-    <li>
-      Choose the correct translation for "яблоко":
-      <br>
-      <label><input type="radio" name="vocab1" value="apple"> apple</label><br>
-      <label><input type="radio" name="vocab1" value="banana"> banana</label><br>
-      <label><input type="radio" name="vocab1" value="orange"> orange</label>
-      <div id="result-vocab1" class="result"></div>
-    </li><br>
-
-    <li>
-      What is the English word for "стол"?
-      <br>
-      <label><input type="radio" name="vocab2" value="table"> table</label><br>
-      <label><input type="radio" name="vocab2" value="chair"> chair</label><br>
-      <label><input type="radio" name="vocab2" value="door"> door</label>
-      <div id="result-vocab2" class="result"></div>
-    </li><br>
-
-    <li>
-      Translate "кот" into English:
-      <br>
-      <label><input type="radio" name="vocab3" value="dog"> dog</label><br>
-      <label><input type="radio" name="vocab3" value="cat"> cat</label><br>
-      <label><input type="radio" name="vocab3" value="bird"> bird</label>
-      <div id="result-vocab3" class="result"></div>
-    </li><br>
-  </ol>
-  <button onclick="checkVocabAnswers()">Проверить словарь</button>
-</section>
-
-
-  <section id="audio">
-    <h1>Аудио</h1>
-    <p>Слушайте диалоги, рассказы, новости и тренируйте восприятие на слух.</p>
-  </section>
-
-  <section id="video">
-    <h1>Видео</h1>
-    <p>Уроки на YouTube, короткие видео, субтитры и расшифровка.</p>
-  </section>
-
-  <section id="contacts">
-    <h1>Контакты</h1>
-    <p>Email: english@edu.ru</p>
-    <p>Телефон: +7 (900) 123-45-67</p>
-    <p>Адрес: Москва, ул. Языковая, д. 10</p>
-  </section>
-
-  <section id="vocabularies">
-    <h1>Словари</h1>
-    <p>Базовый, академический, фразовый словарь и глаголы.</p>
-  </section>
-</main>
-
-<script>
-  // Переключение секций меню
-  const menuItems = document.querySelectorAll('#menu li');
-  const sections = document.querySelectorAll('main section');
-
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      menuItems.forEach(i => i.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
-
-      item.classList.add('active');
-      const id = item.dataset.target;
-      const targetSection = document.getElementById(id);
-      if (targetSection) {
-        targetSection.classList.add('active');
-      }
-    });
-  });
-
-  // Проверка ответов Present Simple
-  const correctAnswers = {
-    q1: "goes",
-    q2: "drink",
-    q3: "live",
-    q4: "watches",
-    q5: "Does",
-    // Добавь остальные правильные ответы сюда, если добавишь вопросы
-  };
-
-  function checkAllAnswers() {
-    let allAnswered = true;
-    for (const [q, correct] of Object.entries(correctAnswers)) {
-      const options = document.getElementsByName(q);
-      let selected = null;
-      for (const option of options) {
-        if (option.checked) {
-          selected = option.value;
-          break;
-        }
-      }
-      const resultEl = document.getElementById('result-' + q);
-      if (!selected) {
-        resultEl.textContent = "⚠️ Пожалуйста, выберите ответ.";
-        resultEl.style.color = "orange";
-        allAnswered = false;
-      } else if (selected === correct) {
-        resultEl.textContent = "✅ Верно!";
-        resultEl.style.color = "green";
-      } else {
-        resultEl.textContent = `❌ Неверно. Правильный ответ: ${correct}`;
-        resultEl.style.color = "red";
-      }
-    }
-    if (allAnswered) {
-      alert("Все ответы проверены!");
-    } else {
-      alert("Пожалуйста, ответьте на все вопросы перед проверкой.");
-    }
+/* Адаптив для мобилки */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
   }
-</script>
 
-</body>
-</html>
+  .menu.show {
+    display: flex;
+  }
+
+  .menu li {
+    margin: 5px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
