@@ -1,89 +1,92 @@
-/* Основной стиль */
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  color: #333;
+  padding: 0;
 }
 
-/* Обрамление/шапка */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f8ff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
 header {
   background: linear-gradient(90deg, #00c6ff, #0072ff);
   color: white;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Меню */
-.navbar {
-  position: relative;
+header h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+nav {
   text-align: center;
 }
 
 .menu-toggle {
   display: none;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .menu {
   list-style: none;
-  padding: 0;
-  margin: 10px 0 0 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .menu li {
-  margin: 0 15px;
-  padding: 10px 15px;
-  background-color: #ffffff;
-  border-radius: 12px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  color: #0072ff;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .menu li:hover {
-  background-color: #00c6ff;
+  background-color: #0072ff;
   color: white;
 }
 
-/* Секции */
-main {
+/* Content */
+main section {
+  margin-top: 30px;
   padding: 20px;
-}
-
-section {
   background: white;
-  padding: 20px;
-  margin-bottom: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Адаптив для мобилки */
+/* Responsive */
 @media (max-width: 768px) {
   .menu {
     display: none;
     flex-direction: column;
-    background-color: #f1f1f1;
-    margin: 0;
-    padding: 0;
+    align-items: center;
   }
 
   .menu.show {
     display: flex;
   }
 
-  .menu li {
-    margin: 5px;
-  }
-
   .menu-toggle {
     display: block;
   }
 }
-
