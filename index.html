@@ -2,13 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Фрукты и Овощи — Магазин</title>
+  <title>Магазин Фрукты и Овощи</title>
   <style>
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       background: #fff;
-      color: #333;
     }
 
     header {
@@ -30,11 +29,6 @@
       padding: 15px 25px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #c62828;
     }
 
     .container {
@@ -52,12 +46,6 @@
       padding: 15px;
       text-align: center;
       background-color: #fafafa;
-      transition: transform 0.3s;
-    }
-
-    .product:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .product img {
@@ -68,13 +56,54 @@
     }
 
     .product h3 {
-      margin: 10px 0 5px;
       color: #2e7d32;
     }
 
     .product p {
       font-size: 18px;
       color: #d84315;
+    }
+
+    .product button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #388e3c;
+    }
+
+    .cart, .order-form {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff3e0;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+    }
+
+    .cart ul {
+      padding-left: 20px;
+    }
+
+    .order-form input, .order-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .order-form button {
+      padding: 10px 20px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 5px;
     }
 
     footer {
@@ -88,74 +117,114 @@
 </head>
 <body>
 
-  <header>
-    <h1>Фрукты и Овощи — Интернет-магазин</h1>
-  </header>
+<header>
+  <h1>Фрукты и Овощи — Интернет-магазин</h1>
+</header>
 
-  <nav>
-    <a href="#">Главная</a>
-    <a href="#">Купить</a>
-    <a href="#">Добавить в корзину</a>
-    <a href="#">Доставка</a>
-    <a href="#">Контакты</a>
-  </nav>
+<nav>
+  <a href="#">Главная</a>
+  <a href="#">Купить</a>
+  <a href="#">Добавить в корзину</a>
+  <a href="#">Доставка</a>
+  <a href="#">Контакты</a>
+</nav>
 
-  <div class="container">
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2016/08/29/06/42/apple-1622998_1280.jpg" alt="Яблоки">
-      <h3>Яблоки</h3>
-      <p>₽120 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2015/04/10/00/41/bananas-715422_1280.jpg" alt="Бананы">
-      <h3>Бананы</h3>
-      <p>₽90 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2018/06/07/13/46/oranges-3461817_1280.jpg" alt="Апельсины">
-      <h3>Апельсины</h3>
-      <p>₽110 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2014/04/10/11/06/strawberries-320493_1280.jpg" alt="Клубника">
-      <h3>Клубника</h3>
-      <p>₽250 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999797_1280.jpg" alt="Огурцы">
-      <h3>Огурцы</h3>
-      <p>₽70 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2015/07/02/20/57/tomatoes-828758_1280.jpg" alt="Помидоры">
-      <h3>Помидоры</h3>
-      <p>₽95 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/grapes-1238315_1280.jpg" alt="Виноград">
-      <h3>Виноград</h3>
-      <p>₽160 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999793_1280.jpg" alt="Морковь">
-      <h3>Морковь</h3>
-      <p>₽45 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/vegetables-2020116_1280.jpg" alt="Брокколи">
-      <h3>Брокколи</h3>
-      <p>₽130 / кг</p>
-    </div>
-    <div class="product">
-      <img src="https://cdn.pixabay.com/photo/2014/04/10/11/06/vegetables-320493_1280.jpg" alt="Перец">
-      <h3>Перец сладкий</h3>
-      <p>₽100 / кг</p>
-    </div>
-  </div>
+<div class="container" id="product-list">
+  <!-- Продукты добавим через JS -->
+</div>
 
-  <footer>
-    &copy; 2025 Интернет-магазин Фрукты и Овощи
-  </footer>
+<div class="cart" id="cart">
+  <h2>🛒 Ваша корзина:</h2>
+  <ul id="cart-items"></ul>
+  <p><strong>Сумма:</strong> <span id="total">0</span> ₽</p>
+  <button onclick="showOrderForm()">Оформить заказ</button>
+</div>
+
+<div class="order-form" id="order-form" style="display:none;">
+  <h2>📦 Оформление заказа</h2>
+  <input type="text" id="name" placeholder="Ваше имя" required>
+  <input type="tel" id="phone" placeholder="Телефон" required>
+  <textarea id="address" placeholder="Адрес доставки" required></textarea>
+  <button onclick="submitOrder()">Отправить заказ</button>
+</div>
+
+<footer>
+  &copy; 2025 Магазин Фрукты и Овощи
+</footer>
+
+<script>
+  const products = [
+    { name: "Яблоки", price: 120, img: "https://cdn.pixabay.com/photo/2016/08/29/06/42/apple-1622998_1280.jpg" },
+    { name: "Бананы", price: 90, img: "https://cdn.pixabay.com/photo/2015/04/10/00/41/bananas-715422_1280.jpg" },
+    { name: "Апельсины", price: 110, img: "https://cdn.pixabay.com/photo/2018/06/07/13/46/oranges-3461817_1280.jpg" },
+    { name: "Клубника", price: 250, img: "https://cdn.pixabay.com/photo/2014/04/10/11/06/strawberries-320493_1280.jpg" },
+    { name: "Огурцы", price: 70, img: "https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999797_1280.jpg" },
+    { name: "Помидоры", price: 95, img: "https://cdn.pixabay.com/photo/2015/07/02/20/57/tomatoes-828758_1280.jpg" },
+    { name: "Виноград", price: 160, img: "https://cdn.pixabay.com/photo/2016/03/05/19/02/grapes-1238315_1280.jpg" },
+    { name: "Морковь", price: 45, img: "https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999793_1280.jpg" },
+    { name: "Брокколи", price: 130, img: "https://cdn.pixabay.com/photo/2017/02/01/11/20/vegetables-2020116_1280.jpg" },
+    { name: "Перец сладкий", price: 100, img: "https://cdn.pixabay.com/photo/2014/04/10/11/06/vegetables-320493_1280.jpg" }
+  ];
+
+  const cart = [];
+
+  const productList = document.getElementById('product-list');
+  const cartItems = document.getElementById('cart-items');
+  const totalSpan = document.getElementById('total');
+
+  products.forEach((product, index) => {
+    const div = document.createElement('div');
+    div.className = 'product';
+    div.innerHTML = `
+      <img src="${product.img}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.price} ₽ / кг</p>
+      <button onclick="addToCart(${index})">Добавить в корзину</button>
+    `;
+    productList.appendChild(div);
+  });
+
+  function addToCart(index) {
+    cart.push(products[index]);
+    updateCart();
+  }
+
+  function updateCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} — ${item.price} ₽`;
+      cartItems.appendChild(li);
+      total += item.price;
+    });
+    totalSpan.textContent = total;
+  }
+
+  function showOrderForm() {
+    document.getElementById('order-form').style.display = 'block';
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function submitOrder() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+
+    if (!name || !phone || !address) {
+      alert("Пожалуйста, заполните все поля!");
+      return;
+    }
+
+    alert(`Спасибо, ${name}! Ваш заказ принят.`);
+    cart.length = 0;
+    updateCart();
+    document.getElementById('order-form').style.display = 'none';
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('address').value = '';
+  }
+</script>
 
 </body>
 </html>
