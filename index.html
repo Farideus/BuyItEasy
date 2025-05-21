@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,49 +8,51 @@
 </head>
 <body>
   <header>
-    <h1>Английский с удовольствием</h1>
-    <nav class="navbar">
-      <div class="menu-toggle">☰ Меню</div>
-      <ul class="menu">
-        <li data-target="home">Главная</li>
-        <li data-target="exercises">Упражнения</li>
-        <li data-target="grammar">Грамматика</li>
-        <li data-target="vocab">Словари</li>
-        <li data-target="audio">Аудио</li>
-        <li data-target="video">Видео</li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>Английский с удовольствием</h1>
+      <nav>
+        <div class="menu-toggle">☰</div>
+        <ul class="menu">
+          <li data-target="home">Главная</li>
+          <li data-target="exercises">Упражнения</li>
+          <li data-target="grammar">Грамматика</li>
+          <li data-target="vocab">Словари</li>
+          <li data-target="audio">Аудио</li>
+          <li data-target="video">Видео</li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="container">
     <section id="home">
       <h2>Добро пожаловать!</h2>
-      <p>Выберите раздел из меню, чтобы начать учить английский.</p>
+      <p>Изучайте английский с удовольствием — выберите раздел выше.</p>
     </section>
 
     <section id="exercises" style="display: none;">
       <h2>Упражнения</h2>
-      <p>Тут будут упражнения...</p>
+      <p>Тут будут упражнения.</p>
     </section>
 
     <section id="grammar" style="display: none;">
       <h2>Грамматика</h2>
-      <p>Здесь будет грамматический материал...</p>
+      <p>Грамматический справочник.</p>
     </section>
 
     <section id="vocab" style="display: none;">
       <h2>Словари</h2>
-      <p>Раздел со словами по темам...</p>
+      <p>Слова по темам.</p>
     </section>
 
     <section id="audio" style="display: none;">
       <h2>Аудио</h2>
-      <p>Аудио для практики восприятия на слух.</p>
+      <p>Тренировка аудирования.</p>
     </section>
 
     <section id="video" style="display: none;">
       <h2>Видео</h2>
-      <p>Полезные видео по английскому языку.</p>
+      <p>Обучающие видеоролики.</p>
     </section>
   </main>
 
