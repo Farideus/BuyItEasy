@@ -2,81 +2,160 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Фрукты и Овощи</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Фрукты и Овощи — Магазин</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, red, yellow, green, blue);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      background-color: #f44336;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #c62828;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      border: 2px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background-color: #fafafa;
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      color: #2e7d32;
+    }
+
+    .product p {
+      font-size: 18px;
+      color: #d84315;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #4caf50;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <nav>
-      <ul>
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Купить</a></li>
-        <li><a href="#">Добавить в корзину</a></li>
-        <li><a href="#">Доставка</a></li>
-        <li><a href="#">Контакты</a></li>
-      </ul>
-    </nav>
-    <h1>Сочный магазин фруктов и овощей</h1>
+    <h1>Фрукты и Овощи — Интернет-магазин</h1>
   </header>
 
-  <main>
-    <section class="products">
-      <div class="product">
-        <img src="https://i.imgur.com/Fz1GfKJ.jpg" alt="Яблоко">
-        <h2>Яблоко</h2>
-        <p>Цена: 80 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/tqPp7pK.jpg" alt="Банан">
-        <h2>Банан</h2>
-        <p>Цена: 95 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/MIbdK4R.jpg" alt="Апельсин">
-        <h2>Апельсин</h2>
-        <p>Цена: 90 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/VtFexC3.jpg" alt="Помидор">
-        <h2>Помидор</h2>
-        <p>Цена: 100 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/o4PlYxh.jpg" alt="Огурец">
-        <h2>Огурец</h2>
-        <p>Цена: 85 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/bREiBDM.jpg" alt="Морковь">
-        <h2>Морковь</h2>
-        <p>Цена: 70 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/3d79Z92.jpg" alt="Картофель">
-        <h2>Картофель</h2>
-        <p>Цена: 50 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/T2MuNPT.jpg" alt="Капуста">
-        <h2>Капуста</h2>
-        <p>Цена: 60 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/Lh1hdA5.jpg" alt="Виноград">
-        <h2>Виноград</h2>
-        <p>Цена: 120 руб/кг</p>
-      </div>
-      <div class="product">
-        <img src="https://i.imgur.com/4A1VqGJ.jpg" alt="Арбуз">
-        <h2>Арбуз</h2>
-        <p>Цена: 40 руб/кг</p>
-      </div>
-    </section>
-  </main>
+  <nav>
+    <a href="#">Главная</a>
+    <a href="#">Купить</a>
+    <a href="#">Добавить в корзину</a>
+    <a href="#">Доставка</a>
+    <a href="#">Контакты</a>
+  </nav>
+
+  <div class="container">
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2016/08/29/06/42/apple-1622998_1280.jpg" alt="Яблоки">
+      <h3>Яблоки</h3>
+      <p>₽120 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2015/04/10/00/41/bananas-715422_1280.jpg" alt="Бананы">
+      <h3>Бананы</h3>
+      <p>₽90 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2018/06/07/13/46/oranges-3461817_1280.jpg" alt="Апельсины">
+      <h3>Апельсины</h3>
+      <p>₽110 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2014/04/10/11/06/strawberries-320493_1280.jpg" alt="Клубника">
+      <h3>Клубника</h3>
+      <p>₽250 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999797_1280.jpg" alt="Огурцы">
+      <h3>Огурцы</h3>
+      <p>₽70 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2015/07/02/20/57/tomatoes-828758_1280.jpg" alt="Помидоры">
+      <h3>Помидоры</h3>
+      <p>₽95 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/grapes-1238315_1280.jpg" alt="Виноград">
+      <h3>Виноград</h3>
+      <p>₽160 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2017/01/20/15/06/vegetables-1999793_1280.jpg" alt="Морковь">
+      <h3>Морковь</h3>
+      <p>₽45 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2017/02/01/11/20/vegetables-2020116_1280.jpg" alt="Брокколи">
+      <h3>Брокколи</h3>
+      <p>₽130 / кг</p>
+    </div>
+    <div class="product">
+      <img src="https://cdn.pixabay.com/photo/2014/04/10/11/06/vegetables-320493_1280.jpg" alt="Перец">
+      <h3>Перец сладкий</h3>
+      <p>₽100 / кг</p>
+    </div>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Магазин Фруктов и Овощей. Все права защищены.</p>
+    &copy; 2025 Интернет-магазин Фрукты и Овощи
   </footer>
+
 </body>
 </html>
-
