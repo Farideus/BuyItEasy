@@ -179,6 +179,153 @@ function showAnswer(qId, correctIndex) {
   }
 }
 </script>
+      <div id="present-perfect-exercises"></div>
+<button onclick="loadPresentPerfectExercise(1)">Упражнение 1</button>
+<button onclick="loadPresentPerfectExercise(2)">Упражнение 2</button>
+
+<script>
+const presentPerfectExercises = {
+  1: [
+    {
+      question: "I ___ never been to Paris.",
+      options: ["has", "have", "am"],
+      answer: 1
+    },
+    {
+      question: "She ___ already finished her homework.",
+      options: ["has", "have", "did"],
+      answer: 0
+    },
+    {
+      question: "___ you ever seen a whale?",
+      options: ["Have", "Did", "Do"],
+      answer: 0
+    },
+    {
+      question: "They ___ just left the building.",
+      options: ["has", "have", "are"],
+      answer: 1
+    },
+    {
+      question: "We ___ visited that museum twice.",
+      options: ["has", "had", "have"],
+      answer: 2
+    },
+    {
+      question: "He ___ not called me today.",
+      options: ["have", "has", "is"],
+      answer: 1
+    },
+    {
+      question: "I ___ lost my keys!",
+      options: ["have", "has", "am"],
+      answer: 0
+    },
+    {
+      question: "She ___ never eaten sushi.",
+      options: ["have", "has", "had"],
+      answer: 1
+    },
+    {
+      question: "___ they ever been to Rome?",
+      options: ["Have", "Did", "Do"],
+      answer: 0
+    },
+    {
+      question: "We ___ just finished the report.",
+      options: ["have", "has", "are"],
+      answer: 0
+    }
+  ],
+  2: [
+    {
+      question: "He ___ broken his leg.",
+      options: ["have", "has", "is"],
+      answer: 1
+    },
+    {
+      question: "I ___ written three emails today.",
+      options: ["has", "have", "had"],
+      answer: 1
+    },
+    {
+      question: "___ you finished your project?",
+      options: ["Have", "Did", "Are"],
+      answer: 0
+    },
+    {
+      question: "She ___ just gone to the store.",
+      options: ["has", "have", "was"],
+      answer: 0
+    },
+    {
+      question: "They ___ not seen that movie.",
+      options: ["have", "has", "did"],
+      answer: 0
+    },
+    {
+      question: "We ___ lived here since 2015.",
+      options: ["has", "have", "had"],
+      answer: 1
+    },
+    {
+      question: "He ___ never spoken to me like that.",
+      options: ["has", "have", "did"],
+      answer: 0
+    },
+    {
+      question: "___ she ever tried Indian food?",
+      options: ["Did", "Have", "Has"],
+      answer: 2
+    },
+    {
+      question: "You ___ not told me about the change.",
+      options: ["have", "has", "did"],
+      answer: 0
+    },
+    {
+      question: "They ___ already arrived.",
+      options: ["have", "has", "are"],
+      answer: 0
+    }
+  ]
+};
+
+function loadPresentPerfectExercise(num) {
+  const container = document.getElementById("present-perfect-exercises");
+  const questions = presentPerfectExercises[num];
+  container.innerHTML = `<h2>Упражнение ${num} — Present Perfect</h2>`;
+  questions.forEach((q, i) => {
+    const qId = `ppq${num}_${i}`;
+    container.innerHTML += `
+      <div style="margin-bottom: 10px;">
+        <p><strong>${i + 1}. ${q.question}</strong></p>
+        ${q.options.map((opt, idx) =>
+          `<label><input type="radio" name="${qId}" value="${idx}"> ${opt}</label><br>`
+        ).join('')}
+        <button onclick="showPPAnswer('${qId}', ${q.answer})">Показать ответ</button>
+        <p id="pp-answer-${qId}" style="color: green;"></p>
+      </div>
+    `;
+  });
+}
+
+function showPPAnswer(qId, correctIndex) {
+  const opts = document.getElementsByName(qId);
+  const answerText = document.getElementById(`pp-answer-${qId}`);
+  let selected = null;
+  opts.forEach(opt => {
+    if (opt.checked) selected = parseInt(opt.value);
+  });
+
+  if (selected === correctIndex) {
+    answerText.innerText = "✅ Правильно!";
+  } else {
+    answerText.innerText = `❌ Неправильно. Правильный ответ: ${opts[correctIndex].nextSibling.textContent.trim()}`;
+  }
+}
+</script>
+
 
     </section>
 
