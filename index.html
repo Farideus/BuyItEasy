@@ -1,88 +1,59 @@
-/* Основной стиль */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  color: #333;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Английский с удовольствием</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Английский с удовольствием</h1>
+    <nav class="navbar">
+      <div class="menu-toggle">☰ Меню</div>
+      <ul class="menu">
+        <li data-target="home">Главная</li>
+        <li data-target="exercises">Упражнения</li>
+        <li data-target="grammar">Грамматика</li>
+        <li data-target="vocab">Словари</li>
+        <li data-target="audio">Аудио</li>
+        <li data-target="video">Видео</li>
+      </ul>
+    </nav>
+  </header>
 
-/* Обрамление/шапка */
-header {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  color: white;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  <main>
+    <section id="home">
+      <h2>Добро пожаловать!</h2>
+      <p>Выберите раздел из меню, чтобы начать учить английский.</p>
+    </section>
 
-/* Меню */
-.navbar {
-  position: relative;
-  text-align: center;
-}
+    <section id="exercises" style="display: none;">
+      <h2>Упражнения</h2>
+      <p>Тут будут упражнения...</p>
+    </section>
 
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-}
+    <section id="grammar" style="display: none;">
+      <h2>Грамматика</h2>
+      <p>Здесь будет грамматический материал...</p>
+    </section>
 
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 0 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+    <section id="vocab" style="display: none;">
+      <h2>Словари</h2>
+      <p>Раздел со словами по темам...</p>
+    </section>
 
-.menu li {
-  margin: 0 15px;
-  padding: 10px 15px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    <section id="audio" style="display: none;">
+      <h2>Аудио</h2>
+      <p>Аудио для практики восприятия на слух.</p>
+    </section>
 
-.menu li:hover {
-  background-color: #00c6ff;
-  color: white;
-}
+    <section id="video" style="display: none;">
+      <h2>Видео</h2>
+      <p>Полезные видео по английскому языку.</p>
+    </section>
+  </main>
 
-/* Секции */
-main {
-  padding: 20px;
-}
-
-section {
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* Адаптив для мобилки */
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-    flex-direction: column;
-    background-color: #f1f1f1;
-    margin: 0;
-    padding: 0;
-  }
-
-  .menu.show {
-    display: flex;
-  }
-
-  .menu li {
-    margin: 5px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
