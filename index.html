@@ -951,6 +951,32 @@ function showPPAnswer(qId, correctIndex) {
     <section id="audio" style="display: none;">
       <h2>Аудио</h2>
       <p>Тренировка аудирования.</p>
+      <section id="audio" style="padding: 40px 20px;">
+  <div id="custom-audio-player" style="max-width: 600px; margin: 0 auto; font-family: sans-serif;">
+    <h2>🎧 Аудио к урокам</h2>
+    <ul>
+      <li>
+        <span>Урок 1: Приветствие</span>
+        <button onclick="playAudio('audio1')">▶️ Play</button>
+        <button onclick="pauseAudio('audio1')">⏸ Pause</button>
+        <audio id="audio1" src="audio/lesson1.mp3"></audio>
+      </li>
+      <li>
+        <span>Урок 2: Вопросы</span>
+        <button onclick="playAudio('audio2')">▶️ Play</button>
+        <button onclick="pauseAudio('audio2')">⏸ Pause</button>
+        <audio id="audio2" src="audio/lesson2.mp3"></audio>
+      </li>
+      <li>
+        <span>Урок 3: Диалог</span>
+        <button onclick="playAudio('audio3')">▶️ Play</button>
+        <button onclick="pauseAudio('audio3')">⏸ Pause</button>
+        <audio id="audio3" src="audio/lesson3.mp3"></audio>
+      </li>
+    </ul>
+  </div>
+</section>
+
     </section>
 
     <section id="video" style="display: none;">
