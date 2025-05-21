@@ -252,6 +252,80 @@ function showAnswer(qId, correctIndex) {
     <li><strong>Will</strong> you <strong>help</strong> me?</li>
   </ul>
 </div>
+<div style="margin-top: 40px;">
+  <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+    <button onclick="showTab('past')" class="tab-button" id="btn-past">Past Simple</button>
+    <button onclick="showTab('future')" class="tab-button" id="btn-future">Future Simple</button>
+  </div>
+
+  <div id="past" class="tab-content">
+    <h2>Past Simple (Прошедшее простое время)</h2>
+    <p><strong>Формула:</strong> <code>Subject + V2 (вторая форма глагола) / Ved</code></p>
+    <p><strong>Отрицание:</strong> <code>Subject + did not + V1</code></p>
+    <p><strong>Вопрос:</strong> <code>Did + subject + V1?</code></p>
+    <h4>Примеры:</h4>
+    <ul>
+      <li>I <strong>visited</strong> my grandmother yesterday.</li>
+      <li>She <strong>did not go</strong> to school last week.</li>
+      <li><strong>Did</strong> you <strong>watch</strong> the movie?</li>
+    </ul>
+  </div>
+
+  <div id="future" class="tab-content" style="display: none;">
+    <h2>Future Simple (Будущее простое время)</h2>
+    <p><strong>Формула:</strong> <code>Subject + will + V1</code></p>
+    <p><strong>Отрицание:</strong> <code>Subject + will not (won’t) + V1</code></p>
+    <p><strong>Вопрос:</strong> <code>Will + subject + V1?</code></p>
+    <h4>Примеры:</h4>
+    <ul>
+      <li>He <strong>will come</strong> tomorrow.</li>
+      <li>They <strong>won’t finish</strong> the project on time.</li>
+      <li><strong>Will</strong> you <strong>help</strong> me?</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .tab-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .tab-button:hover {
+    background: #e0e0e0;
+  }
+  .tab-button.active {
+    background: #d0d0ff;
+    font-weight: bold;
+  }
+  .tab-content {
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+
+<script>
+  function showTab(tabId) {
+    const tabs = ['past', 'future'];
+    tabs.forEach(id => {
+      document.getElementById(id).style.display = (id === tabId) ? 'block' : 'none';
+      document.getElementById('btn-' + id).classList.toggle('active', id === tabId);
+    });
+  }
+
+  // По умолчанию включаем первую вкладку
+  document.addEventListener("DOMContentLoaded", () => showTab('past'));
+</script>
 
 <script>
   const tabButtons = document.querySelectorAll('.tab-btn');
