@@ -32,7 +32,154 @@
 
     <section id="exercises" style="display: none;">
       <h2>Упражнения</h2>
-      <p>Тут будут упражнения.</p>
+      <div id="exercise-container"></div>
+
+<button onclick="loadExercise(1)">Упражнение 1</button>
+<button onclick="loadExercise(2)">Упражнение 2</button>
+
+<script>
+const exercises = {
+  1: [
+    {
+      question: "He ___ to school every day.",
+      options: ["go", "goes", "going"],
+      answer: 1
+    },
+    {
+      question: "They ___ like pizza.",
+      options: ["doesn't", "don't", "aren't"],
+      answer: 1
+    },
+    {
+      question: "She ___ TV in the evening.",
+      options: ["watch", "watches", "watching"],
+      answer: 1
+    },
+    {
+      question: "My cat ___ milk.",
+      options: ["like", "likes", "liking"],
+      answer: 1
+    },
+    {
+      question: "We ___ football on Sundays.",
+      options: ["plays", "play", "playing"],
+      answer: 1
+    },
+    {
+      question: "John ___ to the gym?",
+      options: ["go", "goes", "Does go"],
+      answer: 1
+    },
+    {
+      question: "I ___ coffee in the morning.",
+      options: ["drink", "drinks", "drinking"],
+      answer: 0
+    },
+    {
+      question: "She ___ work at 9am.",
+      options: ["start", "starts", "starting"],
+      answer: 1
+    },
+    {
+      question: "___ you speak English?",
+      options: ["Do", "Does", "Are"],
+      answer: 0
+    },
+    {
+      question: "He ___ play tennis.",
+      options: ["doesn't", "don't", "isn't"],
+      answer: 0
+    }
+  ],
+  2: [
+    {
+      question: "They ___ in London.",
+      options: ["lives", "live", "living"],
+      answer: 1
+    },
+    {
+      question: "She ___ breakfast at 7.",
+      options: ["have", "has", "having"],
+      answer: 1
+    },
+    {
+      question: "We ___ our homework every day.",
+      options: ["do", "does", "doing"],
+      answer: 0
+    },
+    {
+      question: "The sun ___ in the east.",
+      options: ["rise", "rises", "rising"],
+      answer: 1
+    },
+    {
+      question: "___ he like football?",
+      options: ["Does", "Do", "Is"],
+      answer: 0
+    },
+    {
+      question: "I ___ like cold weather.",
+      options: ["doesn't", "don't", "am not"],
+      answer: 1
+    },
+    {
+      question: "She ___ her teeth every morning.",
+      options: ["brush", "brushes", "brushing"],
+      answer: 1
+    },
+    {
+      question: "We ___ early on weekends.",
+      options: ["get up", "gets up", "getting up"],
+      answer: 0
+    },
+    {
+      question: "The dog ___ loudly.",
+      options: ["bark", "barks", "barking"],
+      answer: 1
+    },
+    {
+      question: "They ___ work at 8.",
+      options: ["start", "starts", "starting"],
+      answer: 0
+    }
+  ]
+};
+
+function loadExercise(num) {
+  const container = document.getElementById("exercise-container");
+  const questions = exercises[num];
+  container.innerHTML = `<h2>Упражнение ${num}</h2>`;
+  questions.forEach((q, i) => {
+    const qId = `q${num}_${i}`;
+    container.innerHTML += `
+      <div style="margin-bottom: 10px;">
+        <p><strong>${i + 1}. ${q.question}</strong></p>
+        ${q.options.map((opt, idx) =>
+          `<label><input type="radio" name="${qId}" value="${idx}"> ${opt}</label><br>`
+        ).join('')}
+        <button onclick="showAnswer('${qId}', ${q.answer})">Показать ответ</button>
+        <p id="answer-${qId}" style="color: green;"></p>
+      </div>
+    `;
+  });
+}
+
+function showAnswer(qId, correctIndex) {
+  const opts = document.getElementsByName(qId);
+  const answerText = document.getElementById(`answer-${qId}`);
+  let selected = null;
+  opts.forEach(opt => {
+    if (opt.checked) selected = parseInt(opt.value);
+  });
+
+  if (selected === correctIndex) {
+    answerText.innerText = "✅ Правильно!";
+  } else {
+    answerText.innerText = `❌ Неправильно. Правильный ответ: ${opts[correctIndex].nextSibling.textContent.trim()}`;
+  }
+}
+</script>
+
     </section>
 
     <section id="grammar" style="display: none;">
