@@ -197,81 +197,138 @@
 </footer>
 
 <script>
- const products = [
-  { name: "Яблоки", price: 120, img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" },
-  { name: "Бананы", price: 90, img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" },
-  { name: "Апельсины", price: 110, img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" },
-  { name: "Клубника", price: 250, img: "https://upload.wikimedia.org/wikipedia/commons/2/29/PerfectStrawberry.jpg" },
-  { name: "Огурцы", price: 70, img: "https://cdn.pixabay.com/photo/2017/05/07/08/56/cucumber-2299314_960_720.jpg" },
-  { name: "Помидоры", price: 95, img: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg" },
-  { name: "Виноград", price: 160, img: "https://cdn.pixabay.com/photo/2017/01/20/00/30/grapes-1995058_960_720.jpg" },
-  { name: "Морковь", price: 45, img: "https://cdn.pixabay.com/photo/2017/01/20/15/06/carrot-1995054_960_720.jpg" },
-  { name: "Брокколи", price: 130, img: "https://upload.wikimedia.org/wikipedia/commons/0/03/Broccoli_and_cross_section_edit.jpg" },
-  { name: "Перец сладкий", price: 100, img: "https://cdn.pixabay.com/photo/2016/04/15/11/46/bell-pepper-1332343_960_720.jpg" }
-];
-
-
-
+  const products = [
+    { id: 1, name: "Яблоки", price: 120, img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" },
+    { id: 2, name: "Бананы", price: 90, img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" },
+    { id: 3, name: "Апельсины", price: 110, img: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" },
+    { id: 4, name: "Клубника", price: 250, img: "https://upload.wikimedia.org/wikipedia/commons/2/29/PerfectStrawberry.jpg" },
+    { id: 5, name: "Огурцы", price: 70, img: "https://cdn.pixabay.com/photo/2017/05/07/08/56/cucumber-2299314_960_720.jpg" },
+    { id: 6, name: "Помидоры", price: 95, img: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg" },
+    { id: 7, name: "Виноград", price: 160, img: "https://cdn.pixabay.com/photo/2017/01/20/00/30/grapes-1995058_960_720.jpg" },
+    { id: 8, name: "Морковь", price: 45, img: "https://cdn.pixabay.com/photo/2017/01/20/15/06/carrot-1995054_960_720.jpg" },
+    { id: 9, name: "Брокколи", price: 130, img: "https://upload.wikimedia.org/wikipedia/commons/0/03/Broccoli_and_cross_section_edit.jpg" },
+    { id: 10, name: "Перец сладкий", price: 100, img: "https://cdn.pixabay.com/photo/2016/04/15/11/46/bell-pepper-1332343_960_720.jpg" }
+  ];
 
   const cart = [];
 
-  const productList = document.getElementById('product-list');
-  const cartItems = document.getElementById('cart-items');
-  const totalSpan = document.getElementById('total');
+  function showProducts() {
+    const container = document.querySelector('#products');
+    products.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'product';
+      div.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.price} ₽ / кг</p>
+        <button data-id="${p.id}">В корзину</button>
+      `;
+      container.appendChild(div);
+    });
+  }
 
-  products.forEach((product, index) => {
-    const div = document.createElement('div');
-    div.className = 'product';
-    div.innerHTML = `
-      <img src="${product.img}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>${product.price} ₽ / кг</p>
-      <button onclick="addToCart(${index})">Добавить в корзину</button>
-    `;
-    productList.appendChild(div);
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    const found = cart.find(item => item.id === id);
+    if (found) {
+      found.qty++;
+    } else {
+      cart.push({...product, qty: 1});
+    }
+    alert(`${product.name} добавлен в корзину`);
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartDiv = document.getElementById('cart-items');
+    cartDiv.innerHTML = '';
+    if (cart.length === 0) {
+      cartDiv.innerHTML = '<p>Корзина пуста</p>';
+      document.getElementById('total').textContent = '0';
+      return;
+    }
+    let total = 0;
+    cart.forEach(item => {
+      const p = document.createElement('p');
+      p.textContent = `${item.name} - ${item.price} ₽ x ${item.qty} = ${item.price * item.qty} ₽`;
+      cartDiv.appendChild(p);
+      total += item.price * item.qty;
+    });
+    document.getElementById('total').textContent = total;
+  }
+
+  // Обработка кликов по кнопкам "В корзину"
+  document.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON' && e.target.dataset.id) {
+      addToCart(+e.target.dataset.id);
+    }
   });
 
-  function addToCart(index) {
-    cart.push(products[index]);
-    updateCart();
-  }
+  // Показ/скрытие секций по меню
+  const cartSection = document.getElementById('cart');
+  const deliverySection = document.getElementById('delivery');
 
-  function updateCart() {
-    cartItems.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, i) => {
-      const li = document.createElement('li');
-      li.textContent = `${item.name} — ${item.price} ₽`;
-      cartItems.appendChild(li);
-      total += item.price;
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (href === '#cart') {
+        e.preventDefault();
+        cartSection.style.display = 'block';
+        deliverySection.style.display = 'none';
+        renderCart();
+        cartSection.scrollIntoView({ behavior: 'smooth' });
+      } else if (href === '#delivery') {
+        e.preventDefault();
+        deliverySection.style.display = 'block';
+        cartSection.style.display = 'none';
+        deliverySection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        cartSection.style.display = 'none';
+        deliverySection.style.display = 'none';
+      }
     });
-    totalSpan.textContent = total;
-  }
+  });
 
-  function showOrderForm() {
-    document.getElementById('order-form').style.display = 'block';
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }
+  // Кнопки закрытия
+  document.getElementById('close-cart').addEventListener('click', () => {
+    cartSection.style.display = 'none';
+  });
 
-  function submitOrder() {
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const address = document.getElementById('address').value.trim();
+  document.getElementById('close-delivery').addEventListener('click', () => {
+    deliverySection.style.display = 'none';
+  });
 
-    if (!name || !phone || !address) {
-      alert("Пожалуйста, заполните все поля!");
+  // Обработка формы заказа
+  document.getElementById('order-form').addEventListener('submit', e => {
+    e.preventDefault();
+    if (cart.length === 0) {
+      alert('Корзина пуста!');
+      return;
+    }
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const address = formData.get('address');
+    const payment = formData.get('payment');
+
+    if (!name || !phone || !address || !payment) {
+      alert('Пожалуйста, заполните все поля');
       return;
     }
 
-    alert(`Спасибо, ${name}! Ваш заказ принят.`);
+    alert(`Спасибо за заказ, ${name}!\nОплата: ${payment === 'cash' ? 'Наличными' : 'Картой'}.\nМы свяжемся с вами по телефону: ${phone}`);
     cart.length = 0;
-    updateCart();
-    document.getElementById('order-form').style.display = 'none';
-    document.getElementById('name').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('address').value = '';
-  }
-<script>
+    renderCart();
+    e.target.reset();
+    cartSection.style.display = 'none';
+  });
+
+  // Инициализация
+  showProducts();
+</script>
+
   // Массив с товарами (пример, должен совпадать с твоими продуктами)
   const products = [
     { id: 1, name: "Яблоки", price: 120, img: "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg" },
