@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Homework App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .section {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>English Homework</h1>
+  <nav>
+    <button onclick="showSection('grammar')">Grammar Exercise</button>
+    <button onclick="showSection('vocabulary')">Vocabulary Test</button>
+  </nav>
 
+  <section id="grammar" class="section">
+    <h2>Grammar: Present Perfect</h2>
+    <form id="grammarForm">
+      <div class="question">
+        <label>1. I ____ (never / see) that movie before.</label><br />
+        <input type="text" name="q1" />
+      </div>
+      <div class="question">
+        <label>2. She ____ (just / finish) her homework.</label><br />
+        <input type="text" name="q2" />
+      </div>
+      <button type="button" onclick="checkGrammar()">Submit</button>
+    </form>
+    <p id="grammarResult"></p>
+  </section>
+
+  <section id="vocabulary" class="section">
+    <h2>Vocabulary: Work</h2>
+    <form id="vocabForm">
+      <div class="question">
+        <label>1. A person who manages a team is a ____.</label><br />
+        <input type="text" name="q1" />
+      </div>
+      <div class="question">
+        <label>2. To be dismissed from a job is to be ____.</label><br />
+        <input type="text" name="q2" />
+      </div>
+      <button type="button" onclick="checkVocabulary()">Submit</button>
+    </form>
+    <p id="vocabResult"></p>
+  </section>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function checkGrammar() {
+      const form = document.forms['grammarForm'];
+      let correct = 0;
+      if (form.q1.value.trim().toLowerCase() === 'have never seen') correct++;
+      if (form.q2.value.trim().toLowerCase() === 'has just finished') correct++;
+      document.getElementById('grammarResult').innerText = `You got ${correct} out of 2 correct.`;
+    }
+
+    function checkVocabulary() {
+      const form = document.forms['vocabForm'];
+      let correct = 0;
+      if (form.q1.value.trim().toLowerCase() === 'manager') correct++;
+      if (form.q2.value.trim().toLowerCase() === 'fired') correct++;
+      document.getElementById('vocabResult').innerText = `You got ${correct} out of 2 correct.`;
+    }
+  </script>
+</body>
+</html>
