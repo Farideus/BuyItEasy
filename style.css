@@ -1,13 +1,12 @@
 body {
   margin: 0;
-  background: #eef;
   overflow: hidden;
+  background-color: #def;
 }
 
 canvas {
   display: block;
   margin: 0 auto;
-  background: #cce;
-  border: 2px solid #333;
+  background-color: #aee;
+  border: 3px solid #444;
 }
-
