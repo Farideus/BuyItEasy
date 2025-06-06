@@ -3,44 +3,47 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Танковая игра</title>
+<title>Танковая игра улучшенная</title>
 <style>
   body {
     margin: 0; background: #222;
     overflow: hidden;
     user-select: none;
+    font-family: Arial, sans-serif;
   }
   canvas {
     display: block;
     margin: auto;
-    background: #7ec0ee; /* небо */
+    background: #87ceeb;
     border: 2px solid #444;
+    box-shadow: 0 0 20px #0af;
   }
 </style>
 </head>
 <body>
 
-<canvas id="game" width="800" height="400"></canvas>
+<canvas id="game" width="900" height="450"></canvas>
 
 <script>
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-const gravity = 0.5;
-const groundHeight = 60;
+const groundHeight = 70;
 
 let keys = {};
 
 // --- Класс танка ---
 class Tank {
   constructor() {
-    this.width = 60;
-    this.height = 30;
+    this.width = 70;
+    this.height = 35;
     this.x = 100;
     this.y = canvas.height - groundHeight - this.height;
     this.vx = 0;
-    this.color = "green";
-    this.reloadTime = 0; // для задержки между выстрелами
+    this.speed = 5;
+    this.color = "#2c8c2c";
+    this.reloadTime = 0;
+    this.direction = 1; // 1 — вправо, -1 — влево
   }
   update() {
     this.x += this.vx;
@@ -49,18 +52,47 @@ class Tank {
     if (this.reloadTime > 0) this.reloadTime--;
   }
   draw() {
-    ctx.fillStyle = this.color;
+    // Корпус танка с градиентом
+    let grad = ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y + this.height);
+    grad.addColorStop(0, "#3c9d3c");
+    grad.addColorStop(1, "#1a5a1a");
+    ctx.fillStyle = grad;
+    ctx.shadowColor = "#135313";
+    ctx.shadowBlur = 8;
     ctx.fillRect(this.x, this.y, this.width, this.height);
-    // башня
-    ctx.fillRect(this.x + this.width/2 - 5, this.y - 15, 10, 15);
+    ctx.shadowBlur = 0;
+
+    // Башня
+    ctx.fillStyle = "#1f4d1f";
+    ctx.shadowColor = "#0b260b";
+    ctx.shadowBlur = 10;
+    const turretWidth = 14;
+    const turretHeight = 25;
+    const turretX = this.direction === 1 ? this.x + this.width - turretWidth : this.x;
+    ctx.fillRect(turretX, this.y - turretHeight + 5, turretWidth, turretHeight);
+
+    // Ствол
+    ctx.fillStyle = "#0f3d0f";
+    ctx.shadowColor = "#051a05";
+    ctx.shadowBlur = 15;
+    if (this.direction === 1) {
+      ctx.fillRect(turretX + turretWidth, this.y - turretHeight + 15, 30, 6);
+    } else {
+      ctx.fillRect(turretX - 30, this.y - turretHeight + 15, 30, 6);
+    }
+    ctx.shadowBlur = 0;
   }
   canShoot() {
     return this.reloadTime === 0;
   }
   shoot() {
     if (this.canShoot()) {
-      bullets.push(new Bullet(this.x + this.width / 2, this.y - 15, 8, -10, "player"));
-      this.reloadTime = 30; // задержка 30 кадров
+      // Пуля летит в сторону движения танка
+      const bulletX = this.direction === 1 ? this.x + this.width + 15 : this.x - 15;
+      const bulletY = this.y - 15;
+      const speedX = this.direction * 10;
+      bullets.push(new Bullet(bulletX, bulletY, 6, speedX, 0, "player"));
+      this.reloadTime = 20; // задержка между выстрелами
     }
   }
   getRect() {
@@ -70,23 +102,28 @@ class Tank {
 
 // --- Пуля ---
 class Bullet {
-  constructor(x, y, radius, vy, owner) {
+  constructor(x, y, radius, vx, vy, owner) {
     this.x = x;
     this.y = y;
     this.radius = radius;
+    this.vx = vx;
     this.vy = vy;
-    this.owner = owner; // "player" или "enemy"
+    this.owner = owner;
     this.active = true;
   }
   update() {
+    this.x += this.vx;
     this.y += this.vy;
-    if (this.y < 0 || this.y > canvas.height) this.active = false;
+    // Удаляем если вышла за границы
+    if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
+      this.active = false;
+    }
   }
   draw() {
     ctx.beginPath();
-    ctx.fillStyle = this.owner === "player" ? "yellow" : "red";
-    ctx.shadowColor = this.owner === "player" ? "yellow" : "red";
-    ctx.shadowBlur = 10;
+    ctx.fillStyle = this.owner === "player" ? "#ffeb3b" : "#ff5252";
+    ctx.shadowColor = this.owner === "player" ? "#ffeb3b" : "#ff5252";
+    ctx.shadowBlur = 12;
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
     ctx.shadowBlur = 0;
@@ -99,27 +136,56 @@ class Bullet {
 // --- Враг ---
 class Enemy {
   constructor(x, y) {
-    this.width = 50;
-    this.height = 25;
+    this.width = 60;
+    this.height = 30;
     this.x = x;
     this.y = y;
-    this.color = "gray";
-    this.reloadTime = Math.floor(Math.random() * 120) + 60; // случайный перезаряд
+    this.color = "#666666";
+    this.reloadTime = Math.floor(Math.random() * 90) + 60;
     this.alive = true;
+    this.speed = 1.2;
   }
   update() {
+    if (!this.alive) return;
+    // Движемся к танку по горизонтали
+    if (tank.x + tank.width / 2 < this.x + this.width / 2) {
+      this.x -= this.speed;
+    } else {
+      this.x += this.speed;
+    }
+    // Ограничиваем в пределах канваса
+    if (this.x < 0) this.x = 0;
+    if (this.x + this.width > canvas.width) this.x = canvas.width - this.width;
+
     if (this.reloadTime > 0) this.reloadTime--;
     else {
-      bullets.push(new Bullet(this.x + this.width / 2, this.y + this.height, 8, 6, "enemy"));
-      this.reloadTime = Math.floor(Math.random() * 120) + 60;
+      // Пуля летит в сторону танка
+      const direction = tank.x + tank.width / 2 > this.x + this.width / 2 ? 1 : -1;
+      const bulletX = direction === 1 ? this.x + this.width + 12 : this.x - 12;
+      const bulletY = this.y + this.height / 2;
+      bullets.push(new Bullet(bulletX, bulletY, 6, direction * 8, 0, "enemy"));
+      this.reloadTime = Math.floor(Math.random() * 90) + 60;
     }
   }
   draw() {
     if (!this.alive) return;
-    ctx.fillStyle = this.color;
+
+    // Тело врага - с простой тенью и градиентом
+    let grad = ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y + this.height);
+    grad.addColorStop(0, "#888");
+    grad.addColorStop(1, "#444");
+    ctx.fillStyle = grad;
+    ctx.shadowColor = "#222";
+    ctx.shadowBlur = 6;
     ctx.fillRect(this.x, this.y, this.width, this.height);
-    // башня
-    ctx.fillRect(this.x + this.width/2 - 4, this.y + this.height, 8, 12);
+    ctx.shadowBlur = 0;
+
+    // Башня врага
+    ctx.fillStyle = "#333";
+    ctx.fillRect(this.x + this.width / 2 - 10, this.y - 15, 20, 15);
+
+    // Ствол врага
+    ctx.fillRect(this.x + this.width / 2 - 5, this.y - 30, 10, 15);
   }
   getRect() {
     return {x: this.x, y: this.y, width: this.width, height: this.height};
@@ -136,28 +202,63 @@ function isColliding(r1, r2) {
   );
 }
 
+// --- Фон с облаками ---
+function drawBackground() {
+  // Небо градиент
+  let skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  skyGrad.addColorStop(0, "#87ceeb");
+  skyGrad.addColorStop(1, "#4a90e2");
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Земля
+  let groundGrad = ctx.createLinearGradient(0, canvas.height - groundHeight, 0, canvas.height);
+  groundGrad.addColorStop(0, "#2e8b57");
+  groundGrad.addColorStop(1, "#1b4d26");
+  ctx.fillStyle = groundGrad;
+  ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+
+  // Облака
+  drawCloud(100, 80, 40);
+  drawCloud(300, 50, 50);
+  drawCloud(600, 90, 30);
+  drawCloud(800, 70, 45);
+}
+
+function drawCloud(x, y, size) {
+  ctx.fillStyle = "rgba(255,255,255,0.8)";
+  ctx.beginPath();
+  ctx.ellipse(x, y, size, size * 0.6, 0, 0, Math.PI * 2);
+  ctx.ellipse(x + size * 0.7, y + 10, size * 0.7, size * 0.5, 0, 0, Math.PI * 2);
+  ctx.ellipse(x - size * 0.7, y + 10, size * 0.7, size * 0.5, 0, 0, Math.PI * 2);
+  ctx.fill();
+}
+
 // --- Игровой цикл ---
 const tank = new Tank();
 const enemies = [
-  new Enemy(300, canvas.height - groundHeight - 25),
-  new Enemy(500, canvas.height - groundHeight - 25),
-  new Enemy(700, canvas.height - groundHeight - 25),
+  new Enemy(600, canvas.height - groundHeight - 30),
+  new Enemy(750, canvas.height - groundHeight - 30),
 ];
 const bullets = [];
 
 function update() {
   // Управление танком
   tank.vx = 0;
-  if (keys["ArrowLeft"]) tank.vx = -5;
-  if (keys["ArrowRight"]) tank.vx = 5;
+  if (keys["ArrowLeft"]) {
+    tank.vx = -tank.speed;
+    tank.direction = -1;
+  }
+  if (keys["ArrowRight"]) {
+    tank.vx = tank.speed;
+    tank.direction = 1;
+  }
   if (keys[" "] || keys["Spacebar"]) {
     tank.shoot();
   }
 
   tank.update();
-
   enemies.forEach(enemy => enemy.update());
-
   bullets.forEach(bullet => bullet.update());
 
   // Проверка попаданий пуль
@@ -166,7 +267,6 @@ function update() {
     const bRect = bullet.getRect();
 
     if (bullet.owner === "player") {
-      // Проверяем попадание по врагам
       for (let enemy of enemies) {
         if (!enemy.alive) continue;
         if (isColliding(bRect, enemy.getRect())) {
@@ -176,7 +276,6 @@ function update() {
         }
       }
     } else {
-      // Проверяем попадание по танку
       if (isColliding(bRect, tank.getRect())) {
         alert("Танк уничтожен! Игра окончена.");
         resetGame();
@@ -191,22 +290,10 @@ function update() {
   }
 }
 
-function drawGround() {
-  ctx.fillStyle = "#654321";
-  ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
-}
-
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // фон неба
-  let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  grad.addColorStop(0, "#7ec0ee");
-  grad.addColorStop(1, "#654321");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  drawGround();
+  drawBackground();
 
   tank.draw();
   enemies.forEach(enemy => enemy.draw());
@@ -228,7 +315,7 @@ function resetGame() {
 
 window.addEventListener("keydown", (e) => {
   keys[e.key] = true;
-  if (e.key === " ") e.preventDefault(); // чтобы пробел не скроллил страницу
+  if (e.key === " ") e.preventDefault();
 });
 window.addEventListener("keyup", (e) => {
   keys[e.key] = false;
