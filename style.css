@@ -1,12 +1,1 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  background-color: #def;
-}
 
-canvas {
-  display: block;
-  margin: 0 auto;
-  background-color: #aee;
-  border: 3px solid #444;
-}
