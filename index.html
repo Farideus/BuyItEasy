@@ -1,79 +1,261 @@
 <!doctype html>
-</footer>
-</div>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Учебные пособия — Электронный магазин</title>
+  <meta name="description" content="Купить электронные учебные пособия для школьников и студентов. Удобные форматы, мгновенная доставка, пробные страницы." />
+  <style>
+    :root{
+      --accent:#2557a7; --accent-2:#1fa2ff; --bg:#f7f9fc; --card:#ffffff; --muted:#6b7280;
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0b1220;line-height:1.45}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a.cta{background:var(--accent);color:white}
 
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
+    .hero h1{font-size:28px;margin:0 0 12px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+    .hero .actions{display:flex;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:0;background:var(--accent);color:white;text-decoration:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(11,18,32,0.08);color:var(--accent)}
 
-<!-- Modals -->
-<div id="overviewModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-<div class="box">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<h3 style="margin:0">Обзор форматов</h3>
-<button class="close" onclick="closeModal('overviewModal')" aria-label="Закрыть">✕</button>
-</div>
-<p style="color:var(--muted)">PDF — универсальный формат для печати; EPUB — удобен для чтения на планшетах и ридерах; DOCX — для редактирования и подготовки к урокам. Все пакеты содержат пробные страницы.</p>
-<div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
-<button class="btn" onclick="closeModal('overviewModal')">Понятно</button>
-</div>
-</div>
-</div>
+    .search{display:flex;margin-top:10px}
+    .search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(11,18,32,0.08)}
+    .search button{margin-left:8px;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:white}
 
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:26px}
+    .card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.06);display:flex;flex-direction:column}
+    .card .thumb{height:140px;border-radius:8px;background:linear-gradient(180deg,#fff,#f1f6ff);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
+    .card h3{margin:12px 0 8px;font-size:16px}
+    .card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+    .small-btn{padding:8px 10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06);background:transparent;cursor:pointer}
+    .tag{font-size:12px;color:var(--muted)}
 
-<div id="trialModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-<div class="box">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-<h3 style="margin:0">Получить пробник</h3>
-<button class="close" onclick="closeModal('trialModal')" aria-label="Закрыть">✕</button>
-</div>
-<p style="color:var(--muted)">Оставьте email — мы пришлём бесплатные пробные страницы и инструкцию по использованию материалов на уроках.</p>
-<div style="display:flex;gap:8px;margin-top:12px">
-<input id="trialEmail" type="email" placeholder="Ваш email" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06)" />
-<button class="btn" onclick="requestTrial()">Отправить</button>
-</div>
-</div>
-</div>
+    .features{display:flex;gap:12px;margin-top:26px}
+    .feature{background:var(--card);padding:12px;border-radius:10px;flex:1;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+    footer{margin-top:40px;padding:26px 0;color:var(--muted);font-size:14px}
 
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+    }
 
-<script>
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-function openModal(id){
-const m = document.getElementById(id);
-if(!m) return; m.style.display='flex'; m.setAttribute('aria-hidden','false');
-}
-function closeModal(id){
-const m = document.getElementById(id);
-if(!m) return; m.style.display='none'; m.setAttribute('aria-hidden','true');
-}
-function addToCart(slug){
-alert('Пособие "' + slug + '" добавлено в корзину (демо).');
-}
-function orderNow(slug){
-// Здесь можно перейти на страницу заказа
-alert('Переход к оформлению заказа для: ' + slug);
-}
-function openOverview(slug){
-openModal('overviewModal');
-}
-function search(){
-const q = document.getElementById('q').value.trim();
-if(!q) { alert('Введите запрос'); return; }
-alert('Поиск по каталогу: ' + q + ' (демо)');
-}
-function requestTrial(){
-const email = document.getElementById('trialEmail').value;
-if(!email) { alert('Введите email'); return; }
-closeModal('trialModal');
-alert('Спасибо! На ' + email + ' отправлен пробник (демо).');
-}
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(7,12,20,0.4);z-index:50;padding:18px}
+    .modal .box{width:100%;max-width:560px;background:var(--card);padding:18px;border-radius:12px}
+    .close{background:transparent;border:0;font-size:18px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">EP</div>
+        <div>
+          <strong>EduPacks</strong><br>
+          <small style="color:var(--muted)">Учебные пособия — электронные</small>
+        </div>
+      </div>
 
+      <nav aria-label="Основная навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#about">Обзор</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#order" class="cta">Заказать</a>
+      </nav>
+    </header>
 
-// Accessibility: close modal on ESC
-document.addEventListener('keydown', function(e){
-if(e.key === 'Escape'){
-document.querySelectorAll('.modal').forEach(m=>{ if(m.style.display==='flex') closeModal(m.id); })
-}
-});
-</script>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Электронные учебные пособия для школьников и студентов</h1>
+        <p>Практичные, обновляемые материалы — готовые уроки, задания и контрольные. Мгновенная доставка после оплаты.</p>
+
+        <div class="actions">
+          <button class="btn" onclick="scrollToSection('catalog')">Выбрать пособие</button>
+          <button class="btn secondary" onclick="openModal('overviewModal')">Обзор форматов</button>
+        </div>
+
+        <div class="search" role="search" style="margin-top:14px">
+          <input type="search" id="q" placeholder="Найти пособие: математика, английский, история..." />
+          <button aria-label="Поиск" onclick="search()">Поиск</button>
+        </div>
+      </div>
+
+      <aside aria-label="Промо" style="text-align:center">
+        <div style="background:linear-gradient(180deg,#eef6ff,#fff);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04)">
+          <h3 style="margin:0 0 8px">Скидка 20% на первый заказ</h3>
+          <p style="margin:0 0 12px;color:var(--muted)">Пробные страницы и легкий формат PDF/EPUB</p>
+          <button class="btn" onclick="openModal('trialModal')">Получить пробник</button>
+        </div>
+      </aside>
+    </section>
+
+    <section id="catalog" style="margin-top:22px">
+      <h2>Популярные пособия</h2>
+      <div class="cards" aria-live="polite">
+        <article class="card">
+          <div class="thumb">Math</div>
+          <h3>Математика: 5–9 классы — готовые уроки</h3>
+          <p>Подробные конспекты, рабочие тетради и проверочные задания с ответами.</p>
+          <div class="meta">
+            <span class="tag">PDF, EPUB</span>
+            <div style="display:flex;gap:8px">
+              <button class="small-btn" onclick="openOverview('math')">Обзор</button>
+              <button class="small-btn" onclick="addToCart('math')">Выбрать</button>
+              <button class="small-btn" onclick="orderNow('math')">Заказать</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">Eng</div>
+          <h3>Английский: грамматика и говорение</h3>
+          <p>Короткие уроки, диалоги и задания для 10–14 лет, сценарии для Reels и проектов.</p>
+          <div class="meta">
+            <span class="tag">PDF, DOCX</span>
+            <div style="display:flex;gap:8px">
+              <button class="small-btn" onclick="openOverview('eng')">Обзор</button>
+              <button class="small-btn" onclick="addToCart('eng')">Выбрать</button>
+              <button class="small-btn" onclick="orderNow('eng')">Заказать</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">Hist</div>
+          <h3>История: шпаргалки и хронометраж событий</h3>
+          <p>Удобные хронологии, схемы и карточки для быстрого запоминания.</p>
+          <div class="meta">
+            <span class="tag">PDF</span>
+            <div style="display:flex;gap:8px">
+              <button class="small-btn" onclick="openOverview('hist')">Обзор</button>
+              <button class="small-btn" onclick="addToCart('hist')">Выбрать</button>
+              <button class="small-btn" onclick="orderNow('hist')">Заказать</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:26px">
+      <h2>Почему наши пособия работают</h2>
+      <div class="features">
+        <div class="feature">
+          <strong>Практичность</strong>
+          <p style="color:var(--muted);margin-top:8px">Материалы ориентированы на реальные уроки и проекты — не просто теория.</p>
+        </div>
+        <div class="feature">
+          <strong>Гибкость</strong>
+          <p style="color:var(--muted);margin-top:8px">Форматы PDF/EPUB/DOCX, адаптация под онлайн и офлайн занятия.</p>
+        </div>
+        <div class="feature">
+          <strong>Скорость</strong>
+          <p style="color:var(--muted);margin-top:8px">Мгновенная доставка после оплаты и пробные страницы бесплатно.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" style="margin-top:28px;display:flex;justify-content:space-between;gap:18px;align-items:flex-start">
+      <div style="flex:1;">
+        <h3>Контакты</h3>
+        <p style="color:var(--muted)">Email: hello@edupacks.example<br>Телефон: +7 (900) 000-00-00</p>
+      </div>
+      <div style="flex:1;">
+        <h3>Адрес офиса для консультаций</h3>
+        <p style="color:var(--muted)">г. Ваш город, ул. Примерная, д.12<br>Занятия и выдача материалов возможны в школе №187 — комфортный и светлый кабинет.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>EduPacks</strong> — электронные пособия © 2025
+        </div>
+        <div style="color:var(--muted)">Политика конфиденциальности · Условия использования</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div id="overviewModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h3 style="margin:0">Обзор форматов</h3>
+        <button class="close" onclick="closeModal('overviewModal')" aria-label="Закрыть">✕</button>
+      </div>
+      <p style="color:var(--muted)">PDF — универсальный формат для печати; EPUB — удобен для чтения на планшетах и ридерах; DOCX — для редактирования и подготовки к урокам. Все пакеты содержат пробные страницы.</p>
+      <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+        <button class="btn" onclick="closeModal('overviewModal')">Понятно</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="trialModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h3 style="margin:0">Получить пробник</h3>
+        <button class="close" onclick="closeModal('trialModal')" aria-label="Закрыть">✕</button>
+      </div>
+      <p style="color:var(--muted)">Оставьте email — мы пришлём бесплатные пробные страницы и инструкцию по использованию материалов на уроках.</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <input id="trialEmail" type="email" placeholder="Ваш email" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06)" />
+        <button class="btn" onclick="requestTrial()">Отправить</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function scrollToSection(id){
+      document.getElementById(id).scrollIntoView({behavior:'smooth'});
+    }
+    function openModal(id){
+      const m = document.getElementById(id);
+      if(!m) return; m.style.display='flex'; m.setAttribute('aria-hidden','false');
+    }
+    function closeModal(id){
+      const m = document.getElementById(id);
+      if(!m) return; m.style.display='none'; m.setAttribute('aria-hidden','true');
+    }
+    function addToCart(slug){
+      alert('Пособие "' + slug + '" добавлено в корзину (демо).');
+    }
+    function orderNow(slug){
+      // Здесь можно перейти на страницу заказа
+      alert('Переход к оформлению заказа для: ' + slug);
+    }
+    function openOverview(slug){
+      openModal('overviewModal');
+    }
+    function search(){
+      const q = document.getElementById('q').value.trim();
+      if(!q) { alert('Введите запрос'); return; }
+      alert('Поиск по каталогу: ' + q + ' (демо)');
+    }
+    function requestTrial(){
+      const email = document.getElementById('trialEmail').value;
+      if(!email) { alert('Введите email'); return; }
+      closeModal('trialModal');
+      alert('Спасибо! На ' + email + ' отправлен пробник (демо).');
+    }
+
+    // Accessibility: close modal on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.modal').forEach(m=>{ if(m.style.display==='flex') closeModal(m.id); })
+      }
+    });
+  </script>
 </body>
 </html>
