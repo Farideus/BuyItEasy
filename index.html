@@ -28,7 +28,6 @@
             padding: 0 24px;
         }
 
-        /* header / navigation */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -97,7 +96,6 @@
             justify-content: center;
         }
 
-        /* hero */
         .hero {
             text-align: center;
             padding: 60px 0 40px;
@@ -120,7 +118,6 @@
             margin: 0 auto;
         }
 
-        /* filter tabs */
         .filter-section {
             display: flex;
             justify-content: center;
@@ -146,7 +143,6 @@
             color: white;
         }
 
-        /* book grid */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -247,7 +243,6 @@
             transform: scale(0.98);
         }
 
-        /* cart sidebar */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -444,7 +439,6 @@
     </div>
 </footer>
 
-<!-- Cart Sidebar -->
 <div id="cartOverlay" class="cart-overlay">
     <div id="cartSidebar" class="cart-sidebar">
         <div class="cart-header">
@@ -464,28 +458,8 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // ---------- КНИЖНЫЙ КАТАЛОГ ----------
+    // ---------- КНИЖНЫЙ КАТАЛОГ (ЗДЕСЬ ВАША КНИГА УЖЕ ДОБАВЛЕНА) ----------
     const booksData = [
-         { id: 1, title: "English Grammar Pro", author: "Елена Смирнова", category: "english", desc: "Полное пособие по грамматике для уровней A2–C1. Упражнения и тесты.", price: 490, coverIcon: "📘" },
-    { id: 2, title: "Speak Fluent: разговорник", author: "Анна Коваль", category: "english", desc: "500+ фраз и диалогов для свободного общения. Аудио-подсказки.", price: 350, coverIcon: "🎧" },
-    { id: 3, title: "Арифметика для начинающих", author: "Игорь Матвеев", category: "arithmetic", desc: "Сложение, вычитание, таблица умножения в игровой форме. 6+", price: 290, coverIcon: "🔢" },
-    { id: 4, title: "Занимательная математика", author: "Сергей Петров", category: "arithmetic", desc: "Логика, дроби, задачи на смекалку для 1-4 классов.", price: 420, coverIcon: "🧩" },
-    { id: 5, title: "Вечерние рассказы", author: "Мария Чехова", category: "stories", desc: "Сборник тёплых историй для уютного чтения перед сном.", price: 280, coverIcon: "🌙" },
-    { id: 6, title: "Приключения кота Васьки", author: "Дмитрий Лапин", category: "stories", desc: "Иллюстрированные рассказы для детей и взрослых.", price: 320, coverIcon: "🐱" },
-    { id: 7, title: "Атлант расправил плечи", author: "Айн Рэнд", category: "books", desc: "Философский роман-бестселлер в электронном формате.", price: 590, coverIcon: "🏛️" },
-    { id: 8, title: "451° по Фаренгейту", author: "Рэй Брэдбери", category: "books", desc: "Классическая антиутопия. Новый перевод.", price: 430, coverIcon: "🔥" },
-    { id: 9, title: "Английский с нуля", author: "Ольга Полякова", category: "english", desc: "Интенсивный видеокурс + PDF. Для самостоятельного старта.", price: 540, coverIcon: "🇬🇧" },
-    { id: 10, title: "Устный счёт за 15 минут", author: "Нина Гриднева", category: "arithmetic", desc: "Тренажёр для быстрого счёта в уме. 2-5 класс.", price: 310, coverIcon: "🧠" },
-    { 
-        id: 11, 
-        title: "Арифметика для детей: 5+", 
-        author: "Фарид Хамидалиев", 
-        category: "arithmetic", 
-        desc: "С этим пособием ваш ребенок, в легкой и игровой манере, выучит цифры от 0 до 9, а также научится производить сложение и вычитание в пределах от 0 до 10. Яркие иллюстрации, полезные примеры и веселый, дружелюбный помощник Рэкси сделают процесс обучения интересным и результативным.", 
-        price: 355, 
-        coverIcon: "📚" 
-    }
-];
         { id: 1, title: "English Grammar Pro", author: "Елена Смирнова", category: "english", desc: "Полное пособие по грамматике для уровней A2–C1. Упражнения и тесты.", price: 490, coverIcon: "📘" },
         { id: 2, title: "Speak Fluent: разговорник", author: "Анна Коваль", category: "english", desc: "500+ фраз и диалогов для свободного общения. Аудио-подсказки.", price: 350, coverIcon: "🎧" },
         { id: 3, title: "Арифметика для начинающих", author: "Игорь Матвеев", category: "arithmetic", desc: "Сложение, вычитание, таблица умножения в игровой форме. 6+", price: 290, coverIcon: "🔢" },
@@ -495,22 +469,11 @@
         { id: 7, title: "Атлант расправил плечи", author: "Айн Рэнд", category: "books", desc: "Философский роман-бестселлер в электронном формате.", price: 590, coverIcon: "🏛️" },
         { id: 8, title: "451° по Фаренгейту", author: "Рэй Брэдбери", category: "books", desc: "Классическая антиутопия. Новый перевод.", price: 430, coverIcon: "🔥" },
         { id: 9, title: "Английский с нуля", author: "Ольга Полякова", category: "english", desc: "Интенсивный видеокурс + PDF. Для самостоятельного старта.", price: 540, coverIcon: "🇬🇧" },
-        { id: 10, title: "Устный счёт за 15 минут", author: "Нина Гриднева", category: "arithmetic", desc: "Тренажёр для быстрого счёта в уме. 2-5 класс.", price: 310, coverIcon: "🧠" }
+        { id: 10, title: "Устный счёт за 15 минут", author: "Нина Гриднева", category: "arithmetic", desc: "Тренажёр для быстрого счёта в уме. 2-5 класс.", price: 310, coverIcon: "🧠" },
+        { id: 11, title: "Арифметика для детей: 5+", author: "Фарид Хамидалиев", category: "arithmetic", desc: "С этим пособием ваш ребенок, в легкой и игровой манере, выучит цифры от 0 до 9, а также научится производить сложение и вычитание в пределах от 0 до 10. Яркие иллюстрации, полезные примеры и веселый, дружелюбный помощник Рэкси сделают процесс обучения интересным и результативным.", price: 355, coverIcon: "📚" }
     ];
-{ 
-    id: 11, 
-    title: "Арифметика для детей: 5+", 
-    author: "Фарид Хамидалиев", 
-    category: "arithmetic", 
-    desc: "...", 
-    price: 355, 
-    coverIcon: "images/arithmetic_rexi.jpg",  // путь к файлу
-    isImage: true  // указываем, что это изображение
-}
-    // Корзина: массив объектов { id, title, price, quantity }
-    let cart = [];
 
-    // DOM элементы
+    let cart = [];
     const booksContainer = document.getElementById('booksContainer');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cartIconElem = document.getElementById('cartIcon');
@@ -526,7 +489,6 @@
 
     let currentFilter = "all";
 
-    // ---- Вспомогательные функции ----
     function showToast(message, duration = 2000) {
         toastMsgDiv.textContent = message;
         toastMsgDiv.style.opacity = "1";
@@ -535,18 +497,15 @@
         }, duration);
     }
 
-    // Сохранить корзину в localStorage
     function saveCartToLocal() {
         localStorage.setItem('bookshopCart', JSON.stringify(cart));
     }
 
-    // Загрузить корзину из localStorage
     function loadCartFromLocal() {
         const saved = localStorage.getItem('bookshopCart');
         if (saved) {
             try {
                 cart = JSON.parse(saved);
-                // валидация простейшая
                 if (!Array.isArray(cart)) cart = [];
             } catch(e) { cart = []; }
         } else {
@@ -555,7 +514,6 @@
         updateCartUI();
     }
 
-    // Обновить счетчик иконки, общую сумму и рендер корзины
     function updateCartUI() {
         const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
         cartCountSpan.innerText = totalItems;
@@ -573,7 +531,6 @@
         saveCartToLocal();
     }
 
-    // Рендер содержимого корзины в боковой панели
     function renderCartItems() {
         if (!cartItemsList) return;
         if (cart.length === 0) {
@@ -598,7 +555,6 @@
         });
         cartItemsList.innerHTML = html;
 
-        // обработчики удаления/уменьшения
         document.querySelectorAll('.remove-item').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -622,7 +578,6 @@
         });
     }
 
-    // Добавление в корзину
     function addToCart(book) {
         const existing = cart.find(item => item.id === book.id);
         if (existing) {
@@ -655,7 +610,6 @@
         }
     }
 
-    // Рендер книг с учетом фильтра
     function renderBooks() {
         let filteredBooks = booksData;
         if (currentFilter !== 'all') {
@@ -685,7 +639,6 @@
             </div>
         `).join('');
 
-        // привязываем обработчики кнопок "В корзину"
         document.querySelectorAll('.add-to-cart').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -706,11 +659,9 @@
         return map[cat] || 'Издание';
     }
 
-    // фильтрация
     function setFilter(filterValue) {
         currentFilter = filterValue;
         renderBooks();
-        // обновить активную кнопку
         filterBtns.forEach(btn => {
             const btnFilter = btn.getAttribute('data-filter');
             if (btnFilter === currentFilter) {
@@ -721,7 +672,6 @@
         });
     }
 
-    // Обработка навигационных ссылок (меню)
     function initNavFilters() {
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
@@ -733,13 +683,11 @@
                 } else if (link.innerText.includes('Главная')) {
                     setFilter('all');
                 }
-                // закрыть корзину если открыта
                 closeCart();
             });
         });
     }
 
-    // Корзина: открыть/закрыть
     function openCart() {
         cartOverlay.classList.add('active');
         cartSidebar.classList.add('active');
@@ -754,23 +702,19 @@
         cartSidebar.classList.remove('active');
     }
 
-    // Оформление заказа
     function handleCheckout() {
         if (cart.length === 0) {
             showToast("Корзина пуста, добавьте книги для оформления");
             return;
         }
         const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-        // имитация заказа
         showToast(`✅ Спасибо за заказ на сумму ${total} ₽! Книги будут отправлены на email.`, 3000);
-        // очищаем корзину
         cart = [];
         updateCartUI();
         closeCart();
-        renderBooks(); // обновить счетчик
+        renderBooks();
     }
 
-    // ---- Инициализация событий ----
     function initEventListeners() {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -787,14 +731,12 @@
         checkoutBtnElem.addEventListener('click', handleCheckout);
     }
 
-    // Запуск
     function init() {
         loadCartFromLocal();
         renderBooks();
         initEventListeners();
         initNavFilters();
         setFilter('all');
-        // если корзина уже была с прошлого раза, обновим счетчик
         updateCartUI();
     }
 
