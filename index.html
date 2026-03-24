@@ -1,1255 +1,775 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>EduKids — Учебные пособия для детей</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --------- БАЗОВЫЕ СТИЛИ СТРАНИЦЫ --------- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      line-height: 1.5;
-      color: #1f2933;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      background:
-        radial-gradient(circle at top left, #fffbeb, transparent 60%),
-        radial-gradient(circle at bottom right, #e0f2fe, transparent 60%),
-        linear-gradient(135deg, #f5f7ff 0%, #ffffff 50%, #e0f7fa 100%);
-    }
-
-    .page {
-      width: 100%;
-      max-width: 1200px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    /* --------- ШАПКА --------- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #f97316, #facc15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    .logo-text-main {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #4b5563;
-    }
-
-    .lang-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      backdrop-filter: blur(6px);
-    }
-
-    /* --------- ОСНОВНОЙ КОНТЕНТ --------- */
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* --------- ХЕРО-БЛОК --------- */
-    .hero {
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: linear-gradient(130deg, #eff6ff 0%, #fefce8 60%, #e0f2fe 100%);
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(220px, 2fr);
-      gap: 16px;
-      align-items: center;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    @media (max-width: 720px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(251, 191, 36, 0.22), transparent);
-      top: -60px;
-      right: -40px;
-      pointer-events: none;
-    }
-
-    .hero-text h1 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .hero-text h1 span {
-      color: #2563eb;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: #4b5563;
-      margin-bottom: 12px;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .hero-tag {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px dashed rgba(148, 163, 184, 0.6);
-    }
-
-    .hero-note {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .hero-illustration {
-      position: relative;
-      padding: 10px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .hero-illustration-main {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .kid-card {
-      border-radius: 14px;
-      padding: 10px;
-      background: linear-gradient(145deg, #22c55e, #4ade80);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      box-shadow: 0 10px 20px rgba(22, 163, 74, 0.35);
-      font-size: 13px;
-    }
-
-    .kid-card-title {
-      font-weight: 700;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .kid-card-title span {
-      font-size: 18px;
-    }
-
-    .kid-card-body {
-      font-size: 11px;
-      opacity: 0.95;
-    }
-
-    .kid-card-footer {
-      font-size: 10px;
-      opacity: 0.9;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .bubble {
-      border-radius: 50%;
-      width: 54px;
-      height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      background: radial-gradient(circle at 30% 30%, #f97316, #facc15);
-      box-shadow: 0 6px 14px rgba(234, 179, 8, 0.55);
-    }
-
-    .hero-illustration-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 10px;
-    }
-
-    .hero-badge {
-      padding: 4px 7px;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid rgba(96, 165, 250, 0.7);
-    }
-
-    /* --------- СЕКЦИЯ ТОВАРОВ --------- */
-    .products-section {
-      margin-top: 8px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-    }
-
-    .products-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-    }
-
-    .products-title {
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .products-subtitle {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-    }
-
-    .product-card {
-      border-radius: 14px;
-      padding: 12px;
-      background: #f9fafb;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        border-color 0.15s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card::before {
-      content: "";
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(251, 191, 36, 0.12), transparent);
-      top: -30px;
-      right: -30px;
-      pointer-events: none;
-    }
-
-    .product-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.1);
-      border-color: #60a5fa;
-      background: #ffffff;
-    }
-
-    .product-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .product-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      background: radial-gradient(circle at 30% 30%, #38bdf8, #1d4ed8);
-      color: white;
-      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.5);
-    }
-
-    .product-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .product-lang {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .product-desc {
-      font-size: 12px;
-      color: #4b5563;
-    }
-
-    .product-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .product-tag {
-      font-size: 10px;
-      padding: 3px 6px;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid rgba(129, 140, 248, 0.7);
-    }
-
-    .product-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    .product-price {
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    .product-age {
-      font-size: 10px;
-      color: #6b7280;
-    }
-
-    .product-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      transition: background-color 0.15s ease, transform 0.1s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    .btn-preview {
-      background: #eef2ff;
-      color: #4338ca;
-      border: 1px solid rgba(129, 140, 248, 0.85);
-    }
-
-    .btn-preview:hover {
-      background: #e0e7ff;
-    }
-
-    .btn-cart {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: white;
-      box-shadow: 0 6px 14px rgba(22, 163, 74, 0.5);
-    }
-
-    .btn-cart:hover {
-      background: linear-gradient(135deg, #16a34a, #15803d);
-    }
-
-    .btn-icon {
-      font-size: 14px;
-    }
-
-    /* --------- КОРЗИНА --------- */
-    .cart {
-      position: sticky;
-      top: 24px;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.15);
-      max-height: calc(100vh - 48px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .cart-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .cart-title span {
-      font-size: 11px;
-      color: #6b7280;
-      font-weight: 400;
-    }
-
-    .cart-items {
-      margin-top: 6px;
-      padding-right: 4px;
-      overflow-y: auto;
-      max-height: 260px;
-    }
-
-    .cart-empty {
-      font-size: 12px;
-      color: #9ca3af;
-      text-align: center;
-      padding: 12px 4px;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4px 8px;
-      font-size: 12px;
-      padding: 6px 0;
-      border-bottom: 1px dashed rgba(209, 213, 219, 0.9);
-    }
-
-    .cart-item-name {
-      font-weight: 500;
-    }
-
-    .cart-item-meta {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .cart-item-price {
-      font-weight: 600;
-      text-align: right;
-    }
-
-    .cart-item-qty {
-      font-size: 11px;
-      text-align: right;
-      color: #6b7280;
-    }
-
-    .cart-footer {
-      border-top: 1px solid rgba(209, 213, 219, 0.9);
-      padding-top: 8px;
-      margin-top: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 13px;
-    }
-
-    .cart-total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cart-total-label {
-      font-weight: 500;
-    }
-
-    .cart-total-value {
-      font-weight: 700;
-    }
-
-    .cart-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .btn-main {
-      width: 100%;
-      justify-content: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background-color 0.15s ease, transform 0.1s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .btn-main:active {
-      transform: scale(0.98);
-    }
-
-    .btn-checkout {
-      background: #2563eb;
-      color: white;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-checkout:hover {
-      background: #1d4ed8;
-    }
-
-    .btn-pay {
-      background: #f97316;
-      color: #111827;
-      box-shadow: 0 10px 20px rgba(249, 115, 22, 0.55);
-    }
-
-    .btn-pay:hover {
-      background: #ea580c;
-    }
-
-    .cart-note {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    /* --------- МОДАЛКА ПРЕДПРОСМОТРА --------- */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-      padding: 16px;
-    }
-
-    .modal {
-      max-width: 560px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.4);
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .modal-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .modal-lang {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .modal-body {
-      font-size: 13px;
-      color: #374151;
-      margin-top: 4px;
-      padding-right: 4px;
-      overflow-y: auto;
-      max-height: 50vh;
-    }
-
-    .modal-sample {
-      border-radius: 12px;
-      background: #f9fafb;
-      border: 1px dashed rgba(156, 163, 175, 0.85);
-      padding: 10px;
-      margin-top: 8px;
-      font-size: 12px;
-    }
-
-    .modal-buttons {
-      margin-top: 10px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn-outline {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      padding: 6px 10px;
-      background: #f9fafb;
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-outline:hover {
-      background: #e5e7eb;
-    }
-
-    .btn-primary-small {
-      border-radius: 999px;
-      border: none;
-      padding: 6px 10px;
-      background: #16a34a;
-      color: white;
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-primary-small:hover {
-      background: #15803d;
-    }
-
-    .close-icon {
-      font-size: 16px;
-    }
-
-    /* --------- ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ --------- */
-    .toast {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(22, 163, 74, 0.96);
-      color: white;
-      font-size: 12px;
-      display: none;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 12px 24px rgba(22, 163, 74, 0.55);
-      z-index: 60;
-    }
-
-    .toast-icon {
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Книжная лавка | Электронные издания</title>
+    <!-- Google Fonts & Simple Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8f5;
+            color: #1e2a2f;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid #e2dcd5;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #2c5f2d, #97bc62);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo i {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #2c5f2d;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2d3e40;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2c5f2d;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #2d3e40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #c44536;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #2c5f2d, #5e8c5a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a5b5e;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* filter tabs */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 40px 0 32px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd6ce;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #2c5f2d;
+            border-color: #2c5f2d;
+            color: white;
+        }
+
+        /* book grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 32px;
+            margin: 20px 0 60px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 36px -16px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-cover {
+            background: #ece4da;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #5c3e2b;
+        }
+
+        .book-info {
+            padding: 20px 18px 18px;
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .book-author {
+            font-size: 0.85rem;
+            color: #7c6e62;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .category-badge {
+            background: #f0e7de;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #5c3e2b;
+        }
+
+        .book-desc {
+            font-size: 0.85rem;
+            color: #5c6b6f;
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c5f2d;
+            margin: 12px 0 8px;
+        }
+
+        .add-to-cart {
+            background: #1e2a2f;
+            border: none;
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart:hover {
+            background: #2c5f2d;
+            transform: scale(0.98);
+        }
+
+        /* cart sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s ease;
+            z-index: 1000;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            background: white;
+            box-shadow: -8px 0 30px rgba(0,0,0,0.1);
+            transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+        }
+
+        .cart-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9e2db;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid #f0e8e0;
+            padding-bottom: 12px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: #2c5f2d;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            color: #c44536;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .cart-total {
+            border-top: 2px dashed #ddd;
+            padding-top: 18px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .checkout-btn {
+            background: #2c5f2d;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #8f9b9e;
+            margin-top: 40px;
+        }
+
+        footer {
+            background: #e9e2db;
+            margin-top: 60px;
+            padding: 40px 0;
+            text-align: center;
+            color: #3e4e52;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2a2f;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            z-index: 1100;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <!-- ШАПКА -->
-    <header>
-      <div class="logo">
-        <div class="logo-icon">📚</div>
-        <div>
-          <div class="logo-text-main">EduKids</div>
-          <div class="logo-text-sub">
-            Учебные пособия для детей 5–10 лет / Kids’ workbooks
-          </div>
+
+<div class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-book-open"></i> LitEra<span style="color:#2c5f2d;">.</span>
         </div>
-      </div>
-      <div class="header-right">
-        <span>Ru / En материалы</span>
-        <div class="lang-pill">RU + EN</div>
-      </div>
-    </header>
-
-    <main>
-      <section>
-        <!-- ХЕРО-БЛОК -->
-        <div class="hero">
-          <div class="hero-text">
-            <h1>
-              Пособия для умных детей <span>/ Smart kids’ books</span>
-            </h1>
-            <div class="hero-sub">
-              Арифметика и английский язык в одном месте. Печать или PDF,
-              двуязычные задания, яркий дизайн и понятные инструкции для родителей.
-            </div>
-            <div class="hero-tags">
-              <div class="hero-tag">🎯 Возраст 5–10 лет</div>
-              <div class="hero-tag">🇷🇺 Русский</div>
-              <div class="hero-tag">🇬🇧 English</div>
-              <div class="hero-tag">🧮 Арифметика</div>
-              <div class="hero-tag">🗣 Английский</div>
-            </div>
-            <div class="hero-note">
-              Нажмите «Предпросмотр / Preview», чтобы увидеть примеры страниц перед покупкой.
-            </div>
-          </div>
-          <div class="hero-illustration">
-            <div class="hero-illustration-main">
-              <div class="kid-card">
-                <div class="kid-card-title">
-                  <span>2 + 3 = ?</span>
-                  <span>🧠</span>
-                </div>
-                <div class="kid-card-body">
-                  — Мама, смотри, я сам посчитал!<br />
-                  — Mom, look, I did it myself!
-                </div>
-                <div class="kid-card-footer">
-                  <span>10 минут в день</span>
-                  <span>Every day is progress</span>
-                </div>
-              </div>
-              <div class="bubble">🔤</div>
-            </div>
-            <div class="hero-illustration-badges">
-              <div class="hero-badge">PDF + печать</div>
-              <div class="hero-badge">Answer keys для родителей</div>
-              <div class="hero-badge">Bilingual instructions</div>
-            </div>
-          </div>
+        <ul class="nav-links">
+            <li><a href="#" data-filter="all">Главная</a></li>
+            <li><a href="#" data-filter="english">Английский</a></li>
+            <li><a href="#" data-filter="arithmetic">Арифметика</a></li>
+            <li><a href="#" data-filter="stories">Рассказы</a></li>
+            <li><a href="#" data-filter="books">Книги</a></li>
+        </ul>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
         </div>
+    </nav>
 
-        <!-- ТОВАРЫ -->
-        <section class="products-section">
-          <div class="products-header">
-            <div>
-              <div class="products-title">
-                Учебные пособия / Workbooks
-              </div>
-              <div class="products-subtitle">
-                Выберите пособие, откройте предпросмотр, добавьте в корзину и оформите заказ.
-              </div>
-            </div>
-          </div>
+    <section class="hero">
+        <h1>Электронные издания для ума и души</h1>
+        <p>Пособия по английскому, арифметике, увлекательные рассказы и бестселлеры — мгновенная загрузка в форматах PDF, EPUB</p>
+    </section>
 
-          <div class="products-grid" id="products-grid">
-            <!-- Карточки будут созданы через JS, но можно и руками. 
-                 Для ясности сделаем их прямо в HTML, а JS возьмёт данные из data-атрибутов. -->
-
-            <!-- Арифметика RU -->
-            <article
-              class="product-card"
-              data-id="arith-ru"
-              data-title="Арифметика для детей 5–7 лет"
-              data-lang="Русский / Russian"
-              data-price="9.90"
-              data-sample="В этом пособии ребёнок учится считать от 1 до 20, решать простые примеры на сложение и вычитание, сравнивать числа и работать с картинками. Все задания оформлены крупно и понятно, есть место для ответов."
-              data-sample-en="In this workbook your child practices counting from 1 to 20, simple addition and subtraction, and comparing numbers. All tasks are large, clear and friendly for small hands."
-            >
-              <div class="product-header">
-                <div class="product-icon">🧮</div>
-                <div>
-                  <div class="product-title">Арифметика 5–7 лет</div>
-                  <div class="product-lang">Русский / Russian</div>
-                </div>
-              </div>
-              <div class="product-desc">
-                Счёт до 20, примеры в столбик и в строку, задания с картинками,
-                подготовка к школе. Пошаговое усложнение.
-              </div>
-              <div class="product-tags">
-                <span class="product-tag">Сложение и вычитание</span>
-                <span class="product-tag">Числовой ряд</span>
-                <span class="product-tag">5–7 лет</span>
-              </div>
-              <div class="product-footer">
-                <div>
-                  <div class="product-price">9.90&nbsp;USD</div>
-                  <div class="product-age">PDF, 80 страниц</div>
-                </div>
-              </div>
-              <div class="product-buttons">
-                <button class="btn btn-preview preview-btn">
-                  <span class="btn-icon">👁</span>
-                  Предпросмотр / Preview
-                </button>
-                <button class="btn btn-cart add-to-cart-btn">
-                  <span class="btn-icon">🛒</span>
-                  В корзину / Add to cart
-                </button>
-              </div>
-            </article>
-
-            <!-- Арифметика EN -->
-            <article
-              class="product-card"
-              data-id="arith-en"
-              data-title="Math for Kids 6–8"
-              data-lang="English / Английский"
-              data-price="11.50"
-              data-sample="This workbook introduces addition and subtraction within 50, number bonds, and simple word problems. Each page includes visual support and clear step-by-step tasks."
-              data-sample-en="Children learn to solve problems in English: numbers, plus/minus vocabulary and simple math stories. Great for bilingual families."
-            >
-              <div class="product-header">
-                <div class="product-icon">📏</div>
-                <div>
-                  <div class="product-title">Math 6–8 y.o.</div>
-                  <div class="product-lang">English / Английский</div>
-                </div>
-              </div>
-              <div class="product-desc">
-                Addition &amp; subtraction within 50, number bonds, simple word problems.
-                Friendly design and step-by-step instructions.
-              </div>
-              <div class="product-tags">
-                <span class="product-tag">Math vocabulary</span>
-                <span class="product-tag">Word problems</span>
-                <span class="product-tag">6–8 years</span>
-              </div>
-              <div class="product-footer">
-                <div>
-                  <div class="product-price">11.50&nbsp;USD</div>
-                  <div class="product-age">PDF, 90 pages</div>
-                </div>
-              </div>
-              <div class="product-buttons">
-                <button class="btn btn-preview preview-btn">
-                  <span class="btn-icon">👁</span>
-                  Предпросмотр / Preview
-                </button>
-                <button class="btn btn-cart add-to-cart-btn">
-                  <span class="btn-icon">🛒</span>
-                  В корзину / Add to cart
-                </button>
-              </div>
-            </article>
-
-            <!-- Английский язык RU+EN -->
-            <article
-              class="product-card"
-              data-id="eng-beginner"
-              data-title="Английский для начинающих (5–8 лет)"
-              data-lang="Bilingual: RU + EN"
-              data-price="12.90"
-              data-sample="Первые слова по темам: семья, игрушки, цвета, числа, школа. Каждый модуль включает словарь, карточки, упражнения и мини-диалоги для разыгрывания с ребёнком."
-              data-sample-en="First English words for kids: family, toys, colors, numbers, school. Each unit has a small picture dictionary, simple tasks and mini dialogues to read and act out."
-            >
-              <div class="product-header">
-                <div class="product-icon">🔠</div>
-                <div>
-                  <div class="product-title">English Starter 5–8</div>
-                  <div class="product-lang">Двуязычное / Bilingual</div>
-                </div>
-              </div>
-              <div class="product-desc">
-                Первые слова, фразы и простые диалоги. Цветные карточки,
-                упражнения «соедини линией», раскраски и аудио-подсказки (по QR).
-              </div>
-              <div class="product-tags">
-                <span class="product-tag">Первые слова</span>
-                <span class="product-tag">Flashcards</span>
-                <span class="product-tag">Диалоги</span>
-              </div>
-              <div class="product-footer">
-                <div>
-                  <div class="product-price">12.90&nbsp;USD</div>
-                  <div class="product-age">PDF, 100 страниц</div>
-                </div>
-              </div>
-              <div class="product-buttons">
-                <button class="btn btn-preview preview-btn">
-                  <span class="btn-icon">👁</span>
-                  Предпросмотр / Preview
-                </button>
-                <button class="btn btn-cart add-to-cart-btn">
-                  <span class="btn-icon">🛒</span>
-                  В корзину / Add to cart
-                </button>
-              </div>
-            </article>
-
-            <!-- Английский продвинутый -->
-            <article
-              class="product-card"
-              data-id="eng-reading"
-              data-title="Reading &amp; Phonics (7–10 лет)"
-              data-lang="English / Английский"
-              data-price="14.50"
-              data-sample="Step-by-step reading practice: letters, sounds, simple stories with big font. Each text has comprehension questions and a small creative task."
-              data-sample-en="Perfect for early readers: phonics, short stories and exercises that build confidence in English."
-            >
-              <div class="product-header">
-                <div class="product-icon">📖</div>
-                <div>
-                  <div class="product-title">Reading &amp; Phonics 7–10</div>
-                  <div class="product-lang">English / Английский</div>
-                </div>
-              </div>
-              <div class="product-desc">
-                Чтение по ступеням: звуки, слоги, короткие истории. Вопросы к тексту,
-                задания «нарисуй и подпиши», небольшие проекты.
-              </div>
-              <div class="product-tags">
-                <span class="product-tag">Phonics</span>
-                <span class="product-tag">Reading practice</span>
-                <span class="product-tag">7–10 years</span>
-              </div>
-              <div class="product-footer">
-                <div>
-                  <div class="product-price">14.50&nbsp;USD</div>
-                  <div class="product-age">PDF, 120 pages</div>
-                </div>
-              </div>
-              <div class="product-buttons">
-                <button class="btn btn-preview preview-btn">
-                  <span class="btn-icon">👁</span>
-                  Предпросмотр / Preview
-                </button>
-                <button class="btn btn-cart add-to-cart-btn">
-                  <span class="btn-icon">🛒</span>
-                  В корзину / Add to cart
-                </button>
-              </div>
-            </article>
-          </div>
-        </section>
-      </section>
-
-      <!-- КОРЗИНА -->
-      <aside class="cart" id="cart">
-        <div class="cart-title">
-          <span>Корзина / Cart</span>
-          <span id="cart-count-label">0 товаров</span>
-        </div>
-        <div class="cart-items" id="cart-items">
-          <div class="cart-empty">
-            Ваша корзина пуста.<br />
-            Добавьте пособие, нажав «В корзину / Add to cart».
-          </div>
-        </div>
-        <div class="cart-footer">
-          <div class="cart-total-row">
-            <div class="cart-total-label">Итого / Total:</div>
-            <div class="cart-total-value" id="cart-total">0.00&nbsp;USD</div>
-          </div>
-          <div class="cart-actions">
-            <button class="btn-main btn-checkout" id="checkout-btn">
-              <span>📝</span> Оформить заказ / Checkout
-            </button>
-            <button class="btn-main btn-pay" id="pay-btn">
-              <span>💳</span> Оплатить / Pay
-            </button>
-          </div>
-          <div class="cart-note">
-            После оплаты вы получите ссылку на скачивание PDF-файлов. В реальном проекте
-            здесь будет интеграция с платёжной системой.
-          </div>
-        </div>
-      </aside>
-    </main>
-  </div>
-
-  <!-- МОДАЛКА ПРЕДПРОСМОТРА -->
-  <div class="modal-backdrop" id="modal-backdrop">
-    <div class="modal" role="dialog" aria-modal="true">
-      <div class="modal-header">
-        <div>
-          <div class="modal-title" id="modal-title"></div>
-          <div class="modal-lang" id="modal-lang"></div>
-        </div>
-        <button class="btn-outline" id="modal-close-btn">
-          <span class="close-icon">✕</span> Закрыть / Close
-        </button>
-      </div>
-      <div class="modal-body">
-        <p id="modal-description"></p>
-        <div class="modal-sample" id="modal-sample"></div>
-      </div>
-      <div class="modal-buttons">
-        <button class="btn-outline" id="modal-preview-note">
-          📄 Черно-белая и цветная версии
-        </button>
-        <button class="btn-primary-small" id="modal-add-to-cart">
-          <span>🛒</span> В корзину / Add to cart
-        </button>
-      </div>
+    <div class="filter-section" id="filterSection">
+        <button class="filter-btn active" data-filter="all">Все товары</button>
+        <button class="filter-btn" data-filter="english">📘 Английский язык</button>
+        <button class="filter-btn" data-filter="arithmetic">🧮 Арифметика</button>
+        <button class="filter-btn" data-filter="stories">📖 Рассказы</button>
+        <button class="filter-btn" data-filter="books">📚 Книги</button>
     </div>
-  </div>
 
-  <!-- ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ -->
-  <div class="toast" id="toast">
-    <span class="toast-icon">✅</span>
-    <span id="toast-message">Добавлено в корзину</span>
-  </div>
+    <div id="booksContainer" class="books-grid"></div>
+</div>
 
-  <script>
-    // ---------- ДАННЫЕ О ТОВАРАХ (из атрибутов HTML) ----------
-    const productElements = document.querySelectorAll(".product-card");
-    const products = {};
+<footer>
+    <div class="container">
+        <p><i class="fas fa-download"></i> Мгновенная доставка на email после оплаты | Все файлы в цифровом формате</p>
+        <p style="margin-top: 12px;">© 2025 LitEra — электронная книжная лавка</p>
+    </div>
+</footer>
 
-    productElements.forEach((el) => {
-      const id = el.dataset.id;
-      products[id] = {
-        id,
-        title: el.dataset.title,
-        lang: el.dataset.lang,
-        price: parseFloat(el.dataset.price || "0"),
-        sample: el.dataset.sample,
-        sampleEn: el.dataset.sampleEn,
-      };
-    });
+<!-- Cart Sidebar -->
+<div id="cartOverlay" class="cart-overlay">
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <span>🛒 Ваша корзина</span>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div id="cartItemsList" class="cart-items">
+            <div class="empty-cart-msg">Корзина пуста. Добавьте книги!</div>
+        </div>
+        <div id="cartTotalBlock" class="cart-total" style="display: none;">
+            <span>Итого:</span>
+            <span id="cartTotalPrice">0 ₽</span>
+        </div>
+        <button id="checkoutBtn" class="checkout-btn" style="display: none;">✨ Оформить заказ</button>
+    </div>
+</div>
+<div id="toastMsg" class="toast-msg"></div>
 
-    // ---------- КОРЗИНА ----------
-    const cart = {};
-    const cartItemsContainer = document.getElementById("cart-items");
-    const cartTotalEl = document.getElementById("cart-total");
-    const cartCountLabel = document.getElementById("cart-count-label");
+<script>
+    // ---------- КНИЖНЫЙ КАТАЛОГ ----------
+    const booksData = [
+        { id: 1, title: "English Grammar Pro", author: "Елена Смирнова", category: "english", desc: "Полное пособие по грамматике для уровней A2–C1. Упражнения и тесты.", price: 490, coverIcon: "📘" },
+        { id: 2, title: "Speak Fluent: разговорник", author: "Анна Коваль", category: "english", desc: "500+ фраз и диалогов для свободного общения. Аудио-подсказки.", price: 350, coverIcon: "🎧" },
+        { id: 3, title: "Арифметика для начинающих", author: "Игорь Матвеев", category: "arithmetic", desc: "Сложение, вычитание, таблица умножения в игровой форме. 6+", price: 290, coverIcon: "🔢" },
+        { id: 4, title: "Занимательная математика", author: "Сергей Петров", category: "arithmetic", desc: "Логика, дроби, задачи на смекалку для 1-4 классов.", price: 420, coverIcon: "🧩" },
+        { id: 5, title: "Вечерние рассказы", author: "Мария Чехова", category: "stories", desc: "Сборник тёплых историй для уютного чтения перед сном.", price: 280, coverIcon: "🌙" },
+        { id: 6, title: "Приключения кота Васьки", author: "Дмитрий Лапин", category: "stories", desc: "Иллюстрированные рассказы для детей и взрослых.", price: 320, coverIcon: "🐱" },
+        { id: 7, title: "Атлант расправил плечи", author: "Айн Рэнд", category: "books", desc: "Философский роман-бестселлер в электронном формате.", price: 590, coverIcon: "🏛️" },
+        { id: 8, title: "451° по Фаренгейту", author: "Рэй Брэдбери", category: "books", desc: "Классическая антиутопия. Новый перевод.", price: 430, coverIcon: "🔥" },
+        { id: 9, title: "Английский с нуля", author: "Ольга Полякова", category: "english", desc: "Интенсивный видеокурс + PDF. Для самостоятельного старта.", price: 540, coverIcon: "🇬🇧" },
+        { id: 10, title: "Устный счёт за 15 минут", author: "Нина Гриднева", category: "arithmetic", desc: "Тренажёр для быстрого счёта в уме. 2-5 класс.", price: 310, coverIcon: "🧠" }
+    ];
 
-    function updateCartView() {
-      const ids = Object.keys(cart);
-      cartItemsContainer.innerHTML = "";
+    // Корзина: массив объектов { id, title, price, quantity }
+    let cart = [];
 
-      if (ids.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "cart-empty";
-        empty.innerHTML =
-          "Ваша корзина пуста.<br />Добавьте пособие, нажав «В корзину / Add to cart».";
-        cartItemsContainer.appendChild(empty);
-        cartTotalEl.innerHTML = "0.00&nbsp;USD";
-        cartCountLabel.textContent = "0 товаров";
-        return;
-      }
+    // DOM элементы
+    const booksContainer = document.getElementById('booksContainer');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cartIconElem = document.getElementById('cartIcon');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartTotalBlock = document.getElementById('cartTotalBlock');
+    const cartTotalPriceSpan = document.getElementById('cartTotalPrice');
+    const checkoutBtnElem = document.getElementById('checkoutBtn');
+    const cartCountSpan = document.getElementById('cartCount');
+    const toastMsgDiv = document.getElementById('toastMsg');
 
-      let total = 0;
-      let count = 0;
+    let currentFilter = "all";
 
-      ids.forEach((id) => {
-        const item = cart[id];
-        const product = products[id];
-        if (!product) return;
-
-        const sum = product.price * item.qty;
-        total += sum;
-        count += item.qty;
-
-        const row = document.createElement("div");
-        row.className = "cart-item";
-
-        const left = document.createElement("div");
-        const name = document.createElement("div");
-        name.className = "cart-item-name";
-        name.textContent = product.title;
-        const meta = document.createElement("div");
-        meta.className = "cart-item-meta";
-        meta.textContent = product.lang;
-        left.appendChild(name);
-        left.appendChild(meta);
-
-        const right = document.createElement("div");
-        const price = document.createElement("div");
-        price.className = "cart-item-price";
-        price.innerHTML = sum.toFixed(2) + "&nbsp;USD";
-
-        const qty = document.createElement("div");
-        qty.className = "cart-item-qty";
-        qty.textContent = "× " + item.qty;
-
-        right.appendChild(price);
-        right.appendChild(qty);
-
-        row.appendChild(left);
-        row.appendChild(right);
-
-        cartItemsContainer.appendChild(row);
-      });
-
-      cartTotalEl.innerHTML = total.toFixed(2) + "&nbsp;USD";
-      cartCountLabel.textContent = count + " " + (count === 1 ? "товар" : "товаров");
+    // ---- Вспомогательные функции ----
+    function showToast(message, duration = 2000) {
+        toastMsgDiv.textContent = message;
+        toastMsgDiv.style.opacity = "1";
+        setTimeout(() => {
+            toastMsgDiv.style.opacity = "0";
+        }, duration);
     }
 
-    function addToCart(productId) {
-      if (!products[productId]) return;
-      if (!cart[productId]) {
-        cart[productId] = { qty: 0 };
-      }
-      cart[productId].qty += 1;
-      updateCartView();
-      showToast("Товар добавлен в корзину / Item added to cart");
+    // Сохранить корзину в localStorage
+    function saveCartToLocal() {
+        localStorage.setItem('bookshopCart', JSON.stringify(cart));
     }
 
-    // ---------- ПРЕДПРОСМОТР (МОДАЛКА) ----------
-    const modalBackdrop = document.getElementById("modal-backdrop");
-    const modalTitle = document.getElementById("modal-title");
-    const modalLang = document.getElementById("modal-lang");
-    const modalDescription = document.getElementById("modal-description");
-    const modalSample = document.getElementById("modal-sample");
-    const modalCloseBtn = document.getElementById("modal-close-btn");
-    const modalAddToCartBtn = document.getElementById("modal-add-to-cart");
-
-    let currentPreviewId = null;
-
-    function openPreview(productId) {
-      const product = products[productId];
-      if (!product) return;
-
-      currentPreviewId = productId;
-
-      modalTitle.textContent = product.title;
-      modalLang.textContent = product.lang;
-      modalDescription.textContent =
-        product.sample || "Описание в разработке / Description coming soon";
-
-      // Две маленькие «странички» описания: RU и EN
-      const ruPart = product.sample
-        ? "RU: " + product.sample
-        : "RU: пример страницы появится позже.";
-      const enPart = product.sampleEn
-        ? "EN: " + product.sampleEn
-        : "EN: sample will be available later.";
-
-      modalSample.innerHTML =
-        "<strong>Пример / Sample:</strong><br><br>" +
-        ruPart +
-        "<br><br>" +
-        enPart;
-
-      modalBackdrop.style.display = "flex";
+    // Загрузить корзину из localStorage
+    function loadCartFromLocal() {
+        const saved = localStorage.getItem('bookshopCart');
+        if (saved) {
+            try {
+                cart = JSON.parse(saved);
+                // валидация простейшая
+                if (!Array.isArray(cart)) cart = [];
+            } catch(e) { cart = []; }
+        } else {
+            cart = [];
+        }
+        updateCartUI();
     }
 
-    function closePreview() {
-      modalBackdrop.style.display = "none";
-      currentPreviewId = null;
+    // Обновить счетчик иконки, общую сумму и рендер корзины
+    function updateCartUI() {
+        const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+        cartCountSpan.innerText = totalItems;
+        const totalSum = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        if (cartItemsList) renderCartItems();
+
+        if (totalItems === 0) {
+            cartTotalBlock.style.display = "none";
+            checkoutBtnElem.style.display = "none";
+        } else {
+            cartTotalBlock.style.display = "flex";
+            checkoutBtnElem.style.display = "block";
+            cartTotalPriceSpan.innerText = totalSum + " ₽";
+        }
+        saveCartToLocal();
     }
 
-    modalCloseBtn.addEventListener("click", closePreview);
-    modalBackdrop.addEventListener("click", (e) => {
-      if (e.target === modalBackdrop) {
-        closePreview();
-      }
-    });
+    // Рендер содержимого корзины в боковой панели
+    function renderCartItems() {
+        if (!cartItemsList) return;
+        if (cart.length === 0) {
+            cartItemsList.innerHTML = `<div class="empty-cart-msg">📭 Корзина пуста. Добавьте книги!</div>`;
+            return;
+        }
+        let html = '';
+        cart.forEach((item, idx) => {
+            html += `
+                <div class="cart-item" data-cartidx="${idx}">
+                    <div style="min-width: 40px; font-size: 1.6rem;">${getIconForBookId(item.id)}</div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${escapeHtml(item.title)}</div>
+                        <div class="cart-item-price">${item.price} ₽</div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                            <span>Кол-во: ${item.quantity}</span>
+                            <button class="remove-item" data-id="${item.id}" data-action="decrease">🗑️ Убрать</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        cartItemsList.innerHTML = html;
 
-    modalAddToCartBtn.addEventListener("click", () => {
-      if (currentPreviewId) {
-        addToCart(currentPreviewId);
-      }
-    });
-
-    // ---------- КНОПКИ НА КАРТОЧКАХ ----------
-    document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".product-card");
-        if (!card) return;
-        const id = card.dataset.id;
-        addToCart(id);
-      });
-    });
-
-    document.querySelectorAll(".preview-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".product-card");
-        if (!card) return;
-        const id = card.dataset.id;
-        openPreview(id);
-      });
-    });
-
-    // ---------- КНОПКИ ОФОРМЛЕНИЯ ЗАКАЗА ----------
-    const checkoutBtn = document.getElementById("checkout-btn");
-    const payBtn = document.getElementById("pay-btn");
-
-    checkoutBtn.addEventListener("click", () => {
-      const ids = Object.keys(cart);
-      if (ids.length === 0) {
-        showToast("Добавьте хотя бы одно пособие в корзину");
-        return;
-      }
-      alert(
-        "Шаг оформления заказа.\n\nЗдесь вы можете:\n• добавить форму с данными покупателя (имя, e-mail);\n• указать способ доставки/формат (PDF/печать);\n• перейти к оплате."
-      );
-    });
-
-    payBtn.addEventListener("click", () => {
-      const ids = Object.keys(cart);
-      if (ids.length === 0) {
-        showToast("Сначала добавьте товары в корзину");
-        return;
-      }
-      alert(
-        "Шаг оплаты.\n\nВ реальном проекте здесь подключается платёжная система (Stripe, ЮKassa и т.п.).\nПосле успешной оплаты пользователь получает ссылку на скачивание PDF-файлов."
-      );
-    });
-
-    // ---------- ТОСТ (ВСПЛЫВАЮЩЕЕ УВЕДОМЛЕНИЕ) ----------
-    const toastEl = document.getElementById("toast");
-    const toastMessageEl = document.getElementById("toast-message");
-    let toastTimeout = null;
-
-    function showToast(message) {
-      toastMessageEl.textContent = message;
-      toastEl.style.display = "flex";
-
-      if (toastTimeout) {
-        clearTimeout(toastTimeout);
-      }
-      toastTimeout = setTimeout(() => {
-        toastEl.style.display = "none";
-      }, 2500);
+        // обработчики удаления/уменьшения
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const bookId = parseInt(btn.getAttribute('data-id'));
+                removeFromCart(bookId);
+            });
+        });
     }
 
-    // Инициализация
-    updateCartView();
-  </script>
+    function getIconForBookId(bookId) {
+        const book = booksData.find(b => b.id === bookId);
+        return book ? book.coverIcon : "📖";
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Добавление в корзину
+    function addToCart(book) {
+        const existing = cart.find(item => item.id === book.id);
+        if (existing) {
+            existing.quantity += 1;
+            showToast(`➕ "${book.title}" — количество увеличено до ${existing.quantity}`);
+        } else {
+            cart.push({
+                id: book.id,
+                title: book.title,
+                price: book.price,
+                quantity: 1
+            });
+            showToast(`📚 "${book.title}" добавлена в корзину`);
+        }
+        updateCartUI();
+    }
+
+    function removeFromCart(bookId) {
+        const index = cart.findIndex(item => item.id === bookId);
+        if (index !== -1) {
+            const removedTitle = cart[index].title;
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                showToast(`📖 "${removedTitle}" — количество уменьшено`);
+            } else {
+                cart.splice(index, 1);
+                showToast(`❌ "${removedTitle}" удалена из корзины`);
+            }
+            updateCartUI();
+        }
+    }
+
+    // Рендер книг с учетом фильтра
+    function renderBooks() {
+        let filteredBooks = booksData;
+        if (currentFilter !== 'all') {
+            filteredBooks = booksData.filter(book => book.category === currentFilter);
+        }
+        if (filteredBooks.length === 0) {
+            booksContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px;">📭 Нет книг в этой категории</div>`;
+            return;
+        }
+        booksContainer.innerHTML = filteredBooks.map(book => `
+            <div class="book-card" data-id="${book.id}">
+                <div class="book-cover">
+                    <span style="font-size:4rem;">${book.coverIcon}</span>
+                </div>
+                <div class="book-info">
+                    <div class="book-title">${escapeHtml(book.title)}</div>
+                    <div class="book-author">
+                        <span>${escapeHtml(book.author)}</span>
+                        <span class="category-badge">${getCategoryLabel(book.category)}</span>
+                    </div>
+                    <div class="book-desc">${escapeHtml(book.desc)}</div>
+                    <div class="price">${book.price} ₽</div>
+                    <button class="add-to-cart" data-id="${book.id}">
+                        <i class="fas fa-cart-plus"></i> В корзину
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        // привязываем обработчики кнопок "В корзину"
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = parseInt(btn.getAttribute('data-id'));
+                const bookToAdd = booksData.find(b => b.id === id);
+                if (bookToAdd) addToCart(bookToAdd);
+            });
+        });
+    }
+
+    function getCategoryLabel(cat) {
+        const map = {
+            english: 'Английский',
+            arithmetic: 'Математика',
+            stories: 'Рассказы',
+            books: 'Книги'
+        };
+        return map[cat] || 'Издание';
+    }
+
+    // фильтрация
+    function setFilter(filterValue) {
+        currentFilter = filterValue;
+        renderBooks();
+        // обновить активную кнопку
+        filterBtns.forEach(btn => {
+            const btnFilter = btn.getAttribute('data-filter');
+            if (btnFilter === currentFilter) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    // Обработка навигационных ссылок (меню)
+    function initNavFilters() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filterVal = link.getAttribute('data-filter');
+                if (filterVal) {
+                    setFilter(filterVal);
+                } else if (link.innerText.includes('Главная')) {
+                    setFilter('all');
+                }
+                // закрыть корзину если открыта
+                closeCart();
+            });
+        });
+    }
+
+    // Корзина: открыть/закрыть
+    function openCart() {
+        cartOverlay.classList.add('active');
+        cartSidebar.classList.add('active');
+        renderCartItems();
+        const totalSum = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        if (cart.length > 0) {
+            cartTotalPriceSpan.innerText = totalSum + " ₽";
+        }
+    }
+    function closeCart() {
+        cartOverlay.classList.remove('active');
+        cartSidebar.classList.remove('active');
+    }
+
+    // Оформление заказа
+    function handleCheckout() {
+        if (cart.length === 0) {
+            showToast("Корзина пуста, добавьте книги для оформления");
+            return;
+        }
+        const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+        // имитация заказа
+        showToast(`✅ Спасибо за заказ на сумму ${total} ₽! Книги будут отправлены на email.`, 3000);
+        // очищаем корзину
+        cart = [];
+        updateCartUI();
+        closeCart();
+        renderBooks(); // обновить счетчик
+    }
+
+    // ---- Инициализация событий ----
+    function initEventListeners() {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                setFilter(filter);
+            });
+        });
+
+        cartIconElem.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', (e) => {
+            if (e.target === cartOverlay) closeCart();
+        });
+        checkoutBtnElem.addEventListener('click', handleCheckout);
+    }
+
+    // Запуск
+    function init() {
+        loadCartFromLocal();
+        renderBooks();
+        initEventListeners();
+        initNavFilters();
+        setFilter('all');
+        // если корзина уже была с прошлого раза, обновим счетчик
+        updateCartUI();
+    }
+
+    init();
+</script>
 </body>
 </html>
